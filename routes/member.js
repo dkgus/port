@@ -4,6 +4,7 @@ const path = require('path');
 const member = require("../models/member"); //데베 연결한 모델
 const message = require("../lib/message");
 const { joinFormValidator } = require("../middlewares/validators/join"); // 회원가입 양식 검증 미들웨어
+const { loginFormValidator } = require("../middlewares/validators/login"); // 로그인 양식 검증 미들웨어
 
 
 const router = express.Router();
@@ -58,6 +59,7 @@ router.route("/join")
 router.route("/info")
       /* 회원정보 수정 양식 */
       .get((req, res, next) => {
+            
 
       })
       /** 회원정보 수정 처리  */
@@ -69,11 +71,22 @@ router.route("/info")
 router.route("/login")
       /* 로그인 양식 */
       .get((req, res, next) => {
-
+            res.render("member/login", { pageTitle : "로그인<img src=/images/timer.png>" } );
       })
       /** 로그인 처리  */
-      .post((req, res, next) => {
-
+      .post(loginFormValidator, async (req, res, next) => {
+            try {
+                  const result = await member.login(req.body.memId, req.body.memPw, req);
+                  if (result) { // 로그인 성공
+                        return res.send("<script>location.href='/';</script>");
+                  } else { // 로그인 실패 
+                        throw new Error("로그인 실패!");
+                  }
+                  
+            } catch (err) { // 로그인 실패 
+                  return message.alertBack(err.message, res);
+            }
       });
+
 
 module.exports = router;

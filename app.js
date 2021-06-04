@@ -10,6 +10,9 @@ const session = require('express-session');
 const { sequelize } = require('./models');
 const logger = require('./lib/logger');
 const { mainMenu } = require('./middlewares/menus'); // 메인 메뉴 
+const loginSession = require('./middlewares/member/login_session'); // 로그인 세션 처리 
+
+
 
 /** 라우터 */
 const indexRouter = require('./routes');
@@ -59,6 +62,7 @@ app.use(session({
 	name : "YHSESSID",
 }));
 
+app.use(loginSession()); // 로그인 세션 처리 
 
 
 app.use(morgan('dev'));

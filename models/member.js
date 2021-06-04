@@ -79,6 +79,35 @@ const member = {
 			return false;
 		}
 	},
+
+    	/**
+	* 회원 정보 추출 
+	*
+	* @param Integer memNo 회원번호 
+	* @return Object|Boolean 
+	*/
+	getInfo : async function (memNo) {
+		try {
+			const sql = "SELECT * FROM fly_member WHERE memNo = ?";
+			//넘버가 1번이올 수 있고 2번도 올수있고 바뀔수있음
+			//지금은 ?이지만 값이 넘어오면 해당번호인 것을 SELECT하겠다는 
+			//의미로 ?를 사용함
+			const rows = await sequelize.query(sql, {
+				replacements : [memNo],
+				type : QueryType.SELECT,
+			});
+			if (rows.length > 0) {
+				delete rows[0].memPw; //비밀번호는 지워줘야한다.
+				return rows[0];
+			} else {
+				return false;
+			}
+			
+		} catch (err) {
+			console.log(err);
+			return false;
+		}
+	},
 };
 
 module.exports = member;

@@ -1,21 +1,25 @@
-<nav>
+<nav role="navigation">
+<link rel="stylesheet" type="text/css" href="/css/menu.css">
     {% if mainMenu %}
-    <ul>
+    <ul id="main-menu">
     {% for item in mainMenu %} 
         <li>
             <a href='{{ item.url }}'>{{ item.menu }}</a>
             {% if item.subMenu %}
-            <ul>
+            <ul id="sub-menu">
             {% for sub in item.subMenu %}
                 <li>
                     <a href='{{ sub.url }}'>{{ sub.menu }}</a>
                 </li>
             {% endfor %}
-            </ul> 
+            </ul>
             {% endif %}
         </li>
     {% endfor %}
-
     </ul>
     {% endif %}
 </nav>
+
+      
+
+    

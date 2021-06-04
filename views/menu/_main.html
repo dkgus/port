@@ -1,0 +1,21 @@
+<nav>
+    {% if mainMenu %}
+    <ul>
+    {% for item in mainMenu %} 
+        <li>
+            <a href='{{ item.url }}'>{{ item.menu }}</a>
+            {% if item.subMenu %}
+            <ul>
+            {% for sub in item.subMenu %}
+                <li>
+                    <a href='{{ sub.url }}'>{{ sub.menu }}</a>
+                </li>
+            {% endfor %}
+            </ul> 
+            {% endif %}
+        </li>
+    {% endfor %}
+
+    </ul>
+    {% endif %}
+</nav>

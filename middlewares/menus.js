@@ -55,7 +55,7 @@ module.exports.mainMenu = (req, res, next) => {
             menu : 'Q & A', 
             url : '/menu5', 
             subMenu : [
-                { menu : '게시판 가기', url : '/smenu1', },
+                { menu : '게시판', url : '/smenu1', },
                
             ],
         },

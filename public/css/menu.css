@@ -62,14 +62,22 @@ ul, li {
     text-align: center;
 }
 
-
-#sub-menu > li {
-  padding: 16px 28px;
-  border-bottom: 1px solid rgba(0,0,0,0.15);
+#sub-menu:nth-child(2){
+    color:red;
 }
 
+
+#sub-menu > li {
+  padding: 16px 46px 16px 57px;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+  background-color:#fff;
+  
+}
+
+
+
 #sub-menu > li >  a {
-  color: rgba(255,255,255,0.6);
+  color: rgba(39, 39, 39, 0.6);
   text-decoration: none;
 }
 
@@ -84,6 +92,9 @@ ul, li {
 
 section {
   column-width: 15em;
-  background: #dadadf;
-  padding: 3em 44.9em;
+  padding: 100px 10px 450px 10px;
+  /* padding-left: 575px; */
+
+
+
 }

@@ -1,22 +1,31 @@
 {% extends '../layout.html' %}
 
 {% block content %}
-SIGN UP
-<form method='post' action='/member/join' >
-<br>
-아이디 <input type="text" name="memId">
-<br>
-비밀번호 <input type="password" name="memPw">
-<br>
-비밀번호확인 <input type="password" name="memPwRe">
-<br>
-이름 <input type="text" name="memNm">
-<br>
-휴대폰번호 <input type="text" name="mobile">
-<br>
-프로필사진  <input type='file' name='image' placeholder="프로필 사진"  >  
-<br>
-<input type="submit" value="join">
 
-</form>
+<section class='join_form'>
+    <div class='tit'>SIGN UP</div>
+    <form method='post' action='/member/join' >
+        <dl>
+            <dt>아이디</dt>
+            <dd><input type="text" name="memId" placeholder="아이디를 입력해주세요"></dd>
+        </dl>
+        <dl>
+            <dt>비밀번호</dt>
+            <dd><input type="password" name="memPw" placeholder="비밀번호를 입력해주세요"></dd>
+        </dl>
+        <dl>
+            <dt>비밀번호 확인</dt>
+            <dd><input type="password" name="memPwRe" placeholder="비밀번호를 확인해주세요"></dd>
+        </dl>
+        <dl>
+            <dt>이름</dt>
+            <dd><input type="text" name="memNm" placeholder="성함을 입력해주세요"></dd>
+        </dl>
+        <dl>
+            <dt>휴대폰 번호</dt>
+            <dd><input type="text" name="mobile" placeholder="휴대폰 번호를 입력해주세요"></dd>
+        </dl>
+        <input type="submit" value="Join" class='submit_btn'>
+    </form>
 {% endblock %}
+

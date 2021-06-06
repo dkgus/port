@@ -1,34 +1,25 @@
 {% extends '../layout.html' %}
 
 {% block content %}
- 
-<section>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="box">
-       
-
-        <div class="container">
-            <div class="form">
-            <h2>Login</h2>
-                <form method='post' action='/member/login' >
-                    <div class="inputBox">
-	                    <input type='text' name='memId' placeholder='아이디'>
-	                    
-                    </div>
-                    <div class="inputBox">
-                        <input type='password' name='memPw' placeholder='비밀번호'>                    
-                    </div>
-                    <div class="inputBox">
-	                    <input type='submit' value='로그인'>
-                    </div>
-                    <p class="forget"> Forgot Password ?<a href="#"> Click here!</a> </p>
-                    <p class="forget"> Don`t have an account ?<a href="join"> Sign up</a> </p>
-                        
-                </form>
-            </div> 
-        </div>
-    </div>
-</section>
+<section class='login_form'>
+	<div class='tit'>LOGIN</div>
+	<form action="/member/login" method="post" autocomplete='off'>
+		<dl>
+			<dt>ID</dt>
+			<dd><input type="text" name="memId" placeholder="ID"></dd>
+		</dl>
+		<dl>
+			<dt>비밀번호</dt>
+			<dd><input type="password" name="memPw" placeholder="Password"></dd>
+		</dl>
+		<div class='links'>
+			<a href='/member/find_id'>아이디 찾기</a>
+			<a href='/member/find_pw'>비밀번호 찾기</a>
+		</div>
+		<input type="submit" value="Login" class='submit_btn'>
+	</form>
+</div>
 {% endblock %}
+
+
+

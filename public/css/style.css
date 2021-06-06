@@ -1,0 +1,75 @@
+/** 공통 */ 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap');
+*{ font-family: 'Noto Sans KR', sans-serif; box-sizing: border-box; outline: none; }
+.font_akaya {font-family: 'Akaya Kanadaka', cursive !important; }
+html { font-size: 13px; color: #000000; }
+body { padding:0; margin: 0; }
+a { text-decoration: none; color: #000000; }
+ul { padding: 0; margin: 0; list-style: none; }
+p, dl, dt, dd { padding: 0; margin: 0; }
+.dn { display: none !important; }
+
+input[type='text'], 
+input[type='password'], 
+input[type='number'],
+input[type='email'] { border: 1px solid #d5d5d5; height: 45px; padding: 0 10px; border-radius: 5px; width: 100%; }
+
+/** 버튼 공통 */
+.submit_btn { background-color: #0a2a43; color: #ffffff; border: 0; display: block; width: 100%; height: 45px; line-height: 50px; cursor: pointer; border-radius: 7px; }
+
+
+/* 기준 레이아웃 */
+.layout_width { max-width: 1100px;  min-width: 1000px; margin: 0 auto; padding: 0 10px; }
+
+/* 공통 컨텐츠 영역 */
+#main_wrap { padding-top: 57px; min-height: 500px; }
+
+/* outline/header/_main.html */
+header {  background-color: #ffffff; position: fixed; width: 100%; top: 0; left: 0;  }
+header > .inner { height: 57px; }
+header .main_logo { font-size: 24px; color: #000000; display: block; line-height: 57px; float: left; width: 180px; }
+header .main_logo i { color: rgb(113, 146, 150); padding-right: 7px; font-size: 32px; font-weight: 900; vertical-align: middle; }
+header nav { float: right; width: calc(100% - 330px); }
+header .member_menu { float: right; width: 150px; line-height: 57px; }
+header .member_menu a { margin-left: 10px; }
+header > .inner:after {  clear: both; content: ''; display: block; }
+
+/* menu/_main.html */
+#main-menu > li { float: left; position: relative; }
+#main-menu:after { clear: left; content: ''; display: block; }
+#main-menu > li > a { display: block; font-size: 22px; font-weight: 300; padding: 0 17px; line-height: 57px; }
+#main-menu .sub-menu { position: absolute; background-color: #ffffff; padding: 0 25px 20px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; display: none; box-shadow: 2px 2px 5px #d5d5d5; min-width: 160px; }
+#main-menu .sub-menu a { font-size: 0.95rem; }
+#main-menu .sub-menu li { margin-top: 10px; }
+#main-menu .sub-menu li:first-child { margin-top: 0; }
+#main-menu > li:hover .sub-menu { display: block; }
+
+
+/* outline/footer/_main.html */
+footer { background-color: #191919; padding: 43px 0 38px; color: #999999; }
+footer * { color: #999999; }
+footer .highlight { color: #ffffff; }
+
+footer .foot-info { float: left; width: 25%; }
+footer > .inner:after { content: ''; display: block; clear: left; }
+
+footer .foot-info.info1 { width: 50%; }
+
+
+footer .info1 .link { margin: 43px 0; } 
+footer .info1 .link a { color: #7b7b7b; margin-left: 9px; font-size: 0.76rem; display: inline-block; padding: 2px 10px; border: 1px solid #7b7b7b; }
+footer .info1 .link a:hover {  background-color: #e4e4e4d0; color: black; }
+footer .info1 .link a:hover i { color: black; }
+footer .imp { margin-bottom: 9px; }
+footer .copyright { font-size: 0.92rem; }
+
+footer .info2 .tit { width: 100px; float: left; }
+footer .info2 ul { float: left; }
+footer .info2 li { margin-bottom: 10px; }
+footer .info2:after { clear: left; content: ''; display: block; }
+
+footer .info3 dl { display: table; width: 100%; }
+footer .info3 dt { display: table-cell; vertical-align: top; width: 100px; }
+footer .info3 dd { display: table-cell; vertical-align: top; }
+footer .info3 .cs_info { margin-bottom: 22px; }

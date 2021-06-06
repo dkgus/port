@@ -1,81 +1,22 @@
 {% extends '../layout.html' %}
 
 {% block content %}
+SIGN UP
+<form method='post' action='/member/join' >
+<br>
+아이디 <input type="text" name="memId">
+<br>
+비밀번호 <input type="password" name="memPw">
+<br>
+비밀번호확인 <input type="password" name="memPwRe">
+<br>
+이름 <input type="text" name="memNm">
+<br>
+휴대폰번호 <input type="text" name="mobile">
+<br>
+프로필사진  <input type='file' name='image' placeholder="프로필 사진"  >  
+<br>
+<input type="submit" value="join">
 
-<link rel="stylesheet" type="text/css" href="/css/style2.css">
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-{% block style %}
-{% endblock %}
-
-
-
-<section>
-<div class="color"></div>
-<div class="color"></div>
-<div class="color"></div>
-
-<div class="box">
-    <div class="square" style="--i:0;"></div>
-    <div class="square" style="--i:1;"></div>
-    <div class="square" style="--i:2;"></div>
-    <div class="square" style="--i:3;"></div>
-    <div class="square" style="--i:4;"></div>
-</div>
-</section>
-
-<div class="wrapper">
-    <div class="social_media">
-    <div class="title">Reister</div>
-
-        <div class="item">
-            <i class="xi-instagram"></i>
-        </div>
-        <div class="item">
-            <i class="xi-kakaotalk"></i>
-        </div>
-        <div class="item">
-            <i class="xi-naver"></i>
-        </div>
-
-
-    </div>
-
-
-    <form method='post' action='/member/join' class="form">
-
-        <div class="input_field">
-            <input type='text' name='memId' placeholder="아이디" class="input">
-            <i class="xi-user"></i>
-        </div>
-
-        <div class="input_field">
-            <input type='password' name='memPw' placeholder="비밀번호" class="input">
-            <i class="xi-lock"></i>
-        </div>
-
-
-        <div class="input_field">
-            <input type='password' name='memPwRe' placeholder="비밀번호 확인" class="input">
-            <i class="xi-lock"></i>
-        </div>
-
-        <div class="input_field">
-            <input type='text' name='memNm' placeholder="이름" class="input">
-            <i class="xi-emoticon-happy-o"></i>
-        </div>
-        
-        <div class="input_field">
-            <input type='text' name='mobile' placeholder="휴대전화번호" class="input">
-            <i class="xi-call"></i>
-        </div>
-
-        <div class="input_field">
-            <input type='file' name='image' placeholder="프로필 사진" class="input" >
-            <i class="xi-profile"></i>
-        </div>
-
-        <input type='submit' value='회원 가입하기' class="btn">
-
-    
-</div>
+</form>
 {% endblock %}

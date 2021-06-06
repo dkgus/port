@@ -1,9 +1,20 @@
-
-<link rel="stylesheet" href="/css/header.css">
 <header>
-    <i class="xi-flight-takeoff"></i>
+    <section class='layout_width inner'>
+        <a class='main_logo font_akaya' href='/'> 
+            <i class="xi-flight-takeoff"></i>
+            Fly & Go
+        </a>
 
-    <h1>
-        Fly & Go
-    </h1>
+        <div class='member_menu'>
+            {% if isLogin %}
+            <a href='/mypage/myinfo'><i class='xi-user-o'></i> 회원정보수정</a>
+            <a href='/member/logout'><i class='xi-log-out'></i> 로그아웃</a>
+            {% else %}
+            <a href='/member/login'><i class='xi-log-in'></i> 로그인</a>
+            <a href='/member/join'><i class='xi-user-o'></i> 회원가입</a>
+            {% endif %}
+        </div>
+        {% include "../../menu/_main.html" %}
+
+    </section>
 </header>

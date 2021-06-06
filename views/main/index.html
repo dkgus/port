@@ -1,31 +1,4 @@
 {% extends '../layout.html' %}
 {% block content %}
 
-<header>
-    <div class="wrapper">
-        <div class="logo">
-            {% if member.profileUrl %}
-            <img src='{{ member.profileUrl }}' >
-        </div>
-        {% endif %}
-        <ul class="nav-area">
-        <li><a href='/member/logout'>Logout</a></li>
-        <li><a href='#'>My Q&A</a></li>
-        <li><a href='#'>My Page</a></li>
-        </ul>    
-    </div>
-
-
-    <div class="welcome-text">
-    {% if isLogin %}
-    Welcome! <strong> {{ member.memNm }} </strong>:)
-    </div>
-</header>
-
-
-{% else %}
-<a href='/member/login'>로그인</a> / 
-<a href='/member/join'>회원가입</a>
-{% endif %}
-
 {% endblock %}

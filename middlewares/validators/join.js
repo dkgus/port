@@ -78,8 +78,7 @@ module.exports.joinFormValidator = async function (req, res, next) {
 		
 		/** 
 			업로드 파일 체크
-			1. 이미지 체크 
-			2. 이미지가 아니면 삭제 후 다시 업로드 요청 
+			
 		*/
 		if (req.file) {
 			// 이미지가 아닌 파일이 업로드 되었을때 

@@ -29,8 +29,12 @@ const upload = multer({
 router.route("/join")
       /* 회원가입 양식 */
       .get((req, res, next) => {
-
-		res.render("member/form");
+		const data = {
+			bodyClass : 'join',
+			addCss : ['member'],
+			pageTitle : '회원가입',
+		};
+		res.render("member/form", data);
 
       })
       /** 회원 가입 처리 
@@ -99,7 +103,12 @@ router.route("/info")
 router.route("/login")
       /* 로그인 양식 */
       .get((req, res, next) => {
-            res.render("member/login", { pageTitle : "로그인<img src=/images/timer.png>" } );
+			const data = {
+				bodyClass : 'login',
+				pageTitle : '로그인',
+				addCss : ['member'],
+			};
+            res.render("member/login", data);
       })
       /** 로그인 처리  */
       .post(loginFormValidator, async (req, res, next) => {

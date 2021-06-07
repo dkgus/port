@@ -15,8 +15,8 @@ const member = {
 	*/
 	join : async function(params) { // params는 들어오는 데이터를 말함
 		try {
-			const sql = `INSERT INTO fly_member (memId, memPw, memNm, mobile, profile) 
-									VALUES (:memId, :memPw, :memNm, :mobile, :profile)`;
+			const sql = `INSERT INTO fly_member (memId, memPw, memNm, mobile) 
+									VALUES (:memId, :memPw, :memNm, :mobile)`;
 									
 			const hash = await bcrypt.hash(params.memPw, 10);
 			
@@ -26,8 +26,7 @@ const member = {
 				memId : params.memId,
 				memPw : hash,
 				memNm : params.memNm,
-				mobile : params.mobile,
-				profile : params.filename || "",
+				mobile : params.mobile
 			};
 			const result = await sequelize.query(sql, {
 				replacements,

@@ -8,9 +8,6 @@ module.exports = () => {
 	return (req, res, next) => {
 		if (req.session.memNo) { // 로그인 상태
 			res.locals.isLogin = req.isLogin = true;
-			if (req.session.member.profile) {
-				req.session.member.profileUrl = "/profiles/" + req.session.member.profile;
-			}
 			req.member = res.locals.member = req.session.member;
 			
 		} else { // 미로그인 상태 

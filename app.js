@@ -22,6 +22,8 @@ const memberRouter = require('./routes/member');
 const reservationRouter = require('./routes/reservation');
 const boardRouter = require('./routes/board');
 
+const adminRouter = require('./routes/admin'); // 관리자 
+
 dotenv.config();
 
 
@@ -82,6 +84,8 @@ app.use(indexRouter); // 메인 라우터
 app.use("/member", memberRouter); // 회원 관련 라우터
 app.use("/reservation", reservationRouter); // 예약 관련 라우터
 app.use("/board", boardRouter); // 게시판 관련 라우터 
+
+app.use("/admin", adminRouter); // 관리자 페이지 
 
 app.use((req, res, next) => {
 	

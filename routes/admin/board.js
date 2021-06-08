@@ -1,4 +1,8 @@
-const { adminOnly } = require('../middlewares/member/member_check');
+/**
+* 게시판 관리 /admin/board
+*
+*/
+const { adminOnly } = require('../../middlewares/member/member_check');
 const express = require('express');
 const router = express.Router();
 
@@ -7,16 +11,13 @@ router.use(adminOnly);
 
 /** 공통 라우터 */
 router.use((req, res, next) => {
-	res.locals.menu = "main"; // 메뉴 구분 값 
-	res.locals.menuTitle = '관리자 메인';
+	res.locals.menu = "board"; // 메뉴 구분 값 
+	res.locals.menuTitle = '게시판 관리';
 	next();
 });
 
 router.get("/", (req, res, next) => {
-    return res.render("admin/main/index");
+	return res.render("admin/board/index");
 });
-
-
-
 
 module.exports = router;

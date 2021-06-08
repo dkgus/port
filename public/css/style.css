@@ -30,15 +30,15 @@ header {  background-color: #ffffff; position: fixed; width: 100%; top: 0; left:
 header > .inner { height: 57px; }
 header .main_logo { font-size: 24px; color: #000000; display: block; line-height: 57px; float: left; width: 180px; }
 header .main_logo i { color: rgb(113, 146, 150); padding-right: 7px; font-size: 32px; font-weight: 900; vertical-align: middle; }
-header nav { float: right; width: calc(100% - 330px); }
-header .member_menu { float: right; width: 150px; line-height: 57px; }
+header nav { float: right; width: calc(100% - 360px); }
+header .member_menu { float: right; width: 180px; line-height: 57px; }
 header .member_menu a { margin-left: 10px; }
 header > .inner:after {  clear: both; content: ''; display: block; }
 
 /* menu/_main.html */
 #main-menu > li { float: left; position: relative; }
 #main-menu:after { clear: left; content: ''; display: block; }
-#main-menu > li > a { display: block; font-size: 22px; font-weight: 300; padding: 0 17px; line-height: 57px; }
+#main-menu > li > a { display: block; font-size: 22px; font-weight: 300; padding: 0 14px; line-height: 57px; }
 #main-menu .sub-menu { position: absolute; background-color: #ffffff; padding: 0 25px 20px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; display: none; box-shadow: 2px 2px 5px #d5d5d5; min-width: 160px; }
 #main-menu .sub-menu a { font-size: 0.95rem; }
 #main-menu .sub-menu li { margin-top: 10px; }

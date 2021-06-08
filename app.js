@@ -13,16 +13,18 @@ const { mainMenu } = require('./middlewares/menus'); // 메인 메뉴
 const loginSession = require('./middlewares/member/login_session'); // 로그인 세션 처리 
 
 
-
-
-
 /** 라우터 */
 const indexRouter = require('./routes');
 const memberRouter = require('./routes/member');
 const reservationRouter = require('./routes/reservation');
 const boardRouter = require('./routes/board');
 
-const adminRouter = require('./routes/admin'); // 관리자 
+/** 관리자 라우터 */
+const adminRouter = require('./routes/admin'); // 관리자 메인 
+const adminMemberRouter = require('./routes/admin/member'); // 회원관리
+const adminBoardRouter = require('./routes/admin/board'); // 게시판 관리
+const adminTravelRouter = require('./routes/admin/travel'); // 여행 상품관리 
+const adminReservationRouter = require('./routes/admin/reservation'); // 예약관리 
 
 dotenv.config();
 
@@ -85,7 +87,12 @@ app.use("/member", memberRouter); // 회원 관련 라우터
 app.use("/reservation", reservationRouter); // 예약 관련 라우터
 app.use("/board", boardRouter); // 게시판 관련 라우터 
 
-app.use("/admin", adminRouter); // 관리자 페이지 
+/** 관리자 */
+app.use("/admin", adminRouter); // 관리자 메인
+app.use('/admin/member', adminMemberRouter); // 회원관리
+app.use('/admin/board', adminBoardRouter); // 게시판 관리
+app.use('/admin/travel', adminTravelRouter); // 여행 상품관리
+app.use('/admin/reservation', adminReservationRouter); // 예약관리
 
 app.use((req, res, next) => {
 	

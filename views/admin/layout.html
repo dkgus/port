@@ -2,8 +2,44 @@
 <html>
     <head>
         <meta charset='utf-8'>
+		<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+        <link rel="stylesheet" type="text/css" href="/admin/css/style.css">
+        {% if addCss %}
+        {% for css in addCss %} 
+        <link rel="stylesheet" type="text/css" href="/admin/css/{{ css }}.css">
+        {% endfor %}
+        {% endif %}
+        {% block style %}
+        {% endblock %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src='/js/admin/common.js'></script>
+        {% if addScript %}
+        {% for script in addScript %}
+        <script src='/admin/js/{{ script }}.js'></script>
+        {% endfor %}
+        {% endif %}
+        {% block script %}
+        {% endblock %}
+		<title>{% if pageTitle %}{{ pageTitle }} - {% endif %}Fly &amp; Go 관리자 페이지</title>
     </head>
-    <body>
-        
+    <body{% if bodyClass %} class='body_{{ bodyClass }}'{% endif %}>
+		<header>
+        {% block header %}
+        {% include 'admin/outline/header/_main.html' %}
+        {% endblock %}
+		</header>
+        <main id='main_wrap'>
+		{% if menuTitle %}
+		<h1 class='main_title'>{{ menuTitle }}</h1>
+		{% endif %}
+        {% block content %}
+        {% endblock %}
+        </main>
+		<footer>
+        {% block footer %}
+        {% include 'admin/outline/footer/_main.html' %}
+        {% endblock %}
+		</footer>
+		<iframe name='ifrmHidden' width='100%' height='500' frameborder='0'></iframe>
     </body>
 </html>

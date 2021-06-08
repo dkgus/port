@@ -1,0 +1,27 @@
+/** 공통 */ 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap');
+*{ font-family: 'Noto Sans KR', sans-serif; box-sizing: border-box; outline: none; }
+html { font-size: 13px; color: #000000; }
+body { padding:0; margin: 0; }
+a { text-decoration: none; color: #000000; }
+ul { padding: 0; margin: 0; list-style: none; }
+p, dl, dt, dd { padding: 0; margin: 0; }
+.dn { display: none !important; }
+
+input[type='text'], 
+input[type='password'], 
+input[type='number'],
+input[type='email'] { border: 1px solid #d5d5d5; height: 45px; padding: 0 10px; border-radius: 5px; width: 100%; }
+
+#main_wrap { padding: 15px; }
+
+/* 메인 타이틀 */
+#main_wrap .main_title { font-size: 15px; border-bottom: 1px solid #d5d5d5; padding-bottom: 10px; margin-bottom: 20px; font-weight: 500; margin-top: 0; }
+
+/* outline/header/_main.html */
+header .top_menu > li { float: left;  }
+header .top_menu:after { clear: left; content: ''; display: block; }
+header .top_menu { background-color: #d5d5d5; padding: 0 10px; }
+header .top_menu > li a { display: block; height: 45px; line-height: 45px; font-size: 15px; font-weight: bold; padding: 0 20px; color: #212121; }
+header .top_menu > li a:hover, header .top_menu > li.on a { background-color: orange; }

@@ -1,5 +1,4 @@
 const express = require('express');
-const multer = require('multer');
 const path = require('path');
 const member = require("../models/member"); //데베 연결한 모델
 const message = require("../lib/message");

@@ -1,6 +1,6 @@
 {% extends '../layout.html' %}
 {% block content %}
-<form method='post' action='/admin/board/register_board' target='ifrmHidden' autocomplete='off'>
+<form method='post' action='/admin/board/config' target='ifrmHidden' autocomplete='off'>
 	<table class='table_cols mb10'>
 		<tr>
 			<th>게시판 아이디</th>
@@ -13,7 +13,28 @@
 			</td>
 		</tr>
 	</table>
-	<input type='submit' value='등록하기' class='submit_btn'>
+	<input type='submit' value='등록하기' class='submit_btn mb20'>
+</form>
+
+<div class='sub_title'>게시판 목록</div>
+<form method='post' action='/admin/board/config' target='ifrmHidden' autocomplete='off'>
+	<table class='table_rows'>
+		<thead>
+		<tr>
+			<th width='20' align='center'>
+				<input type='checkbox' class='check_all' data-target-name='id'>
+			</th>
+			<th width='150'>게시판아이디</th>
+			<th width='200'>게시판이름</th>
+			<th>설정</th>
+		</tr>
+		</thead>
+		<tbody>
+		{% for item in list %}
+		
+		{% endfor %}
+		</tbody>
+	</table>
 </form>
 
 {% endblock %}

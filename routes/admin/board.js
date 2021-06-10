@@ -18,13 +18,15 @@ router.use((req, res, next) => {
 	next();
 });
 
-router.get("/", (req, res, next) => {
-	return res.render("admin/board/index");
+router.get("/", async (req, res, next) => {
+	const list = await board.getBoards(); // 게시판 목록 
+	console.log(list);
+	return res.render("admin/board/index", { list });
 });
 
 
 /** 게시글 설정  */
-router.route('/register_board')
+router.route('/config')
 		/** 게시글 설정 등록 */
 		.post(async (req, res, next) => {
 			/** 게시판 등록 */

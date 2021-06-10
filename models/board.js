@@ -34,6 +34,24 @@ const board = {
 			logger(err.stack, 'error');
 			return false;
 		}
+	},
+	/** 
+	* 게시판 목록 
+	*
+	* @return Object
+	*/
+	getBoards : async function() {
+		try {
+			const sql = 'SELECT * FROM fly_board ORDER BY regDt DESC';
+			const rows = await sequelize.query(sql, {
+				type : QueryTypes.SELECT,
+			});
+			
+			return rows;
+		} catch (err) {
+			logger(err.stack, 'error');
+			return [];
+		}
 	}
 };
 

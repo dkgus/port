@@ -4,6 +4,7 @@
 */
 const { adminOnly } = require('../../middlewares/member/member_check');
 const { alert, reload } = require('../../lib/message');
+const { boardConfig } = require("../../middlewares/board/config"); // 게시판 설정 조회 및 체크 미들웨어 
 const board = require('../../models/board');
 const express = require('express');
 const router = express.Router();
@@ -18,31 +19,44 @@ router.use((req, res, next) => {
 	next();
 });
 
-router.get("/", async (req, res, next) => {
-	const list = await board.getBoards(); // 게시판 목록 
-	console.log(list);
-	return res.render("admin/board/index", { list });
-});
-
-
-/** 게시글 설정  */
-router.route('/config')
-		/** 게시글 설정 등록 */
-		.post(async (req, res, next) => {
-			/** 게시판 등록 */
-			const result = await board.create(req.body.id, req.body.boardNm);
-			if (!result) {
-				return alert('게시판 등록 실패하였습니다.', res);
-			}
+/** 게시판 등록, 목록 조회 */
+router.route("/")
+	.get(async (req, res, next) => {
+		const list = await board.getBoards(); // 게시판 목록 
+		return res.render("admin/board/index", { list });
+	})
+	/** 게시글 설정 등록 */
+	.post(async (req, res, next) => {
+		/** 게시판 등록 */
+		const result = await board.create(req.body.id, req.body.boardNm);
+		if (!result) {
+			return alert('게시판 등록 실패하였습니다.', res);
+		}
 			
-			return reload(res, 'parent');
-		})
-		/** 게시글 설정 수정 */
-		.patch((req, res, next) => {
+		return reload(res, 'parent');
+	})
+	/**  게시판 삭제 */
+	.delete(async (req, res, next) => {
+		
+	});
+	
+/** 
+* 게시판 수정 
+* 게시판 설정은 관리자에서 수정과 프론트에서 게시글 작성, 수정, 삭제등 
+* 많은 라우터에서 필요할 수 있으므로 미들웨어로 만들어 관리
+*/
+router.route("/:id")
+		/** 게시판 수정 양식 */
+		.get(boardConfig, (req, res, next) => {
 			
+			 const data = {
+				boardConfig : req.boardConfig, 
+			 };
+			 console.log(data);
+			 return res.render("admin/board/form", data);
 		})
-		/** 게시글 설정 삭제 */
-		.delete((req, res, next) => {
+		/** 게시판 수정 처리 */
+		.post(boardConfig, (req, res, next) => {
 			
 		});
 

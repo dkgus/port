@@ -18,3 +18,67 @@
 {"level":"info","message":"[09:19:41]데이터베이스 연결 성공"}
 {"level":"info","message":"[09:22:58]데이터베이스 연결 성공"}
 {"level":"info","message":"[09:23:07]데이터베이스 연결 성공"}
+{"level":"info","message":"[09:23:22]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:18:13]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:20:05]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:27:50]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:28:33]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:29:01]데이터베이스 연결 성공"}
+{"level":"error","message":"[21:30:50]GET /admin/board/ddd은 없는 페이지 입니다."}
+{"level":"error","message":"[21:30:50]Error: GET /admin/board/ddd은 없는 페이지 입니다.\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\app.js:100:16\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:317:13)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:284:7\n    at Function.process_params (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:275:10)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:635:15\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:260:14)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\routes\\admin\\board.js:18:2\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)"}
+{"level":"info","message":"[21:31:05]데이터베이스 연결 성공"}
+{"level":"error","message":"[21:37:44]GET /admin/board/ddd은 없는 페이지 입니다."}
+{"level":"error","message":"[21:37:44]Error: GET /admin/board/ddd은 없는 페이지 입니다.\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\app.js:100:16\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:317:13)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:284:7\n    at Function.process_params (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:275:10)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:635:15\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:260:14)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\routes\\admin\\board.js:18:2\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)"}
+{"level":"info","message":"[21:38:16]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:38:20]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:38:35]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:39:02]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:39:23]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:39:49]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:40:05]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:40:13]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:40:32]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:40:35]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:40:46]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:42:45]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:42:56]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:45:19]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:47:11]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:47:27]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:47:30]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:47:32]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:50:43]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:51:53]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:53:22]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:54:38]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:55:49]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:55:53]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:57:22]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:57:54]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:58:02]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:58:18]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:58:35]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:58:37]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:58:51]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:58:54]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:59:32]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:59:47]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:00:04]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:00:19]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:00:40]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:01:22]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:01:39]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:01:53]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:02:45]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:03:03]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:03:17]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:03:22]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:04:10]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:04:24]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:04:43]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:04:51]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:05:01]데이터베이스 연결 성공"}
+{"level":"error","message":"[22:11:15]GET /board/list/ddd은 없는 페이지 입니다."}
+{"level":"error","message":"[22:11:15]Error: GET /board/list/ddd은 없는 페이지 입니다.\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\app.js:100:16\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:317:13)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:284:7\n    at Function.process_params (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:275:10)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:635:15\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:260:14)\n    at Function.handle (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:174:3)\n    at router (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:47:12)"}
+{"level":"error","message":"[22:38:19]GET /board/list/ddd은 없는 페이지 입니다."}
+{"level":"error","message":"[22:38:19]Error: GET /board/list/ddd은 없는 페이지 입니다.\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\app.js:100:16\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:317:13)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:284:7\n    at Function.process_params (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:275:10)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:635:15\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:260:14)\n    at Function.handle (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:174:3)\n    at router (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:47:12)"}

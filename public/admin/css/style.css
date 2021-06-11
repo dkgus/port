@@ -12,7 +12,10 @@ p, dl, dt, dd { padding: 0; margin: 0; }
 input[type='text'], 
 input[type='password'], 
 input[type='number'],
-input[type='email'] { border: 1px solid #d5d5d5; height: 45px; padding: 0 10px; border-radius: 5px; width: 100%; }
+input[type='email'],
+select { border: 1px solid #d5d5d5; height: 45px; padding: 0 10px; border-radius: 5px; width: 100%; }
+textarea { border: 1px solid #d5d5d5; padding: 10px; resize: none; min-height: 150px; width: 100%; border-radius: 5px; }
+
 
 #main_wrap { padding: 15px; }
 
@@ -31,7 +34,7 @@ input[type='email'] { border: 1px solid #d5d5d5; height: 45px; padding: 0 10px; 
 .table_rows td { padding: 10px; border-bottom: 1px solid #d5d5d5; }
 
 /* 버튼 공통 */
-.submit_btn { background-color: blue; color: #ffffff; height: 45px; width: 250px; border-radius: 7px; border: 0; cursor: pointer; }
+.submit_btn { background-color: blue; color: #ffffff; height: 45px; width: 250px; border-radius: 7px; border: 0; cursor: pointer; display: block; margin: 20px auto; }
 .btn1, .btn2 { background-color: blue; color: #ffffff; font-size: 11px; padding: 3px 10px; border-radius: 7px; cursor: pointer; border: 0; }
 .btn2 { background-color: red; }
 

@@ -48,16 +48,20 @@ router.route("/")
 router.route("/:id")
 		/** 게시판 수정 양식 */
 		.get(boardConfig, (req, res, next) => {
-			
-			 const data = {
-				boardConfig : req.boardConfig, 
-			 };
-			 console.log(data);
-			 return res.render("admin/board/form", data);
+			const data = req.boardConfig;
+			data.menuTitle = `게시판 설정(${req.boardConfig.boardNm} - ${req.boardConfig.id})`;
+			                                            //게시판 아이디-게시판 이름이 순서대로 화면에 출력
+
+			return res.render("admin/board/form", data);
 		})
 		/** 게시판 수정 처리 */
-		.post(boardConfig, (req, res, next) => {
+		.post(boardConfig, async (req, res, next) => {
+			const result = await board.data(req.body).save();
+			if (!result) {
+				return alert('게시판 저장에 실패하였습니다.', res, -1);
+			}
 			
+			return alert('저장되었습니다', res, 'reload', 'parent');
 		});
 
 module.exports = router;

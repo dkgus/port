@@ -1,4 +1,55 @@
+<!-- 게시판설정시 나오는 페이지 -->
 {% extends '../layout.html' %}
 {% block content %}
-
+<form method='post' action='/admin/board/{{ id }}' target='ifrmHidden' autocomplete='off'>
+	<table class='table_cols'>
+		<tr>
+			<th>아이디</th>
+			<td>{{ id }}</td>
+		</tr>
+		<tr>
+			<th>게시판명</th>
+			<td>
+				<input type='text' name='boardNm' value='{{ boardNm }}'>
+			</td>
+		</tr>
+		<tr>
+			<th>분류</th>
+			<td>
+				<textarea name='category'>{{ category }}</textarea>
+			</td>
+		</tr>
+		<tr>
+			<th>접속권한</th>
+			<td>
+				<input type='radio' name='accessType' value='all' id='accessType_all'{% if accessType == 'all' %} checked{% endif %}>
+				<label for='accessType_all'>전체(비회원+회원)</label>
+				
+				<input type='radio' name='accessType' value='member' id='accessType_member'{% if accessType == 'member' %} checked{% endif %}>
+				<label for='accessType_member'>회원전용</label>
+			</td>
+		</tr>
+		<tr>
+			<th>업로드</th>
+			<td>
+				<input type='checkbox' name='useImageUpload' value='1' id='useImageUpload'{{ ' checked' if useImageUpload }}>
+				<label for='useImageUpload'>이미지</label>
+				
+				<input type='checkbox' name='useFileUpload' value='1' id='useFileUpload'{{ ' checked' if useFileUpload }}>
+				<label for='useFileUpload'>파일</label>
+			</td>
+		</tr>
+		<tr>
+			<th>게시판 스킨</th>
+			<td>
+				<select name='skin'>
+					{% for s in skins %}
+					<option value='{{ s }}'{% if s == skin %} selected{% endif %}>{{ s }}</option>
+					{% endfor %}
+				</select>
+			</td>
+		</tr>
+	</table>
+	<input type='submit' class='submit_btn' value='저장하기'>
+</form>
 {% endblock %}

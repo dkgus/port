@@ -1,0 +1,48 @@
+{"level":"info","message":"[20:53:22]데이터베이스 연결 성공"}
+{"level":"error","message":"[21:05:47]GET /favicon.ico은 없는 페이지 입니다."}
+{"level":"error","message":"[21:05:47]Error: GET /favicon.ico은 없는 페이지 입니다.\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\app.js:100:16\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:317:13)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:284:7\n    at Function.process_params (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:275:10)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:635:15\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:260:14)\n    at Function.handle (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:174:3)\n    at router (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:47:12)"}
+{"level":"info","message":"[21:08:07]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:08:41]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:10:38]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:10:48]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:12:23]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:13:54]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:14:02]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:14:07]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:20:56]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:21:56]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:22:19]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:22:25]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:22:40]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:22:57]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:23:09]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:23:26]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:32:34]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:37:40]데이터베이스 연결 성공"}
+{"level":"error","message":"[21:37:54]POST /board/ddd은 없는 페이지 입니다."}
+{"level":"error","message":"[21:37:54]Error: POST /board/ddd은 없는 페이지 입니다.\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\app.js:100:16\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:317:13)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:284:7\n    at Function.process_params (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:275:10)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:635:15\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:260:14)\n    at Function.handle (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:174:3)\n    at router (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:47:12)"}
+{"level":"info","message":"[21:38:53]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:39:12]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:39:17]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:40:00]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:40:32]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:40:47]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:40:50]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:40:53]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:41:18]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:42:38]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:42:54]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:43:27]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:43:50]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:44:53]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:48:46]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:49:23]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:51:05]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:51:11]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:51:29]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:52:20]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:57:36]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:07:32]데이터베이스 연결 성공"}
+{"level":"error","message":"[22:07:44]GET /board/list/ddd은 없는 페이지 입니다."}
+{"level":"error","message":"[22:07:44]Error: GET /board/list/ddd은 없는 페이지 입니다.\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\app.js:100:16\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:317:13)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:284:7\n    at Function.process_params (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:275:10)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:635:15\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:260:14)\n    at Function.handle (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:174:3)\n    at router (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:47:12)"}
+{"level":"info","message":"[22:11:08]데이터베이스 연결 성공"}

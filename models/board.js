@@ -8,6 +8,9 @@ const fs = require('fs').promises;
 *
 */
 const board = {
+	params : {}, // 처리할 데이터 
+	session : {}, // 처리할 세션 데이터 
+	
 	/**
 	* 게시판 생성 
 	*
@@ -70,8 +73,8 @@ const board = {
 					type : QueryTypes.SELECT,
 			});
 			
-			data = rows[0]?rows[0]:{};
-			if (data) {
+			data = rows[0] || {};
+			if (rows.length > 0) {
 				/* 
 				* category는 db에  분류1||분류2||분류3으로 저장되고 이를 ||로 분리하여 배열 객체 형태로 가공하여 사용
 				* 설정 저장 form에서는 줄 개행문자 \r\n으로 붙여서 textarea에서 줄개행 형태로 보이도록 처리 
@@ -84,9 +87,18 @@ const board = {
 				if (data.category) {
 					data.categories = data.category.split("||");
 					data.category = data.categories.join("\r\n");
-					
-					/* 스킨 목록 추출 */
-					data.skins = this.getSkins();
+				}
+				
+				/* 스킨 목록 추출 */
+				data.skins = await this.getSkins();
+				
+				/** 스킨 작성양식, 목록, 조회 경로 */
+				data.skinPath = {};
+				if (data.skin) {
+					const skinRootPath = path.join(__dirname, `../views/board/skins/${data.skin}`);
+					data.skinPath.list = skinRootPath + "/_list.html";
+					data.skinPath.view = skinRootPath + "/_view.html";
+					data.skinPath.form = skinRootPath + "/_form.html";
 				}
 			}
 			
@@ -108,6 +120,58 @@ const board = {
 		} catch (err) {
 			logger(err.stack, 'error');
 			return [];
+		}
+	},
+	/**
+	* 처리할 데이터 설정 
+	*
+	* @param Object params - 처리할 데이터(예 - req.body ... )
+	* @param Object session - 처리할 세션 데이터
+	*
+	* return this
+	*/
+	data : function(params, session) {
+		this.params = params;
+		this.session = session;
+		
+		return this;
+	},
+	/**
+	* 설정 저장 
+	*
+	* @return Boolean
+	*/
+	save : async function() {
+		try {
+			const sql = `UPDATE fly_board 
+								SET 
+									boardNm = :boardNm, 
+									category = :category, 
+									accessType = :accessType, 
+									useImageUpload = :useImageUpload, 
+									useFileUpload = :useFileUpload, 
+									skin = :skin
+								WHERE
+									id = :id`;
+			
+			const replacements = {
+					boardNm : this.params.boardNm,
+					category : this.params.category,
+					accessType : this.params.accessType,
+					useImageUpload : this.params.useImageUpload,
+					useFileUpload : this.params.useFileUpload,
+					skin : this.params.skin,
+					id : this.params.id,
+			};
+			await sequelize.query(sql, {
+				replacements,
+				type : QueryTypes.INSERT,
+			});
+			
+			return true;
+		} catch (err) {
+			logger(err.stack, 'error');
+			return false;
 		}
 	}
 };

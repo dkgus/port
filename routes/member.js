@@ -16,7 +16,6 @@ router.route("/join")
       /* 회원가입 양식 */
       .get((req, res, next) => {
 		const data = {
-			bodyClass : 'join',
 			addCss : ['member'],
 			pageTitle : '회원가입',
 		};
@@ -87,7 +86,6 @@ router.route("/login")
       /* 로그인 양식 */
       .get((req, res, next) => {
 			const data = {
-				bodyClass : 'login',
 				pageTitle : '로그인',
 				addCss : ['member'],
 			};

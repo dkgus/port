@@ -1,0 +1,6 @@
+/** Default 스킨 */
+.board_default dl { margin-bottom: 5px; }
+.board_default dt { width: 90px; }
+
+
+.board_default .submit_btn { margin: 20px auto; max-width: 200px; }

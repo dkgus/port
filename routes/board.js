@@ -12,16 +12,20 @@ const router = express.Router();
 router.route('/:id')
 	/** 게시글 작성 양식 */
 	.get(boardConfig, (req, res, next) => {
-		
 		const data = {
 			config : req.boardConfig,
+			poster : req.isLogin?req.member.memNm:"",
+			addCss : ['board'],
+			addScript : ['board'],
+			pageTitle : req.boardConfig.boardNm,
 		};
-
+		
 		return res.render("board/form", data);
 	})
 	/** 게시글 작성 처리 */
 	.post(boardConfig, (req, res, next) => {
-		
+		console.log(req.body);
+		return res.send("");
 	})
 	/** 게시글 수정 처리 */
 	.patch((req, res, next) => {

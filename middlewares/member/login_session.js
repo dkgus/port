@@ -7,7 +7,6 @@
 module.exports.loginSession = async (req, res, next) => {
 		/** 로그인이 된 경우 세션 처리 */
 		req.isLogin = res.isLogin = res.locals.isLogin = false;
-		//로그인 되기전 값을 false로 지정
 		if (req.session.memId) { 
 		//로그인이 되었을 때
 			const info = await member.get(req.session.memId);

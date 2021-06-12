@@ -11,7 +11,7 @@ const { sequelize } = require('./models');
 const logger = require('./lib/logger');
 const { mainMenu } = require('./middlewares/menus'); // 메인 메뉴 
 const { loginSession } = require('./middlewares/member/login_session'); // 로그인 세션 처리 
-
+const { bodyClass } = require('./middlewares/body_class'); // bodyClass 추가 미들웨어 
 
 /** 라우터 */
 const indexRouter = require('./routes');
@@ -53,7 +53,8 @@ sequelize.sync({ force : false })
 app.use(morgan('dev'));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public'))); //기본경로로 생략가능함
-
+app.use(express.json());
+app.use(express.urlencoded({ extended : false})); //post사용
 
 app.use(cookieParser(process.env.COOKIE_SECRET)); 
 
@@ -70,17 +71,10 @@ app.use(session({
 
 
 
-
-app.use(morgan('dev'));
-app.use(methodOverride('_method'));
-app.use(express.static(path.join(__dirname, 'public'))); //기본경로로 생략가능함
-
-
-app.use(express.json());
-app.use(express.urlencoded({ extended : false})); //post사용
-
+app.use(bodyClass); // bodyClass 
 app.use(loginSession); // 로그인 세션 처리
 app.use(mainMenu); // 메인메뉴 
+
 
 /** 라우터 등록 */
 app.use(indexRouter); // 메인 라우터 

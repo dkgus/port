@@ -1,1 +1,27 @@
-Default 
+<!-- Default 스킨 글작성,수정 양식 -->
+<div class='board_default form'>
+	<dl>
+		<dt>제목</dt>
+		<dd>
+			<input type='text' name='subject' value='{{ subject }}'>
+		</dd>
+	</dl>
+	<dl>
+		<dt>작성자</dt>
+		<dd>
+			<input type='text' name='poster' value='{{ poster }}'>
+		</dd>
+	</dl>
+	{% if not isLogin %}
+	<dl>
+		<dt>비밀번호</dt>
+		<dd>
+			<input type='password' name='password' placeholder='글 수정, 삭제 비밀번호를 입력하세요.'>
+		</dd>
+	</dl>
+	{% endif %}
+	
+	 <textarea name='contents' id='contents'>{{ contents | safe }}</textarea>
+	<input type='submit' value="{{ '수정하기' if idx else '작성하기' }}" class='submit_btn'>
+</div>
+<!--// board_default -->

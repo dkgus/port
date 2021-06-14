@@ -28,6 +28,5 @@ module.exports.bodyClass = (req, res, next) => {
 	}
 	
 	res.locals.bodyClass = addClass;
-	
 	next();
 };

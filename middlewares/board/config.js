@@ -19,6 +19,7 @@ module.exports.boardConfig = async (req, res, next) => {
 		
 		req.boardConfig = boardConfig;
 		req.body.id = id;
+		req.body.ip = req.ip;
 	} catch (err) {
 		return alert(err.message, res, -1);
 	}

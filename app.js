@@ -79,8 +79,8 @@ app.use(mainMenu); // 메인메뉴
 /** 라우터 등록 */
 app.use(indexRouter); // 메인 라우터 
 app.use("/member", memberRouter); // 회원 관련 라우터
-app.use("/reservation", reservationRouter); // 예약 관련 라우터
 app.use("/board", boardRouter); // 게시판 관련 라우터 
+app.use("/reservation", reservationRouter); // 예약 관련 라우터
 
 /** 관리자 */
 app.use("/admin", adminRouter); // 관리자 메인

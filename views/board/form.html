@@ -1,7 +1,7 @@
 {% extends '../layout.html' %}
 {% block content %}
 <div class='tit'>{{ config.boardNm }}</div>
-<form method='post' action="/board/{{ config.id }}{{ '?_method=PATCH' if idx }}" target='ifrmHidden' autocomplete='off' enctype='multipart/form-data'>
+<form method='post' action="/board/{{ config.id }}{{ '?_method=PATCH' if idx }}" target='ifrmHidden' autocomplete='off'>
 {% if idx %}
 <input type='hidden' name='idx' value='{{ idx }}'>
 {% endif %}

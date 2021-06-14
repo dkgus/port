@@ -2,6 +2,7 @@ const { sequelize, Sequelize : { QueryTypes } } = require('./index');
 const logger = require('../lib/logger');
 const path = require('path');
 const fs = require('fs').promises;
+const bcrypt = require('bcrypt');
 
 /**
 * 게시판 Model
@@ -173,7 +174,54 @@ const board = {
 			logger(err.stack, 'error');
 			return false;
 		}
-	}
+	},
+	/**
+	* 게시글 작성 
+	*
+	* @return Integer|Boolean 글 작성 성공시 게시글번호 idx, 실패시 boolean 
+	*/
+	write : async function() {
+		try {
+			const memNo = this.session.member?this.session.member.memNo:0;
+			let hash = "";
+			if (!memNo && this.params.password) {
+				hash = await bcrypt.hash(this.params.password, 10);
+			}
+			
+			const sql = `INSERT INTO fly_boarddata 
+									(gid, boardId, memNo, poster, contents, password, ip)
+									VALUES (:gid, :boardId, :memNo, :poster, :contents, :password, :ip)`;
+			
+			
+			const replacements = {
+				gid : this.getUid(),
+				boardId : this.params.id,
+				memNo,
+				poster : this.params.poster,
+				contents : this.params.contents,
+				password : hash,
+				ip : this.params.ip,
+			};
+			
+			const result = await sequelize.query(sql, {
+				replacements,
+				type : QueryTypes.INSERT,
+			});
+			
+			return result[0]; 
+		} catch (err) {
+			logger(err.message);
+			return false;
+		}
+	},
+	/**
+	* Unique Id 생성 
+	*
+	* @return Integer
+	*/
+	getUid : function() {
+		return new Date().getTime();
+	},
 };
 
 module.exports = board;

@@ -1,5 +1,18 @@
 <!-- Default 스킨 글작성,수정 양식 -->
 <div class='board_default form'>
+	{% if config.categories.length > 0 %}
+	<dl>
+		<dt>분류</dt>
+		<dd>
+			<select name='category'>
+				<option value=''>- 선택하세요 -</option>
+			{% for item in config.categories %}
+				<option value='{{ item }}'{% if item == category %} selected{% endif %}>{{ item }}</option>
+			{% endfor %}
+			</select>
+		</dd>
+	</dl>
+	{% endif %}
 	<dl>
 		<dt>제목</dt>
 		<dd>

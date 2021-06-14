@@ -2,6 +2,7 @@ const { sequelize, Sequelize : { QueryTypes } } = require('./index');
 const logger = require('../lib/logger');
 const path = require('path');
 const fs = require('fs').promises;
+const { parseDate } = require('../lib/common');
 const bcrypt = require('bcrypt');
 
 /**
@@ -155,9 +156,14 @@ const board = {
 								WHERE
 									id = :id`;
 			
+			let category = this.params.category;
+			if (category) {
+				category = category.replace(/\r\n/g, "||");
+			}
+			
 			const replacements = {
 					boardNm : this.params.boardNm,
-					category : this.params.category,
+					category,
 					accessType : this.params.accessType,
 					useImageUpload : this.params.useImageUpload,
 					useFileUpload : this.params.useFileUpload,
@@ -182,27 +188,29 @@ const board = {
 	*/
 	write : async function() {
 		try {
-			const memNo = this.session.member?this.session.member.memNo:0;
+			const memNo = this.session.memNo || 0;
 			let hash = "";
 			if (!memNo && this.params.password) {
 				hash = await bcrypt.hash(this.params.password, 10);
 			}
 			
 			const sql = `INSERT INTO fly_boarddata 
-									(gid, boardId, memNo, poster, contents, password, ip)
-									VALUES (:gid, :boardId, :memNo, :poster, :contents, :password, :ip)`;
+									(gid, boardId, category, memNo, poster, subject, contents, password, ip)
+									VALUES (:gid, :boardId, :category, :memNo, :poster, :subject, :contents, :password, :ip)`;
 			
 			
 			const replacements = {
 				gid : this.getUid(),
 				boardId : this.params.id,
+				category : this.params.category,
 				memNo,
 				poster : this.params.poster,
+				subject : this.params.subject,
 				contents : this.params.contents,
 				password : hash,
 				ip : this.params.ip,
 			};
-			
+	
 			const result = await sequelize.query(sql, {
 				replacements,
 				type : QueryTypes.INSERT,
@@ -222,6 +230,79 @@ const board = {
 	getUid : function() {
 		return new Date().getTime();
 	},
+
+	/**
+	* 게시글 수정 
+	*
+	* @return Boolean
+	*/
+	update : async function() {
+		try {
+			let hash = "";
+			if (!this.session.memNo && this.params.password) {
+				hash = await bcrypt.hash(this.params.password, 10);
+			}
+			
+			const sql = `UPDATE fly_boarddata 
+									SET 
+										category = :category,
+										poster = :poster,
+										subject = :subject,
+										contents = :contents,
+										password = :password,
+										modDt = :modDt
+									WHERE 
+										idx = :idx`;
+			const replacements = {
+					category : this.params.category,
+					poster : this.params.poster,
+					subject : this.params.subject,
+					contents : this.params.contents,
+					password : hash,
+					modDt : new Date(),
+					idx : this.params.idx,
+			};
+			
+			await sequelize.query(sql, {
+				replacements,
+				type : QueryTypes.UPDATE,
+			});
+			
+			return true;
+		} catch (err) {
+			logger(err.stack, 'error');
+			return false;
+		}
+	},
+	/**
+	* 게시글 조회
+	*
+	* @param Integer idx 게시글 번호
+	* @return Object
+	*/
+	get : async function(idx) {
+		try {
+			const sql = `SELECT a.*, b.memId, b.memNm FROM fly_boarddata AS a 
+										LEFT JOIN fly_member AS b ON a.memNo = b.memNo 
+									WHERE a.idx = ?`;
+			const rows = await sequelize.query(sql, {
+					replacements : [idx],
+					type : QueryTypes.SELECT,
+			});
+			
+			const data = rows[0] || {};
+			if (data) {
+				data.regDt = parseDate(data.regDt).datetime;
+				data.config = await this.getBoard(data.boardId);
+				data.id = data.boardId;
+			}
+	
+			return data;
+		} catch (err) {
+			logger(err.stack, 'error');
+			return {};
+		}
+	}
 };
 
 module.exports = board;

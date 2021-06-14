@@ -14,7 +14,8 @@ module.exports.loginSession = async (req, res, next) => {
 			if (info) {
 				req.isLogin = res.isLogin = res.locals.isLogin = true;
 				//로그인 된 후
-				req.member = res.member = res.locals.member = info;
+				req.session.member = req.member = res.member = res.locals.member = info;
+				req.session.memNo = info.memNo;
 				//회원정보가 전역에 있을 때 로컬스에 유지(넌적스에만 해당)  이즈 로그인있을 때 
 				//오른쪽->왼쪽 대입 
 			}

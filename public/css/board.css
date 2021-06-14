@@ -4,3 +4,16 @@
 
 
 .board_default .submit_btn { margin: 20px auto; max-width: 200px; }
+
+
+/** default/_view.html */
+.board_default.view .subject { border: 1px solid #d5d5d5; padding: 10px; margin-bottom: 10px; }
+.board_default.view .poster_info { border: 1px solid #d5d5d5; padding: 10px; margin-bottom: 10px; }
+.board_default.view .poster_info .date { float: left; }
+.board_default.view .poster_info .poster { float: right; }
+.board_default.view .poster_info:after { content: ''; display: block; clear: both; }
+
+.board_default.view .contents { border: 1px solid #d5d5d5; padding: 10px; min-height: 350px; }
+
+.board_default.view .btns { margin: 10px 0; }
+

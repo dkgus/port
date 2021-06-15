@@ -64,9 +64,13 @@ router.get("/view/:idx", async (req, res, next) => {
 });
 
 /** 게시글 목록 */
-router.get("/list/:id", async (req, res, next) => {
+router.get("/list/:id", boardConfig, async (req, res, next) => {
+
+	const boardId = req.params.id;
+	const data = await board.getList(boardId, req.query.page, 20, req.query);
+	data.config = req.boardConfig;
 	
-	return res.send("");
+	return res.render("board/list", data);
 });
 
 /** 게시글 수정 */
@@ -89,6 +93,24 @@ router.get("/update/:idx", async (req, res, next) => {
 
 /** 게시글 삭제 */
 router.get("/delete/:idx", async (req, res, next) => {
+	try {
+		const idx = req.params.idx;
+		const data = await board.get(idx);
+		if (!data.idx) {
+			throw new Error('게시글이 존재하지 않습니다.');
+		}
+		
+		const result = await board.delete(idx);
+		if (!result) { // 게시글 삭제 실패
+			throw new Error('게시글 삭제에 실해하였습니다.');
+		} 
+		
+		// 게시글 삭제 완료 -> 게시글 목록으로 이동 
+		return go("/board/list/" + data.boardId, res);
+		
+	} catch (err) {
+		return alert(err.message, res, -1);
+	}
 	
 });
 

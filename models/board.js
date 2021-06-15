@@ -4,6 +4,7 @@ const path = require('path');
 const fs = require('fs').promises;
 const { parseDate } = require('../lib/common');
 const bcrypt = require('bcrypt');
+const pagination = require('pagination');
 
 /**
 * 게시판 Model
@@ -275,6 +276,26 @@ const board = {
 		}
 	},
 	/**
+	* 게시글 삭제 
+	*
+	* @param Integer idx 게시글 번호
+	* @return Boolean 
+	*/
+	delete : async function(idx) {
+		try {
+			const sql = "DELETE FROM fly_boarddata WHERE idx = ?";
+			await sequelize.query(sql, {
+				replacements : [idx],
+				type : QueryTypes.DELETE,
+			});
+			
+			return true;
+		} catch (err) {
+			logger(err.stack, 'error');
+			return false;
+		}
+	},
+	/**
 	* 게시글 조회
 	*
 	* @param Integer idx 게시글 번호
@@ -297,6 +318,82 @@ const board = {
 				data.id = data.boardId;
 			}
 	
+			return data;
+		} catch (err) {
+			logger(err.stack, 'error');
+			return {};
+		}
+	},
+	/**
+	* 게시글 목록 조회 
+	*
+	* @param String boardId 게시판 아이디 
+	* @param Integer page  페이지번호, 기본값 1 
+	* @param Integer limit 1페이당 레코드 수 
+	* @param Object qs - req.query 
+	* 
+	* @return Object
+	*/
+	getList : async function(boardId, page, limit, qs) {
+		try { 
+			page = page || 1;
+			limit = limit || 20;
+			const offset = (page - 1) * limit;
+			
+			let prelink = "/board/list/" + boardId;
+			if (qs) {
+				const addQs = [];
+				for (key in qs) {
+					if (key == 'page') continue; 
+					addQs.push(key + "=" + qs[key]);
+				} // endfor 
+				
+				prelink += "?" + addQs.join("&");
+			} // endif 
+			
+			const replacements = {
+				boardId,
+			};
+			
+			let sql = `SELECT COUNT(*) as cnt FROM fly_boarddata AS a 
+								LEFT JOIN fly_member AS b ON a.memNo = b.memNo 
+							WHERE a.boardId = :boardId`;
+			
+			const rows = await sequelize.query(sql, {
+				replacements,
+				type : QueryTypes.SELECT,
+			});
+			
+			const totalResult = rows[0].cnt;
+			
+			const paginator = pagination.create('search', {prelink, current: page, rowsPerPage: limit, totalResult});
+			
+			
+			replacements.limit = limit;
+			replacements.offset = offset;
+			
+			sql = `SELECT a.*, b.memNm, b.memId FROM fly_boarddata AS a 
+							LEFT JOIN fly_member AS b ON a.memNo = b.memNo 
+						WHERE a.boardId = :boardId ORDER BY a.regDt DESC LIMIT :offset, :limit`;
+			
+			const list = await sequelize.query(sql, {
+				replacements,
+				type : QueryTypes.SELECT,
+			});
+
+			list.forEach((v, i, _list) => {
+				_list[i].regDt = parseDate(v.regDt).datetime;
+			});
+			console.log("after", list);
+			const data = {
+				pagination : paginator.render(),
+				page,
+				limit,
+				totalResult,
+				offset,
+				list,
+			};
+			
 			return data;
 		} catch (err) {
 			logger(err.stack, 'error');

@@ -13,7 +13,19 @@ const pagination = require('pagination');
 const board = {
 	params : {}, // 처리할 데이터 
 	session : {}, // 처리할 세션 데이터 
+	_addWhere : {}, // 추가 검색 처리
 	
+	/**
+	* 추가 검색조건 처리 
+	*
+	* @param Object addWhere 
+	* @return this
+	*/
+	addWhere : function(addWhere) {
+		this._addWhere = addWhere;
+		
+		return this;
+	},
 	/**
 	* 게시판 생성 
 	*
@@ -355,9 +367,21 @@ const board = {
 				boardId,
 			};
 			
+			/** 추가 검색 처리 S */
+			let addConds = ""
+			if (this._addWhere.binds && this._addWhere.binds.length > 0) {
+				addConds = " AND " + this._addWhere.binds.join(" AND ");
+				if (this._addWhere.params) {
+					for (key in this._addWhere.params) {
+						replacements[key] = this._addWhere.params[key];
+					}
+				}
+			}
+			/** 추가 검색 처리 E */
+			
 			let sql = `SELECT COUNT(*) as cnt FROM fly_boarddata AS a 
 								LEFT JOIN fly_member AS b ON a.memNo = b.memNo 
-							WHERE a.boardId = :boardId`;
+							WHERE a.boardId = :boardId${addConds}`;
 			
 			const rows = await sequelize.query(sql, {
 				replacements,
@@ -365,7 +389,7 @@ const board = {
 			});
 			
 			const totalResult = rows[0].cnt;
-			
+
 			const paginator = pagination.create('search', {prelink, current: page, rowsPerPage: limit, totalResult});
 			
 			
@@ -374,7 +398,7 @@ const board = {
 			
 			sql = `SELECT a.*, b.memNm, b.memId FROM fly_boarddata AS a 
 							LEFT JOIN fly_member AS b ON a.memNo = b.memNo 
-						WHERE a.boardId = :boardId ORDER BY a.regDt DESC LIMIT :offset, :limit`;
+						WHERE a.boardId = :boardId${addConds} ORDER BY a.regDt DESC LIMIT :offset, :limit`;
 			
 			const list = await sequelize.query(sql, {
 				replacements,
@@ -384,7 +408,7 @@ const board = {
 			list.forEach((v, i, _list) => {
 				_list[i].regDt = parseDate(v.regDt).datetime;
 			});
-			console.log("after", list);
+
 			const data = {
 				pagination : paginator.render(),
 				page,

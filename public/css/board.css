@@ -4,16 +4,31 @@
 
 
 .board_default .submit_btn { margin: 20px auto; max-width: 200px; }
+.board_default .no_post { padding: 100px 0; text-align: center; font-size: 17px; font-weight: bold; }
 
 
 /** default/_view.html */
 .board_default.view .subject { border: 1px solid #d5d5d5; padding: 10px; margin-bottom: 10px; }
 .board_default.view .poster_info { border: 1px solid #d5d5d5; padding: 10px; margin-bottom: 10px; }
-.board_default.view .poster_info .date { float: left; }
-.board_default.view .poster_info .poster { float: right; }
+.board_default.view .poster_info .date { float: right; }
+.board_default.view .poster_info .poster { float: left; }
 .board_default.view .poster_info:after { content: ''; display: block; clear: both; }
 
 .board_default.view .contents { border: 1px solid #d5d5d5; padding: 10px; min-height: 350px; }
 
 .board_default.view .btns { margin: 10px 0; }
 
+
+/** default/_list.html */
+.board_default.list { position: relative; }
+.board_default.list .post_list li { border-bottom: 1px solid #d5d5d5; }
+.board_default.list .post_list li:first-child { border-top: 1px solid #d5d5d5; }
+.board_default.list .post_list li .subject { float: left;  padding: 13px 10px; display: block; width: calc(100% - 200px); } 
+.board_default.list .post_list li .post_info { float: right; padding: 13px 10px; width: 200px; text-align: center; }
+.board_default.list .post_list li:after { clear: both; content: ''; display: block; }
+.board_default.list .post_list li:nth-child(2n) { background-color: #f8f8f8; }
+
+.board_default .category_tab { text-align: center; margin-bottom: 20px; }
+.board_default .category_tab .tab { display: inline-block; padding: 10px 15px; border-radius: 20px; border: 1px solid #212121; margin: 0 2px; }
+.board_default .category_tab .tab.on { background-color: #212121; color: #ffffff; }
+.board_default.list .write_btn { position: absolute; right: 0; top: 5px; }

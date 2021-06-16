@@ -37,6 +37,11 @@ select { border: 1px solid #d5d5d5; height: 45px; padding: 0 10px; border-radius
 /* 제목 공통 */
 .tit{font-weight: bold; font-size:1.4rem; padding-bottom: 35px; }
 
+/* 페이징 공통 */
+.paginator { margin: 20px auto; text-align: center; }
+.paginator a { padding: 5px 10px; border-radius: 3px; border: 1px solid #212121; margin: 0 2px; display: inline-block; }
+.paginator a.paginator-current { background-color: #212121; color: #ffffff; }
+
 /* outline/header/_main.html */
 header {  background-color: #ffffff; position: fixed; width: 100%; top: 0; left: 0;  z-index: 10; }
 header > .inner { height: 57px; }

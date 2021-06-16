@@ -1,5 +1,5 @@
 const { boardConfig } = require('../middlewares/board/config');
-const { postValidator } = require("../middlewares/board/post_validator");
+const { postValidator, permissionCheck } = require("../middlewares/board/post_validator");
 const { alert, go } = require('../lib/message');
 const express = require('express');
 const router = express.Router();
@@ -14,7 +14,7 @@ const board = require('../models/board');
 
 router.route('/:id')
 	/** 게시글 작성 양식 */
-	.get(boardConfig, (req, res, next) => {
+	.get(boardConfig, permissionCheck, (req, res, next) => {
 		const data = {
 			config : req.boardConfig,
 			poster : req.isLogin?req.member.memNm:"",
@@ -22,7 +22,7 @@ router.route('/:id')
 			addScript : ['board'],
 			pageTitle : req.boardConfig.boardNm,
 		};
-		
+				
 		return res.render("board/form", data);
 	})
 	/** 게시글 작성 처리 */
@@ -67,8 +67,26 @@ router.get("/view/:idx", async (req, res, next) => {
 router.get("/list/:id", boardConfig, async (req, res, next) => {
 
 	const boardId = req.params.id;
-	const data = await board.getList(boardId, req.query.page, 20, req.query);
+	const category = req.query.category;
+	
+	/** 검색 처리 S */
+	const where = {
+		binds : [],
+		params : {},
+	};
+	
+	if (category) {
+		where.binds.push("a.category = :category");
+		where.params.category = category;
+	}
+	/** 검색 처리 E */
+	
+	const data = await board
+								.addWhere(where)
+								.getList(boardId, req.query.page, 20, req.query);
 	data.config = req.boardConfig;
+	data.addCss = ['board'];
+	data.category = category;
 	
 	return res.render("board/list", data);
 });

@@ -33,3 +33,16 @@ module.exports.postValidator = (req, res, next) => {
 	
 		next();
 };
+
+
+module.exports.permissionCheck = (req, res, next) => {
+		try {
+			if (req.boardConfig.accessType == 'member' && !req.isLogin) {
+				throw new Error('회원전용 게시판입니다.');
+			}
+			
+		} catch(err) {
+			return alert(err.message, res, -1);
+		}
+		next();
+};

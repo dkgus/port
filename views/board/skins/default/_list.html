@@ -1,1 +1,32 @@
-Default 
+<!-- Default 게시판 목록 -->
+<div class='board_default list'>
+	<a href='/board/{{ config.id }}' class='btn1 write_btn'>글 쓰기</a>
+	{% if config.categories.length > 0 %}
+	<div class='category_tab'>
+		<a href='/board/list/{{ config.id }}' class='tab{% if not category %} on{% endif %}'>전체</a>
+	{% for item in config.categories %}
+		<a href='/board/list/{{ config.id }}?category={{ item }}' class='tab{% if item == category %} on{% endif %}'>
+			{{ item }}
+		</a>
+	{% endfor %}
+	</div>
+	{% endif %}
+	<ul class='post_list'>
+	{% if list.length > 0 %}
+		{% for item in list %}
+		<li>
+			<a href='/board/view/{{ item.idx }}' class='subject'>
+				{{ item.subject }}
+			</a>
+			<div class='post_info'>
+				<span class='poster'>{{ item.poster }}{% if item.memId %}({{ item.memId }}){% endif %}</span>
+				<span class='date'>{{ item.regDt }}</span>
+			</div>
+		</li>
+		{% endfor %}
+	{% else %}
+	<li class='no_post'>게시글이 없습니다.</li>
+	{% endif %}
+	</ul>
+	{{ pagination | safe }}
+</div>

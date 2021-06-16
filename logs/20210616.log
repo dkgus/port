@@ -1,0 +1,46 @@
+{"level":"info","message":"[15:37:37]데이터베이스 연결 성공"}
+{"level":"info","message":"[18:04:05]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:53:10]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:05:04]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:05:43]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:21:09]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:25:49]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:26:00]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:36:39]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:36:45]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:38:35]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:38:38]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:39:04]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:39:33]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:40:31]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:40:36]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:40:50]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:41:40]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:42:37]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:42:46]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:43:01]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:43:44]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:43:47]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:44:02]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:44:37]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:44:59]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:45:16]데이터베이스 연결 성공"}
+{"level":"error","message":"[21:45:26]TypeError: this._addWhere.join is not a function\n    at Object.getList (C:\\Users\\USER\\Desktop\\home\\port2\\port\\models\\board.js:373:41)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\routes\\board.js:86:10\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\route.js:137:13)\n    at module.exports.boardConfig (C:\\Users\\USER\\Desktop\\home\\port2\\port\\middlewares\\board\\config.js:27:2)"}
+{"level":"error","message":"[21:45:34]TypeError: this._addWhere.join is not a function\n    at Object.getList (C:\\Users\\USER\\Desktop\\home\\port2\\port\\models\\board.js:373:41)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\routes\\board.js:86:10\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\route.js:137:13)\n    at module.exports.boardConfig (C:\\Users\\USER\\Desktop\\home\\port2\\port\\middlewares\\board\\config.js:27:2)"}
+{"level":"error","message":"[21:46:10]TypeError: this._addWhere.join is not a function\n    at Object.getList (C:\\Users\\USER\\Desktop\\home\\port2\\port\\models\\board.js:373:41)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\routes\\board.js:86:10\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\route.js:137:13)\n    at module.exports.boardConfig (C:\\Users\\USER\\Desktop\\home\\port2\\port\\middlewares\\board\\config.js:27:2)"}
+{"level":"info","message":"[21:46:33]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:47:04]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:48:28]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:59:02]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:59:12]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:00:09]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:00:33]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:00:59]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:03:57]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:04:13]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:05:23]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:06:12]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:06:51]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:07:08]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:07:13]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:07:43]데이터베이스 연결 성공"}

@@ -3,6 +3,9 @@ const { parseDate } = require('../lib/common');
 const logger = require('../lib/logger');
 const pagination = require('pagination');
 
+
+
+
 /**
 * 여행 관련
 *
@@ -107,7 +110,10 @@ const travel = {
 			});
 			
 			const data = rows[0] || {};
-			
+			if (rows.length > 0) {
+				data.mainImages = await this.getImages(goodsCd, "main");
+				data.listImages = await this.getImages(goodsCd, "list");
+			}
 			return data;
 		} catch (err) {
 			logger(err.stack, 'error');
@@ -176,6 +182,20 @@ const travel = {
 			return {};
 		}
 	},
-};
+	/**
+	* 상품이미지 조회
+	*
+	* @param String goodsCd 상품코드
+	* @param String type  (main - 메인, list - 목록)
+	* 
+	* @return Array
+	*/
+	getImages : async function(goodsCd, type) {
+		const files = await fileUpload.gets(goodsCd + "_" + type);
 
+		const data = files.editor?files.editor:[];
+		
+		return data;
+	},
+};
 module.exports = travel

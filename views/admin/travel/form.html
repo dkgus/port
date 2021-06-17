@@ -55,14 +55,36 @@
 			<th>메인 이미지</th>
 			<td>
 				<span class='btn1' onclick="layer.popup('/file/upload/{{ goodsCd }}_main?mode=image', 320, 250);">이미지 추가</span>
-				<span class='main_images'></span>
+				<div class='uploaded_images main_images'>
+				{% if mainImages.length >0 %}
+				{% for item in mainImages %}
+				<span class='images' 
+				data-idx='{{ item.idx }}' 
+				style="background:url('{{ item.fileUrl }}') no-repeat center center; background-size: cover;">
+					<div onclick="layer.popup('/file/view/{{ item.idx }}', 600, 600);"></div>
+					<i class='xi-close-min remove'></i>
+				</span>
+				{% endfor %}
+				{% endif %}
+				</div>
 			</td>
 		</tr>
 		<tr>
 			<th>목록 이미지</th>
 			<td>
 				<span class='btn1' onclick="layer.popup('/file/upload/{{ goodsCd }}_list?mode=image', 320, 250);">이미지 추가</span>
-				<span class='list_images'></span>
+				<div class='uploaded_images list_images'>
+				{% if listImages.length >0 %}
+				{% for item in listImages %}
+				<span class='images' 
+				data-idx='{{ item.idx }}' 
+				style="background:url('{{ item.fileUrl }}') no-repeat center center; background-size: cover;">
+					<div onclick="layer.popup('/file/view/{{ item.idx }}', 600, 600);"></div>
+					<i class='xi-close-min remove'></i>
+				</span>
+				{% endfor %}
+				{% endif %}
+				</div>
 			</td>
 		</tr>
 	</table>

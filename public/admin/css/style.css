@@ -44,6 +44,18 @@ textarea { border: 1px solid #d5d5d5; padding: 10px; resize: none; min-height: 1
 /* 서브 타이틀 */
 #main_wrap .sub_title { font-size: 14px; font-weight: bold; margin-bottom: 10px; }
 
+
+
+/** 팝업 공통 */
+.popup_tit { font-size: 17px; font-weight: bold; padding-bottom: 15px; margin-bottom: 20px; border-bottom: 1px solid #212121; }
+
+/** 업로드 이미지 thumb */
+.uploaded_images .images { display: inline-block; width: 50px; height: 50px; border: 1px solid #212121; position: relative; margin: 2px; }
+.uploaded_images .images div { width: 48px; height: 48px; }
+.uploaded_images .remove { position: absolute; top: 0; right: 0; z-index: 10; padding: 3px; background-color: #212121; color: #ffffff !important; cursor: pointer;  }
+
+
+
 /* outline/header/_main.html */
 header .top_menu > li { float: left;  }
 header .top_menu:after { clear: left; content: ''; display: block; }

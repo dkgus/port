@@ -1,0 +1,26 @@
+<!-- Default 댓글 -->
+<div class='board_default comment'>
+	{% if config.accessType == 'member' and not isLogin %}
+	<div class='comment_member_only'>
+		@댓글을 작성하시려면 로그인을 해 주세요.
+	</div>
+	{% else %}
+	<div class='comment_form'>
+		<form method='post' action='/board/comment' target='ifrmHidden' autocomplete='off'>
+			<input type='hidden' name='idxBoard' value='{{ idx }}'>
+			<div class='box1'>
+				작성자 <input type='text' name='poster' value='{% if isLogin %}{{ member.memNm }}{% endif %}'>
+				{% if not isLogin %}
+				비밀번호 <input type='password' name='password'>
+				{% endif %}
+			</div>
+			<div class='box2'>
+				<textarea name='comment' placeholder='댓글을 입력하세요.'></textarea>
+				<input type='submit' value='댓글 등록' class='comment_btn'>
+			</div>
+		</form>
+	</div>
+	<!--// comment_form -->
+	{% endif %}
+</div>
+<!--// board_default -->

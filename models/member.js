@@ -64,9 +64,8 @@ const member = {
 				//리턴은 불리언으로 비교해보고 해시값이 같으면 t 다르면 f리턴
 				if (match) {
 					// 로그인 세션 처리 	
-					delete rows[0].memPw;
-					req.session.member = rows[0];
-					req.session.memNo = rows[0].memNo;
+
+					req.session.memId = rows[0].memId;
 					
 					return true;
 				} else {

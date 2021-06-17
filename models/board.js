@@ -114,6 +114,7 @@ const board = {
 					data.skinPath.list = skinRootPath + "/_list.html";
 					data.skinPath.view = skinRootPath + "/_view.html";
 					data.skinPath.form = skinRootPath + "/_form.html";
+					data.skinPath.comment = skinRootPath + "/_comment.html";
 				}
 			}
 			
@@ -165,11 +166,13 @@ const board = {
 									accessType = :accessType, 
 									useImageUpload = :useImageUpload, 
 									useFileUpload = :useFileUpload, 
+									useComment = :useComment,
+									useViewList = :useViewList,
 									skin = :skin
 								WHERE
 									id = :id`;
 			
-			let category = this.params.category;
+			let category = this.params.category || "";
 			if (category) {
 				category = category.replace(/\r\n/g, "||");
 			}
@@ -180,6 +183,8 @@ const board = {
 					accessType : this.params.accessType,
 					useImageUpload : this.params.useImageUpload,
 					useFileUpload : this.params.useFileUpload,
+					useComment : this.params.useComment || 0,
+					useViewList : this.params.useViewList || 0,
 					skin : this.params.skin,
 					id : this.params.id,
 			};
@@ -423,7 +428,69 @@ const board = {
 			logger(err.stack, 'error');
 			return {};
 		}
-	}
+	},
+	/**
+	* 댓글 작성 
+	* 
+	* @return Integer|Boolean 등록 성공시 등록번호 idx, 실패시 false
+	*/
+	writeComment : async function() {
+		try {
+			
+			const memNo = this.session.memNo || 0;
+			let hash = "";
+			if (!memNo && this.params.password) {
+				hash = await bcrypt.hash(this.params.password, 10);
+			}
+			
+			const sql = `INSERT INTO fly_boardcomment (idxBoard, memNo, poster, password, comment) 
+							VALUES (:idxBoard, :memNo, :poster, :password, :comment)`;
+			
+			const replacements = {
+					idxBoard : this.params.idxBoard,
+					memNo, 
+					poster : this.params.poster,
+					password : hash,
+					comment : this.params.comment,
+			};
+			
+			const result = await sequelize.query(sql, {
+				replacements,
+				type : QueryTypes.INSERT,
+			});
+			
+			return result[0];
+		} catch (err) {
+			logger(err.stack, 'error');
+			return false;
+		}
+	},
+	/**
+	* 댓글 조회 
+	*
+	* @param Integer idxBoard 게시글 번호
+	* @return Array
+	*/
+	getComments : async function(idxBoard) {
+		try {
+			const sql = `SELECT a.*, b.memId, b.memNm FROM fly_boardcomment AS a 
+												LEFT JOIN fly_member AS b ON a.memNo = b.memNo 
+									WHERE a.idxBoard = ? ORDER BY a.regDt ASC`;
+			const list = await sequelize.query(sql, {
+				replacements : [idxBoard],
+				type : QueryTypes.SELECT,
+			});
+			
+			list.forEach((v, i, _list) => {
+				_list[i].regDt = parseDate(v.regDt).datetime;
+			});
+			
+			return list;
+		} catch (err) {
+			logger(err.stack, 'error');
+			return [];
+		}
+	},
 };
 
 module.exports = board;

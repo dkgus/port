@@ -60,7 +60,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 
 app.use(session({
 	resave : false, 
-	saveUninitialized : false,
+	saveUninitialized : true,
 	secret : process.env.COOKIE_SECRET,
 	cookie : {
 		httpOnly : true, 

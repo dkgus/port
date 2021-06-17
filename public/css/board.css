@@ -32,3 +32,14 @@
 .board_default .category_tab .tab { display: inline-block; padding: 10px 15px; border-radius: 20px; border: 1px solid #212121; margin: 0 2px; }
 .board_default .category_tab .tab.on { background-color: #212121; color: #ffffff; }
 .board_default.list .write_btn { position: absolute; right: 0; top: 5px; }
+
+
+/** default/_comment.html */
+.board_default.comment { margin-top: 20px; }
+.board_default .comment_form input[type='text'], .board_default .comment_form input[type='password'] { width: 120px;  height: 30px; border: 1px solid #212121; margin-right: 10px; }
+.board_default .comment_form .box1 { margin-bottom: 10px; }
+.board_default .comment_form .box2 textarea { float: left; height: 80px; width: calc(100% - 120px); border: 1px solid #212121; resize: none; padding: 10px; }
+.board_default .comment_form .box2 .comment_btn { float: right; width: 120px; display: block; border: 0; background-color: #212121; color: #ffffff; height: 80px; cursor: pointer; }
+.board_default .comment_form .box2:after { clear: both; content: ''; display: block; }
+.board_default .comment_member_only { padding-bottom: 30px; text-align: center; color: red; }
+

@@ -5,6 +5,31 @@ const express = require('express');
 const router = express.Router();
 const board = require('../models/board');
 
+/** 댓글  */
+router.route("/comment")
+	/** 댓글 등록 */
+	.post(async (req, res, next) => {
+		const idx = await board.data(req.body, req.session).writeComment();
+		
+		if (idx) { // 등록 성공시 
+			
+			const url = "/board/view/" + req.body.idxBoard + "?comment_done=" + idx;
+			return go(url, res, "parent");
+		}
+		
+		return alert("댓글 등록 실패하였습니다.", res);
+		// 등록 실패 
+	})
+	/** 댓글 수정 */
+	.patch((req, res, next) => {
+		
+	});
+
+/** 댓글 삭제 */
+router.get("/comment/delete/:idx", (req, res, next) => {
+	
+});
+
 /** 
 	게시글 쓰기, 수정, 삭제 
 	/board/:id 
@@ -55,6 +80,9 @@ router.get("/view/:idx", async (req, res, next) => {
 			throw new Error('존재하지 않는 게시글 입니다.');
 		}
 		
+		/** 댓글 조회 */
+		data.comments = await board.getComments(idx);
+		console.log(data.comments);
 		data.addCss = ["board"];
 		
 		return res.render("board/view", data);

@@ -1,3 +1,4 @@
+const member = require('../../models/member');
 /**
 * [미들웨어] 로그인 세션 처리 
 *

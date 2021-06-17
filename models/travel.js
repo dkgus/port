@@ -1,5 +1,8 @@
 const { sequelize, Sequelize : { QueryTypes } } = require('./index');
+const { parseDate } = require('../lib/common');
 const logger = require('../lib/logger');
+const pagination = require('pagination');
+
 /**
 * 여행 관련
 *
@@ -7,6 +10,16 @@ const logger = require('../lib/logger');
 const travel = {
 	/** 처리할 데이터 */
 	params : {},
+	
+	/** 교통편 */
+	transportations : [
+		{ type : 'airline_domestic', name1 : '국내선', name2 : '항공편' },
+		{ type : 'airline_inter', name1 : '국제선', name2 : '항공편' },
+		{ type : 'ship_domestic', name1 : '국내선', name2 : '배편' },
+		{ type : 'ship_inter', name1 : '국제선', name2 : '배편' },
+		{ type : 'bus', name1 : '버스', name2 : '' },
+	],
+	
 	/**
 	* 처리할 데이터 설정
 	*
@@ -28,7 +41,7 @@ const travel = {
 	*/
 	create : async function(goodsCd, goodsNm) {
 		try {
-			const sql = "INSERT INTO fly_travelGoods (goodsCd, goodsNm) VALUES (?, ?)";
+			const sql = "INSERT INTO fly_travelgoods (goodsCd, goodsNm) VALUES (?, ?)";
 			await sequelize.query(sql, {
 				replacements : [goodsCd, goodsNm],
 				type : QueryTypes.INSERT,
@@ -40,8 +53,68 @@ const travel = {
 			return false;
 		}
 	},
-    
-    /**
+	/**
+	* 상품정보 저장 
+	*
+	* @return Boolean
+	*/
+	save : async function() {
+		try {
+			const sql = `UPDATE fly_travelgoods 
+									SET 
+										goodsNm = :goodsNm,
+										shortDescription = :shortDescription,
+										itinerary = :itinerary,
+										transportation = :transportation,
+										shopping = :shopping,
+										isGroup = :isGroup
+								WHERE 
+										goodsCd = :goodsCd`;
+			
+			const replacements = {
+				goodsNm : this.params.goodsNm,
+				shortDescription : this.params.shortDescription,
+				itinerary : this.params.itinerary,
+				transportation : this.params.transportation || 'bus',
+				shopping : this.params.shopping || 0,
+				isGroup : this.params.isGroup || 0,
+				goodsCd : this.params.goodsCd,
+			};
+			
+			await sequelize.query(sql, {
+				replacements,
+				type : QueryTypes.UPDATE,
+			});
+			
+			return true;
+		} catch(err) {
+			logger(err.stack, 'error');
+			return false;
+		}
+	},
+	/**
+	* 상품정보 
+	*
+	* @param String goodsCd 상품코드
+	* @return Object
+	*/
+	get : async function(goodsCd) {
+		try {
+			const sql = "SELECT * FROM fly_travelgoods WHERE goodsCd = ?";
+			const rows = await sequelize.query(sql, {
+				replacements : [goodsCd],
+				type : QueryTypes.SELECT,
+			});
+			
+			const data = rows[0] || {};
+			
+			return data;
+		} catch (err) {
+			logger(err.stack, 'error');
+			return {};
+		}
+	},
+	/**
 	* 상품목록 
 	*
 	* @param Integer page 페이지번호, 기본값 1 
@@ -69,7 +142,7 @@ const travel = {
 			}
 			
 			const replacements = {};
-			let sql = `SELECT COUNT(*) as cnt FROM fly_travelGoods`;
+			let sql = `SELECT COUNT(*) as cnt FROM fly_travelgoods`;
 			const rows = await sequelize.query(sql, {
 				replacements,
 				type : QueryTypes.SELECT,
@@ -81,7 +154,7 @@ const travel = {
 			replacements.offset = offset;
 			replacements.limit = limit;
 			
-			sql = `SELECT * FROM fly_travelGoods ORDER BY regDt DESC LIMIT :offset, :limit`;
+			sql = `SELECT * FROM fly_travelgoods ORDER BY regDt DESC LIMIT :offset, :limit`;
 			const list = await sequelize.query(sql, {
 				replacements, 
 				type : QueryTypes.SELECT,
@@ -105,6 +178,4 @@ const travel = {
 	},
 };
 
-
-
-module.exports = travel;
+module.exports = travel

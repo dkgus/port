@@ -6,7 +6,7 @@ const { alert } = require('../lib/common');
 const path = require('path');
 const fs = require('fs').promises;
 const constants = require('fs').constants;
-const { fileTypeCheck } = require("../middlewares/file_validator");
+const { fileTypeCheck } = require("../middlewares/validators/file_validator");
 const router = express.Router();
 
 /* 

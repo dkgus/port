@@ -4,6 +4,8 @@ const member = require("../models/member"); //데베 연결한 모델
 const message = require("../lib/message");
 const { joinFormValidator } = require("../middlewares/validators/join"); // 회원가입 양식 검증 미들웨어
 const { loginFormValidator } = require("../middlewares/validators/login"); // 로그인 양식 검증 미들웨어
+const { memberOnly, guestOnly } = require('../middlewares/member/member_check');
+const { alert, go } = require('../lib/common');
 
 
 const router = express.Router();
@@ -84,7 +86,7 @@ router.route("/info")
 /** 로그인  /member/login */
 router.route("/login")
       /* 로그인 양식 */
-      .get((req, res, next) => {
+      .get(guestOnly,(req, res, next) => {
 			const data = {
 				pageTitle : '로그인',
 				addCss : ['member'],

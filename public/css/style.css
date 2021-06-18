@@ -35,7 +35,7 @@ select { border: 1px solid #d5d5d5; height: 45px; padding: 0 10px; border-radius
 .sub_page #main_wrap { max-width: 1000px; min-width: 1000px; margin: 0 auto; padding: 76px 10px 100px; }
 
 /* 제목 공통 */
-.tit{font-weight: bold; font-size:1.4rem; padding-bottom: 35px; }
+.tit{font-weight: bold; font-size:1.4rem; padding-bottom: 35px; position: relative; right: 24px; bottom: 2px;}
 
 /* 페이징 공통 */
 .paginator { margin: 20px auto; text-align: center; }
@@ -81,7 +81,7 @@ footer .info1 .link a:hover i { color: black; }
 footer .imp { margin-bottom: 9px; }
 footer .copyright { font-size: 0.92rem; }
 
-footer .info2 .tit { width: 100px; float: left; }
+footer .info2 .tit2 { width: 100px; float: left; font-weight: bold; font-size:15px; padding-bottom: 35px; position: relative; right: 24px; bottom: 2px;}
 footer .info2 ul { float: left; }
 footer .info2 li { margin-bottom: 10px; }
 footer .info2:after { clear: left; content: ''; display: block; }

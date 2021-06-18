@@ -83,8 +83,7 @@ const travel = {
 	WHERE 
 			goodsCd = :goodsCd`;
 
-
-			
+	
 			let yoils = "";
 			if (this.params.yoils) {
 				if (!(this.params.yoils instanceof Array)) { // 배열객체가 아닌 경우는 단일 선택 -> 배열객체 변경

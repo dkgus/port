@@ -26,8 +26,25 @@ router.route("/comment")
 	});
 
 /** 댓글 삭제 */
-router.get("/comment/delete/:idx", (req, res, next) => {
-	
+router.get("/comment/delete/:idx", async (req, res, next) => {
+	try {
+		const idx = req.params.idx;
+		const data = await board.getComment(idx);
+		if (!data) {
+			throw new Error("등록되지 않은 댓글 입니다.");
+		}
+		
+		const result = await board.deleteComment(idx);
+		if (result) { // 삭제 성공 
+			return go("/board/view/" + data.idxBoard, res);
+		}
+		
+		throw new Error('댓글 삭제 실패하였습니다.');
+		
+		// 삭제 실패 
+	} catch (err) {
+		return alert(err.message, res, -1);
+	}
 });
 
 /** 
@@ -82,8 +99,9 @@ router.get("/view/:idx", async (req, res, next) => {
 		
 		/** 댓글 조회 */
 		data.comments = await board.getComments(idx);
-		console.log(data.comments);
+		
 		data.addCss = ["board"];
+		data.addScript = ['board'];
 		
 		return res.render("board/view", data);
 	} catch (err) {

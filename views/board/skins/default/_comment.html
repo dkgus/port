@@ -22,5 +22,28 @@
 	</div>
 	<!--// comment_form -->
 	{% endif %}
+	
+	{% if comments.length > 0 %}
+	<ul class='comment_list'>
+		{% for item in comments %}
+		<li class='comment' data-idx='{{ item.idx }}'>
+			<div class='top_box'>
+				<div class='poster_info'>
+					{{ poster }}{% if memId %}({{ memId }}){% endif %}	
+					/ {{ regDt }}
+				</div>
+				<div class='controls'>
+					<span class='sbtn1 update'>수정</span>
+					<a href='/board/comment/delete/{{ item.idx }}' class='sbtn2' onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+				</div>
+			</div>
+			<!--// top_box -->
+			<div class='cont'>
+				{{ item.commentHtml | safe }}
+			</div>
+		</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
 </div>
 <!--// board_default -->

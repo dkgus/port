@@ -4,4 +4,11 @@ $(function() {
 		CKEDITOR.replace("contents");
 		CKEDITOR.config.height=350;
 	}
+	
+	/** 댓글 수정 */
+	$(".comment_list .update").click(function() {
+		
+	});
+	
+
 });

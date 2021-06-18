@@ -466,6 +466,26 @@ const board = {
 		}
 	},
 	/**
+	* 댓글 삭제 
+	*
+	* @param Integer idx 댓글 번호
+	* @return Boolean
+	*/
+	deleteComment : async function(idx) {
+		try {
+			const sql = "DELETE FROM fly_boardcomment WHERE idx = ?";
+			await sequelize.query(sql, {
+				replacements : [idx],
+				type : QueryTypes.DELETE,
+			});
+			
+			return true;
+		} catch(err) {
+			logger(err.stack, 'error');
+			return false;
+		}
+	},
+	/**
 	* 댓글 조회 
 	*
 	* @param Integer idxBoard 게시글 번호
@@ -483,6 +503,7 @@ const board = {
 			
 			list.forEach((v, i, _list) => {
 				_list[i].regDt = parseDate(v.regDt).datetime;
+				_list[i].commentHtml = v.comment.replace(/\r\n/g, "<br>");
 			});
 			
 			return list;
@@ -491,6 +512,28 @@ const board = {
 			return [];
 		}
 	},
+	/**
+	* 댓글 조회 
+	*
+	* @param Integer idx 댓글 등록번호
+	* @return Object
+	*/
+	getComment : async function(idx) {
+		try {
+			const sql = `SELECT a.*, b.memId, b.memNm FROM fly_boardcomment AS a 
+												LEFT JOIN fly_member AS b ON a.memNo = b.memNo 
+									WHERE a.idx = ?`;
+			const rows = await sequelize.query(sql, {
+					replacements : [idx],
+					type : QueryTypes.SELECT,
+			});
+			const data = rows[0] || {};
+			return data;
+		} catch (err) {
+			logger(err.stack, 'error');
+			return false;
+		}
+	}
 };
 
 module.exports = board;

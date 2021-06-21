@@ -26,11 +26,11 @@
 	{% if comments.length > 0 %}
 	<ul class='comment_list'>
 		{% for item in comments %}
-		<li class='comment' data-idx='{{ item.idx }}'>
+		<li class='comment' id='comment_{{ item.idx }}' data-idx='{{ item.idx }}'>
 			<div class='top_box'>
 				<div class='poster_info'>
-					{{ poster }}{% if memId %}({{ memId }}){% endif %}	
-					/ {{ regDt }}
+					{{ item.poster }}{% if item.memId %}({{ item.memId }}){% endif %}	
+					/ {{ item.regDt }}
 				</div>
 				<div class='controls'>
 					<span class='sbtn1 update'>수정</span>

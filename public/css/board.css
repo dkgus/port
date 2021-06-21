@@ -49,3 +49,10 @@
 .board_default .comment_list .top_box .poster_info { float: left; }
 .board_default .comment_list .top_box .controls { float: right; }
 .board_default .comment_list .top_box:after { clear: both; content: ''; display: block; }
+
+/** default/_comment_form.html */
+.board_default.comment_form textarea { border: 1px solid #d5d5d5; padding: 10px; resize: none; height: 160px; width: 100%; border-radius: 5px; }
+
+/** board/password.html */
+.board_default.password .password_wrap { width: 400px; margin: 50px auto; border: 1px solid #d5d5d5;  padding: 20px; border-radius: 5px; }
+.board_default.password .password_wrap .tit { text-align: center;  right: 0; }

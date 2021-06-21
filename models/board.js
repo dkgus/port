@@ -115,6 +115,7 @@ const board = {
 					data.skinPath.view = skinRootPath + "/_view.html";
 					data.skinPath.form = skinRootPath + "/_form.html";
 					data.skinPath.comment = skinRootPath + "/_comment.html";
+					data.skinPath.comment_form = skinRootPath + "/_comment_form.html";
 				}
 			}
 			
@@ -466,6 +467,48 @@ const board = {
 		}
 	},
 	/**
+	* 댓글 수정 
+	*
+	* @return Boolean
+	*/
+	updateComment : async function() {
+		try {
+			const data = await this.getComment(this.params.idx);
+			if (!data) {
+				throw new Error('등록되지 않는 댓글 입니다.');
+			}
+			
+			let hash = "";
+			if (!data.memNo && this.params.password) {
+				hash = await bcrypt.hash(this.params.password, 10);
+			}
+			
+			const sql = `UPDATE fly_boardcomment 
+									SET 
+										poster = :poster,
+										password = :hash,
+										comment = :comment 
+								WHERE 
+									idx = :idx`;
+			
+			const replacements = {
+					poster : this.params.poster,
+					hash,
+					comment : this.params.comment,
+					idx : this.params.idx,
+			};
+			await sequelize.query(sql, {
+				replacements,
+				type : QueryTypes.UPDATE,
+			});
+					
+			return true;
+		} catch (err) {
+			logger(err.message, 'error');
+			return false;
+		}
+	},
+	/**
 	* 댓글 삭제 
 	*
 	* @param Integer idx 댓글 번호
@@ -520,14 +563,20 @@ const board = {
 	*/
 	getComment : async function(idx) {
 		try {
-			const sql = `SELECT a.*, b.memId, b.memNm FROM fly_boardcomment AS a 
-												LEFT JOIN fly_member AS b ON a.memNo = b.memNo 
+			const sql = `SELECT a.*, b.memId, b.memNm, c.boardId FROM fly_boardcomment AS a 
+								INNER JOIN fly_boarddata AS c ON a.idxBoard = c.idx 
+								LEFT JOIN fly_member AS b ON a.memNo = b.memNo 
 									WHERE a.idx = ?`;
 			const rows = await sequelize.query(sql, {
 					replacements : [idx],
 					type : QueryTypes.SELECT,
 			});
 			const data = rows[0] || {};
+			
+			if (rows.length > 0) {
+				data.config = await this.getBoard(data.boardId);
+			}
+			
 			return data;
 		} catch (err) {
 			logger(err.stack, 'error');

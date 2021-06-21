@@ -1,9 +1,10 @@
 const { boardConfig } = require('../middlewares/board/config');
-const { postValidator, permissionCheck } = require("../middlewares/board/post_validator");
-const { alert, go } = require('../lib/message');
+const { postValidator, memberOnlyCheck, permissionCheck } = require("../middlewares/board/post_validator");
+const { alert, go, reload } = require('../lib/message');
 const express = require('express');
 const router = express.Router();
 const board = require('../models/board');
+const bcrypt = require('bcrypt');
 
 /** 댓글  */
 router.route("/comment")
@@ -21,12 +22,39 @@ router.route("/comment")
 		// 등록 실패 
 	})
 	/** 댓글 수정 */
-	.patch((req, res, next) => {
+	.patch(async (req, res, next) => {
+		const result = await board.data(req.body).updateComment();
+		if (result) { // 댓글 수정 완료 시 새로고침 
+			
+			// 비회원 댓글 비밀번호 확인 session 삭제 
+			delete req.session['comment_' + req.body.idx];
+			
+			const data = await board.getComment(req.body.idx);
+			const url = "/board/view/" + data.idxBoard;
+			return go(url, res, "parent");
+		}
 		
+		return alert("댓글 수정에 실패하였습니다.", res);
 	});
 
+/** 댓글 수정 양식 */
+router.get("/comment/:idx", permissionCheck('comment'), async (req, res, next) => {
+	try {
+		const idx = req.params.idx;
+		const data = await board.getComment(idx);
+		if (!data) {
+			throw new Error('등록되지 않은 댓글 입니다.');
+		}
+		
+		
+		return res.render("board/comment_form", data);
+	} catch (err) {
+		return alert(err.message, res);
+	}
+});
+
 /** 댓글 삭제 */
-router.get("/comment/delete/:idx", async (req, res, next) => {
+router.get("/comment/delete/:idx", permissionCheck('comment', 'delete'), async (req, res, next) => {
 	try {
 		const idx = req.params.idx;
 		const data = await board.getComment(idx);
@@ -36,9 +64,13 @@ router.get("/comment/delete/:idx", async (req, res, next) => {
 		
 		const result = await board.deleteComment(idx);
 		if (result) { // 삭제 성공 
+			// 비회원 댓글 비밀번호 확인 session 삭제 
+			delete req.session['comment_' + idx];
+		
 			return go("/board/view/" + data.idxBoard, res);
 		}
 		
+
 		throw new Error('댓글 삭제 실패하였습니다.');
 		
 		// 삭제 실패 
@@ -56,7 +88,7 @@ router.get("/comment/delete/:idx", async (req, res, next) => {
 
 router.route('/:id')
 	/** 게시글 작성 양식 */
-	.get(boardConfig, permissionCheck, (req, res, next) => {
+	.get(boardConfig, memberOnlyCheck, (req, res, next) => {
 		const data = {
 			config : req.boardConfig,
 			poster : req.isLogin?req.member.memNm:"",
@@ -82,6 +114,10 @@ router.route('/:id')
 		const result = await board.data(req.body, req.session)
 											.update();
 		if (result) { // 수정 완료 시 게시글 보기 페이지로 이동 
+			
+			// 비회원 게시글 비밀번호 확인 session 삭제 
+			delete req.session['board_' + req.body.idx];
+		
 			return go("/board/view/" + req.body.idx, res, 'parent');
 		} 
 		
@@ -138,7 +174,7 @@ router.get("/list/:id", boardConfig, async (req, res, next) => {
 });
 
 /** 게시글 수정 */
-router.get("/update/:idx", async (req, res, next) => {
+router.get("/update/:idx", permissionCheck(), async (req, res, next) => {
 	try {
 		const idx = req.params.idx;
 		const data = await board.get(idx);
@@ -156,7 +192,7 @@ router.get("/update/:idx", async (req, res, next) => {
 });
 
 /** 게시글 삭제 */
-router.get("/delete/:idx", async (req, res, next) => {
+router.get("/delete/:idx", permissionCheck('', 'delete'), async (req, res, next) => {
 	try {
 		const idx = req.params.idx;
 		const data = await board.get(idx);
@@ -168,6 +204,8 @@ router.get("/delete/:idx", async (req, res, next) => {
 		if (!result) { // 게시글 삭제 실패
 			throw new Error('게시글 삭제에 실해하였습니다.');
 		} 
+		// 비회원 게시글 비밀번호 확인 session 삭제 
+		delete req.session['board_' + idx];
 		
 		// 게시글 삭제 완료 -> 게시글 목록으로 이동 
 		return go("/board/list/" + data.boardId, res);
@@ -177,5 +215,99 @@ router.get("/delete/:idx", async (req, res, next) => {
 	}
 	
 });
+
+/** 게시글 수정, 댓글 비회원 비밀번호 체크 */
+router.route("/password/:idx")
+	.get(async (req, res, next) => {
+		try {
+			const idx = req.params.idx;
+			const mode = req.query.mode;
+			const type = req.query.type;
+			const messageType = (mode == "comment")?"댓글":"게시글";
+			
+			let data = "";
+			if (mode == 'comment') {
+				data = await board.getComment(idx);
+			} else {
+				data = await board.get(idx);
+			}
+			
+			if (!data.idx) {
+				throw new Error(`등록되지 않은 ${messageType}입니다.`);
+			}
+			
+			// 회원 게시글, 댓글은 비밀번호 확인 필요 없음
+			if (data.memNo) {
+				throw new Error(`비회원 ${messageType}만 비밀번호 확인이 필요합니다.`);
+			}
+			
+			data.mode = mode;
+			data.type = type;
+			data.idx = idx;
+			
+			data.addCss = ['board'];
+			return res.render("board/password", data);
+		} catch (err) {
+			return alert(err.message, res, -1);
+		}
+	})
+	.post(async (req, res, next) => {
+		try {
+			let key = "", url = "";
+			let data = {};
+			const idx = req.body.idx;
+			const typeStr = (req.mode == 'comment')?"댓글":"게시글";
+			const type = req.body.type;
+			
+			if (!idx) {
+				throw new Error('잘못된 접근입니다.');
+			}
+			
+			if (!req.body.password) {
+				throw new Error('비밀번호를 입력하세요');
+			}
+			
+			if (req.body.mode == 'comment') {
+				key = "comment_" + idx;
+				keyUrl = key + "_url";
+				data = await board.getComment(idx);
+				url = "/board/view/" + data.idxBoard;
+				if (type != 'delete') { // 
+					url += "?idx_comment=" + idx;
+				}
+			} else {
+				key = "board_" + idx;
+				keyUrl = key + "_url";
+				data = await board.get(idx);
+				if (type == 'delete') {
+					url = "/board/delete/" + idx;
+				} else {
+					url = "/board/update/" + idx;
+				}
+			}
+			
+				
+			if (!data.idx) {
+				throw new Error(`등록되지 않은 ${typeStr}입니다.`);
+			}
+			
+			const match = await bcrypt.compare(req.body.password, data.password);
+			if (match) { // 비밀번호 일치, 확인 결과 session에 등록 --> URL 이동 
+				// 단 댓글 삭제인 경우는 바로 삭제
+				if (req.body.mode == 'comment' && type == 'delete') {
+					await board.deleteComment(idx);
+				} else {
+					req.session[key] = true;
+				}
+				return go(url, res, "parent");
+			} 
+		
+			// 비밀번호 불일치 
+			throw new Error('비밀번호가 일치하지 않습니다');
+		
+		} catch (err) {
+			return alert(err.message, res);
+		}
+	});
 
 module.exports = router;

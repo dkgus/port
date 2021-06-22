@@ -34,9 +34,20 @@
         {% block header %}
         {% include 'outline/header/_main.html' %}
         {% endblock %}
-        <section id='main_wrap'>
-        {% block content %}
-        {% endblock %}
+        <section id='main_wrap'{% if asidePath %} class='with_aside'{% endif %}>
+			{% if asidePath %}
+			<aside>
+			{% block aside %}
+			{% include asidePath %}
+			{% endblock %}
+			</aside>
+			<main>
+			{% endif %}
+			{% block content %}
+			{% endblock %}
+			{% if asidePath %}
+			</main>
+			{% endif %}
         </section>
         {% block footer %}
         {% include 'outline/footer/_main.html' %}

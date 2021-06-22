@@ -139,6 +139,9 @@ router.get("/view/:idx", async (req, res, next) => {
 		data.addCss = ["board"];
 		data.addScript = ['board'];
 		
+		/** 게시글 조회수 업데이트 */
+		await board.updateViewCount(idx, req);
+	
 		return res.render("board/view", data);
 	} catch (err) {
 		return alert(err.message, res, -1);

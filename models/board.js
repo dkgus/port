@@ -2,7 +2,7 @@ const { sequelize, Sequelize : { QueryTypes } } = require('./index');
 const logger = require('../lib/logger');
 const path = require('path');
 const fs = require('fs').promises;
-const { parseDate } = require('../lib/common');
+const { parseDate, getBrowserId } = require('../lib/common');
 const bcrypt = require('bcrypt');
 const pagination = require('pagination');
 
@@ -460,6 +460,9 @@ const board = {
 				type : QueryTypes.INSERT,
 			});
 			
+			// 댓글 갯수 업데이트 
+			await this.updateCommentCount(this.params.idxBoard);
+			
 			return result[0];
 		} catch (err) {
 			logger(err.stack, 'error');
@@ -501,7 +504,10 @@ const board = {
 				replacements,
 				type : QueryTypes.UPDATE,
 			});
-					
+			
+			// 댓글 갯수 업데이트 
+			await this.updateCommentCount(data.idxBoard);
+			
 			return true;
 		} catch (err) {
 			logger(err.message, 'error');
@@ -516,11 +522,19 @@ const board = {
 	*/
 	deleteComment : async function(idx) {
 		try {
+			const data = await this.getComment(idx);
+			if (!data) {
+				throw new Error('댓글이 존재하지 않습니다.');
+			}
+			
 			const sql = "DELETE FROM fly_boardcomment WHERE idx = ?";
 			await sequelize.query(sql, {
 				replacements : [idx],
 				type : QueryTypes.DELETE,
 			});
+			
+		   // 댓글 갯수 업데이트
+		   await this.updateCommentCount(data.idxBoard);
 			
 			return true;
 		} catch(err) {
@@ -583,6 +597,85 @@ const board = {
 		} catch (err) {
 			logger(err.stack, 'error');
 			return false;
+		}
+	},
+	/**
+	* 게시글 조회수 업데이트 
+	*
+	* @param Integer idx 게시글 번호
+	* @param Object req - request 객체 
+	*/
+	updateViewCount : async function (idx, req) {
+		/** boardview에 UV(Unique view) 추가 */
+		try {
+			if (!idx || !req) 
+				return;
+			
+			const browserId = getBrowserId(req);
+	
+			const sql = 'INSERT INTO fly_boardview VALUES (?, ?)';
+			await sequelize.query(sql, {
+				replacements : [browserId, idx],
+				type : QueryTypes.INSERT,
+			});
+		} catch (err) {}
+		
+		/** UV 데이터를 계산해서 조회수 업데이트 */
+		try {
+			let sql = "SELECT COUNT(*) as cnt FROM fly_boardview WHERE idx = ?";
+			const rows = await sequelize.query(sql, {
+				replacements : [idx],
+				type : QueryTypes.SELECT,
+			});
+			
+			sql = `UPDATE fly_boarddata 
+								SET 
+									viewCount = :viewCount
+							WHERE 
+								idx = :idx
+					`;
+			const replacements = {
+				viewCount : rows[0].cnt,
+				idx,
+			};
+			
+			await sequelize.query(sql, {
+				replacements,
+				type : QueryTypes.UPDATE,
+			});
+		} catch (err) {}
+	},
+	/** 
+	* 게시글 댓글 갯수 업데이트 
+	*
+	* @param Integer idxBoard 게시글 번호
+	*/
+	updateCommentCount : async function(idxBoard) {
+		try {
+			let sql = "SELECT COUNT(*) as cnt FROM fly_boardcomment WHERE idxBoard = ?";
+			const rows = await sequelize.query(sql, {
+				replacements : [idxBoard],
+				type : QueryTypes.SELECT,
+			});
+			
+			const cnt = rows[0].cnt;
+			
+			sql = `UPDATE fly_boarddata 
+						SET 
+							commentCount = :commentCount
+					WHERE
+						idx = :idxBoard`;
+			const replacements = {
+					commentCount : cnt,
+					idxBoard,
+			};
+			await sequelize.query(sql, {
+				replacements,
+				type : QueryTypes.UPDATE,
+			});
+			
+		} catch (err) {
+			logger(err.stack, 'error');
 		}
 	}
 };

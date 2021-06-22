@@ -16,11 +16,12 @@
 		{% for item in list %}
 		<li>
 			<a href='/board/view/{{ item.idx }}' class='subject'>
-				{{ item.subject }}
+				{{ item.subject }}{% if item.commentCount > 0 %}[{{ item.commentCount.toLocaleString() }}]{% endif %}
 			</a>
 			<div class='post_info'>
 				<span class='poster'>{{ item.poster }}{% if item.memId %}({{ item.memId }}){% endif %}</span>
 				<span class='date'>{{ item.regDt }}</span>
+				{% if item.viewCount > 0 %}<span class='view_count'>{{ item.viewCount.toLocaleString() }}</span>{% endif %}
 			</div>
 		</li>
 		{% endfor %}

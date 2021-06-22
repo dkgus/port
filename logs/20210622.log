@@ -67,3 +67,82 @@
 {"level":"info","message":"[20:47:39]데이터베이스 연결 성공"}
 {"level":"info","message":"[20:48:21]데이터베이스 연결 성공"}
 {"level":"info","message":"[20:56:37]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:59:54]데이터베이스 연결 성공"}
+{"level":"error","message":"[21:02:25]GET /member/find_id은 없는 페이지 입니다."}
+{"level":"error","message":"[21:02:25]Error: GET /member/find_id은 없는 페이지 입니다.\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\app.js:99:16\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:317:13)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:284:7\n    at Function.process_params (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:275:10)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:635:15\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:260:14)\n    at Function.handle (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:174:3)\n    at router (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:47:12)"}
+{"level":"error","message":"[21:02:36]Error: GET /mypage/myinfo은 없는 페이지 입니다.\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\app.js:99:16\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:317:13)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:284:7\n    at Function.process_params (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:275:10)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:635:15\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:260:14)\n    at Function.handle (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:174:3)\n    at router (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:47:12)"}
+{"level":"error","message":"[21:02:36]GET /mypage/myinfo은 없는 페이지 입니다."}
+{"level":"error","message":"[21:03:26]Error: GET /menu4은 없는 페이지 입니다.\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\app.js:99:16\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:317:13)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:284:7\n    at Function.process_params (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:275:10)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:635:15\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:260:14)\n    at Function.handle (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:174:3)\n    at router (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:47:12)"}
+{"level":"error","message":"[21:03:26]GET /menu4은 없는 페이지 입니다."}
+{"level":"error","message":"[21:04:16]ReferenceError: isFront is not defined\n    at Object.getGoods (C:\\Users\\USER\\Desktop\\home\\port2\\port\\models\\travel.js:215:4)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\routes\\admin\\travel.js:26:30\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\route.js:137:13)\n    at Route.dispatch (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\route.js:112:3)\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:281:22\n    at Function.process_params (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:275:10)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\routes\\admin\\travel.js:19:2"}
+{"level":"error","message":"[21:08:44]ReferenceError: isFront is not defined\n    at Object.getGoods (C:\\Users\\USER\\Desktop\\home\\port2\\port\\models\\travel.js:215:4)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\routes\\admin\\travel.js:26:30\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\route.js:137:13)\n    at Route.dispatch (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\route.js:112:3)\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:281:22\n    at Function.process_params (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:275:10)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\routes\\admin\\travel.js:19:2"}
+{"level":"info","message":"[21:15:01]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:15:07]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:15:39]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:15:50]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:16:52]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:16:55]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:17:03]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:18:06]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:18:08]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:18:26]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:18:38]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:18:41]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:19:02]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:19:07]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:19:11]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:19:28]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:19:47]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:19:56]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:20:04]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:20:41]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:20:48]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:21:00]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:21:15]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:21:54]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:21:55]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:24:43]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:26:11]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:26:18]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:26:23]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:26:35]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:26:52]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:26:57]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:30:33]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:31:04]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:31:09]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:31:46]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:32:26]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:32:37]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:32:39]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:33:59]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:34:27]데이터베이스 연결 성공"}
+{"level":"error","message":"[21:35:03]SequelizeDatabaseError: Unknown column 'idxBoard' in 'where clause'\n    at Query.formatError (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\sequelize\\lib\\dialects\\mysql\\query.js:265:16)\n    at Query.run (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\sequelize\\lib\\dialects\\mysql\\query.js:77:18)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\sequelize\\lib\\sequelize.js:619:16\n    at async Object.updateCommentCount (C:\\Users\\USER\\Desktop\\home\\port2\\port\\models\\board.js:672:4)\n    at async Object.writeComment (C:\\Users\\USER\\Desktop\\home\\port2\\port\\models\\board.js:464:4)\n    at async C:\\Users\\USER\\Desktop\\home\\port2\\port\\routes\\board.js:13:15"}
+{"level":"info","message":"[21:35:53]데이터베이스 연결 성공"}
+{"level":"error","message":"[21:38:17]GET /mypage은 없는 페이지 입니다."}
+{"level":"error","message":"[21:38:17]Error: GET /mypage은 없는 페이지 입니다.\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\app.js:99:16\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:317:13)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:284:7\n    at Function.process_params (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:275:10)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:635:15\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:260:14)\n    at Function.handle (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:174:3)\n    at router (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:47:12)"}
+{"level":"error","message":"[21:38:21]Error: GET /mypage/myinfo은 없는 페이지 입니다.\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\app.js:99:16\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:317:13)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:284:7\n    at Function.process_params (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:275:10)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:635:15\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:260:14)\n    at Function.handle (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:174:3)\n    at router (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:47:12)"}
+{"level":"error","message":"[21:38:21]GET /mypage/myinfo은 없는 페이지 입니다."}
+{"level":"info","message":"[21:41:19]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:41:47]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:41:51]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:42:21]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:43:00]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:43:28]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:47:55]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:48:01]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:48:19]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:50:41]데이터베이스 연결 성공"}
+{"level":"error","message":"[21:50:47]alert is not defined"}
+{"level":"error","message":"[21:50:47]ReferenceError: alert is not defined\n    at module.exports.memberOnly (C:\\Users\\USER\\Desktop\\home\\port2\\port\\middlewares\\member\\member_check.js:47:4)\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:317:13)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:284:7\n    at Function.process_params (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:275:10)\n    at Function.handle (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:174:3)\n    at router (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:47:12)\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:317:13)"}
+{"level":"info","message":"[21:51:33]데이터베이스 연결 성공"}
+{"level":"info","message":"[21:51:47]데이터베이스 연결 성공"}
+{"level":"error","message":"[22:04:40]GET /mypage/myinfo은 없는 페이지 입니다."}
+{"level":"error","message":"[22:04:40]Error: GET /mypage/myinfo은 없는 페이지 입니다.\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\app.js:100:16\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:317:13)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:284:7\n    at Function.process_params (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:275:10)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:635:15\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:260:14)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\routes\\mypage.js:19:2\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)"}
+{"level":"info","message":"[22:05:07]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:05:23]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:05:36]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:05:45]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:06:10]데이터베이스 연결 성공"}
+{"level":"info","message":"[22:07:24]데이터베이스 연결 성공"}
+{"level":"error","message":"[22:07:45]SequelizeDatabaseError: Table 'fly_go.travelreservation' doesn't exist\n    at Query.formatError (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\sequelize\\lib\\dialects\\mysql\\query.js:265:16)\n    at Query.run (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\sequelize\\lib\\dialects\\mysql\\query.js:77:18)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\sequelize\\lib\\sequelize.js:619:16\n    at async Object.getReservations (C:\\Users\\USER\\Desktop\\home\\port2\\port\\models\\travel.js:805:17)\n    at async C:\\Users\\USER\\Desktop\\home\\port2\\port\\routes\\mypage.js:42:15"}

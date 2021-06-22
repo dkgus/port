@@ -33,7 +33,9 @@ textarea { border: 1px solid #d5d5d5; min-height: 150px; resize: none; border-ra
 .action_box select { width: auto; }
 
 /* 메인 제목 */
-.mtitle { font-size: 14px; font-weight: bold; margin-bottom: 15px; }
+.mtitle, .main_title { font-size: 14px; font-weight: bold; margin-bottom: 15px; }
+
+.sub_title { font-weight: bold; margin-bottom: 10px; }
 
 /** 레이아웃 */
 #main_wrap { padding: 15px 10px; }

@@ -1,3 +1,5 @@
+const { alert } = require('../../lib/message');
+
 /** 
 * 회원전용, 비회원 전용, 관리자 전용 체크 
 *
@@ -35,4 +37,17 @@ if (!req.isLogin || !req.member.isAdmin) {
 }
 
 next();
+};
+
+/**
+* 회원전용 페이지 미들웨어
+*
+*/
+module.exports.memberOnly = (req, res, next) => {
+		if (!req.isLogin) {
+			res.status(401);
+			return alert('회원전용 페이지 입니다.', res, -1);
+		}
+			
+		next();
 };

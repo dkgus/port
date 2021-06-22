@@ -54,4 +54,50 @@
 .body_travel .reservation .settle_info .guide_txt { color: #888888; font-size: 12px; margin-top: 5px; }
 
 .body_travel .apply_reservation { background-color: #5e99cb; height: 56px; line-height: 56px; text-align: center; color: #ffffff; font-size: 17px; border-radius: 5px; cursor: pointer; }
-© 2021 GitHub, Inc.
+
+
+
+/** travel/form.html */
+.body_travel_reservation .main_contents { float: left; width: calc(100% - 330px); } 
+.body_travel_reservation .summary { float: right; width: 330px; }
+.body_travel_reservation .content_wrap:after { clear: both; content: ''; display: block; }
+
+
+.body_travel_reservation .main_tit { font-size: 26px; margin: 60px 0 30px 0; color: #111111; font-weight: bold; border-bottom: 2px solid #000000; padding-bottom: 25px; }
+.body_travel_reservation .sub_tit { font-size: 22px; color: #111111; margin-bottom: 20px; }
+.body_travel_reservation .sub_tit2 { font-size: 17px; color: #111111; margin: 10px 0 15px; }
+
+.body_travel_reservation table { border-spacing: 0; padding: 0; margin-bottom: 30px; width: 100%; border-top: 1px solid #212121; }
+.body_travel_reservation table th { background-color: #f7f7f7; font-size: 15px; font-weight: bold; color: #111111; width: 148px; text-align: left; padding: 15px 20px; border-bottom: 1px solid #dddddd; border-right: 1px solid #dddddd; }
+.body_travel_reservation table td { padding: 10px 15px; border-bottom: 1px solid #dddddd; font-size: 14px; } 
+.body_travel_reservation table td i { font-size: 20px; vertical-align: middle; }
+.body_travel_reservation .reservation_guide { padding: 30px; background-color: #f7f7f7; }
+.body_travel_reservation .reservation_guide .tit { font-size: 15px; color: #333333; border-bottom: 1px solid #dddddd; padding-bottom: 10px; margin-bottom: 15px; font-weight: bold; }
+.body_travel_reservation .reservation_guide .tit i { color: #e5236d; font-size: 20px; vertical-align: middle; } 
+.body_travel_reservation .reservation_guide li { font-size: 13px; color: #888888; line-height: 23px; }
+
+.body_travel_reservation .reservation_persons { margin-bottom: 15px; }
+.body_travel_reservation .reservation_persons li { float: left; width: calc(100% / 3); height: 200px; text-align: center; border: 1px solid #dddddd; border-left: 0; padding: 30px 0; }
+.body_travel_reservation .reservation_persons li:first-child { border-left: 1px solid #dddddd; }
+.body_travel_reservation .reservation_persons:after { clear: left; content: ''; display: block; }
+.body_travel_reservation .reservation_persons li .t1 { font-size: 13px; color: #666666; }
+.body_travel_reservation .reservation_persons li .t1 span { font-size: 15px; font-weight: bold; color: #111111; margin-right: 13px; }
+.body_travel_reservation .reservation_persons .tot_price, .body_travel_reservation .reservation_persons .tot_price * { color: #111111; font-size: 17px; font-weight: bold; }
+
+.body_travel_reservation .reservation_persons .goods_cnt_wrap { margin: 30px auto; }
+.body_travel_reservation .guide_txt { margin-bottom: 30px; }
+.body_travel_reservation .guide_txt li { font-size: 13px; line-height: 20px; color: #888888 }
+.body_travel_reservation .summary > .inner { width: 306px; margin-left: 24px; }
+.body_travel_reservation .summary_info { background-color: #f7f7f7; border-top: 1px solid #dddddd; border-bottom: 1px solid #dddddd; padding: 15px 20px 20px; }
+.body_travel_reservation .summary { position: relative; }
+.body_travel_reservation .summary > .inner { position: fixed; }
+.body_travel_reservation .summary .top { margin-bottom: 20px; }
+.body_travel_reservation .summary .top dd { text-align: right; }
+.body_travel_reservation .summary .top dd span { margin-right: 15px; }
+.body_travel_reservation .summary .top dd span.infant_cnt { margin-right: 0; }
+.body_travel_reservation .summary .total_price { font-size: 15px; color: #e5236d; text-align: right; margin-bottom: 10px; }
+.body_travel_reservation .summary .total_price .no { font-size: 26px; font-weight: bold; letter-spacing: -2px; }
+.body_travel_reservation .summary .txt { font-size: 13px; color: #666666; text-align: right; }
+
+
+.body_travel_reservation .apply_reservation { background-color: #e5236d; height: 56px; line-height: 56px; width: 100%; color: #ffffff; font-size: 17px; cursor: pointer; text-align: center; border-radius: 7px; margin-top: 20px; }

@@ -1,0 +1,41 @@
+{"level":"info","message":"[02:24:41]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:26:22]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:26:33]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:27:36]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:27:49]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:28:02]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:28:06]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:28:15]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:28:18]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:32:30]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:35:44]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:35:57]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:36:24]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:36:32]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:36:36]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:36:41]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:36:44]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:36:50]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:36:52]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:39:47]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:40:01]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:40:52]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:43:18]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:44:18]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:44:24]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:44:37]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:44:52]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:44:54]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:45:13]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:45:27]데이터베이스 연결 성공"}
+{"level":"info","message":"[02:46:01]데이터베이스 연결 성공"}
+{"level":"info","message":"[03:02:23]데이터베이스 연결 성공"}
+{"level":"info","message":"[03:02:25]데이터베이스 연결 성공"}
+{"level":"error","message":"[03:03:39]GET /travel은 없는 페이지 입니다."}
+{"level":"error","message":"[03:03:39]Error: GET /travel은 없는 페이지 입니다.\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\app.js:99:16\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:317:13)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:284:7\n    at Function.process_params (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:275:10)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:635:15\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:260:14)\n    at Function.handle (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:174:3)\n    at router (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:47:12)"}
+{"level":"error","message":"[04:02:26]Error: Named parameter \":useImageUpload\" has no value in the given object.\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\sequelize\\lib\\sql-string.js:121:11\n    at String.replace (<anonymous>)\n    at Object.formatNamedParameters (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\sequelize\\lib\\sql-string.js:113:14)\n    at Object.formatNamedParameters (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\sequelize\\lib\\utils.js:126:20)\n    at Sequelize.query (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\sequelize\\lib\\sequelize.js:586:21)\n    at Object.save (C:\\Users\\USER\\Desktop\\home\\port2\\port\\models\\board.js:192:20)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\routes\\admin\\board.js:59:46\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\route.js:137:13)\n    at module.exports.boardConfig (C:\\Users\\USER\\Desktop\\home\\port2\\port\\middlewares\\board\\config.js:27:2)"}
+{"level":"error","message":"[04:02:43]Error: Named parameter \":useImageUpload\" has no value in the given object.\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\sequelize\\lib\\sql-string.js:121:11\n    at String.replace (<anonymous>)\n    at Object.formatNamedParameters (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\sequelize\\lib\\sql-string.js:113:14)\n    at Object.formatNamedParameters (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\sequelize\\lib\\utils.js:126:20)\n    at Sequelize.query (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\sequelize\\lib\\sequelize.js:586:21)\n    at Object.save (C:\\Users\\USER\\Desktop\\home\\port2\\port\\models\\board.js:192:20)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\routes\\admin\\board.js:59:46\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\route.js:137:13)\n    at module.exports.boardConfig (C:\\Users\\USER\\Desktop\\home\\port2\\port\\middlewares\\board\\config.js:27:2)"}
+{"level":"error","message":"[04:05:10]Error: Named parameter \":useFileUpload\" has no value in the given object.\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\sequelize\\lib\\sql-string.js:121:11\n    at String.replace (<anonymous>)\n    at Object.formatNamedParameters (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\sequelize\\lib\\sql-string.js:113:14)\n    at Object.formatNamedParameters (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\sequelize\\lib\\utils.js:126:20)\n    at Sequelize.query (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\sequelize\\lib\\sequelize.js:586:21)\n    at Object.save (C:\\Users\\USER\\Desktop\\home\\port2\\port\\models\\board.js:192:20)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\routes\\admin\\board.js:59:46\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\route.js:137:13)\n    at module.exports.boardConfig (C:\\Users\\USER\\Desktop\\home\\port2\\port\\middlewares\\board\\config.js:27:2)"}
+{"level":"info","message":"[04:07:37]데이터베이스 연결 성공"}
+{"level":"error","message":"[04:16:11]Error: GET /board은 없는 페이지 입니다.\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\app.js:99:16\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:317:13)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:284:7\n    at Function.process_params (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:275:10)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:635:15\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:260:14)\n    at Function.handle (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:174:3)\n    at router (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:47:12)"}
+{"level":"error","message":"[04:16:11]GET /board은 없는 페이지 입니다."}

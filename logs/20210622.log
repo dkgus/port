@@ -39,3 +39,31 @@
 {"level":"info","message":"[04:07:37]데이터베이스 연결 성공"}
 {"level":"error","message":"[04:16:11]Error: GET /board은 없는 페이지 입니다.\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\app.js:99:16\n    at Layer.handle [as handle_request] (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:317:13)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:284:7\n    at Function.process_params (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:275:10)\n    at C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:635:15\n    at next (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:260:14)\n    at Function.handle (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:174:3)\n    at router (C:\\Users\\USER\\Desktop\\home\\port2\\port\\node_modules\\express\\lib\\router\\index.js:47:12)"}
 {"level":"error","message":"[04:16:11]GET /board은 없는 페이지 입니다."}
+{"level":"info","message":"[11:21:09]데이터베이스 연결 성공"}
+{"level":"info","message":"[14:46:47]데이터베이스 연결 성공"}
+{"level":"info","message":"[16:00:01]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:23:52]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:24:31]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:24:34]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:24:39]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:24:48]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:26:02]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:26:49]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:27:15]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:29:01]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:29:33]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:32:47]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:33:03]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:33:41]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:34:03]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:35:06]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:35:10]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:39:31]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:40:15]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:40:26]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:46:08]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:47:02]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:47:08]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:47:39]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:48:21]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:56:37]데이터베이스 연결 성공"}

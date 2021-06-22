@@ -540,6 +540,8 @@ const board = {
 												LEFT JOIN fly_member AS b ON a.memNo = b.memNo 
 									WHERE a.idxBoard = ? ORDER BY a.regDt ASC`;
 			const list = await sequelize.query(sql, {
+
+				
 				replacements : [idxBoard],
 				type : QueryTypes.SELECT,
 			});

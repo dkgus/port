@@ -1,8 +1,10 @@
 const express = require('express');
-const { alert } = require('../lib/common');
+const { alert } = require('../lib/message');
 const router = express.Router();
 const travel = require('../models/travel');
+const member = require('../models/member');
 const { memberOnly } = require("../middlewares/member/member_check");
+const { joinFormValidator } = require("../middlewares/validators/join");
 const path = require('path');
 
 /**
@@ -34,8 +36,15 @@ router.route("/myinfo")
 		return res.render("member/form", data);
 	})
 	/** 처리 */
-	.post((req, res, next) => {
-		
+	.post(joinFormValidator, async (req, res, next) => {
+		req.body.memNo = req.session.memNo;
+		const result = await member.update(req.body);
+		if (result) { // 회원정보 수정 완료시 
+			return alert("회원정보가 수정되었습니다.", res, 'reload', 'parent');
+		}
+	
+		// 회원정보 수정 실패시 
+		return alert("회원정보 수정에 실패하였습니다.", res);
 	});
 
 router.get("/reservation", async (req, res, next) => {

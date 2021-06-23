@@ -6,7 +6,7 @@ const { joinFormValidator } = require("../middlewares/validators/join"); // 회�
 const { loginFormValidator } = require("../middlewares/validators/login"); // 로그인 양식 검증 미들웨어
 const { memberOnly, guestOnly } = require('../middlewares/member/member_check');
 const { alert, go } = require('../lib/common');
-
+const logger = require('../lib/logger');
 
 const router = express.Router();
 
@@ -36,10 +36,10 @@ router.route("/join")
                   await member.join(req.body);
                   
                   // 가입 성공 -> 로그인 페이지로 이동 
-                  return res.send("<script>location.href='/member/login';</script>");
+                  return go("/member/login", res, "parent");
             } catch (err) {
-                  console.error(err);
-                  next(err); // 에러처리 미들웨어로 이동 
+                  logger(err.stack, 'error');
+				  return alert("회원가입에 실패하였습니다.", res);
             }
       });
 
@@ -120,4 +120,25 @@ router.get("/logout", (req, res, next) => {
 	
 	res.send("<script>location.href='/member/login';</script>");
 });
+
+
+
+/** 아이디 찾기 */
+router.route("/find_id")
+	.get((req, res, next) => {
+		
+		return res.render("member/find_id");
+	})
+	.post((req, res, next) => {
+		return res.render("member/find_id");
+	});
+	
+/** 비밀번호 찾기 */
+router.route("/find_pw")
+	.get((req, res, next) => {
+		return res.render("member/find_pw");
+	})
+	.post((req, res, next) => {
+		
+	});
 module.exports = router;

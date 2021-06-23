@@ -161,10 +161,12 @@ router.route("/package/:goodsCd")
 		.get(async (req, res, next) => {
 			const goodsCd = req.params.goodsCd;
 			const schedules = await travel.getPackageSchedules(goodsCd);
-			
+			const list = await travel.getPackages(goodsCd); // 등록된 패키지 일정 목록
 			const data = {
 					goodsCd,
 					schedules,
+					list,
+					addScript : ['travel'],
 			};
 			
 			return res.render("admin/travel/package", data);

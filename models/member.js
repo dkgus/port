@@ -1,5 +1,7 @@
 const  bcrypt = require('bcrypt');
 const { sequelize, Sequelize : { QueryTypes } } = require('./index');
+const logger = require('../lib/logger');
+
 /**
 * 회원 관련 model
 *
@@ -37,12 +39,49 @@ const member = {
 			
 			return result[0]; // memNo 
 		} catch (err) {
-			console.error(err);
+			logger(err.stack, 'error');
 			return false;
 		}
 	},
-
-    	/**
+	/**
+	* 회원정보 수정 
+	*
+	* @return Boolean
+	*/
+	update : async function(params) {
+		try {
+			const replacements = {
+				memNm : params.memNm,
+				mobile : params.mobile,
+				memNo : params.memNo,
+			};
+			
+			let addSet = "";
+			if (params.memPw) {
+				replacements.hash = await bcrypt.hash(params.memPw, 10);
+				addSet = "memPw = :hash,";
+			}
+			
+			const sql = `UPDATE fly_member 
+								SET 
+									${addSet}
+									memNm = :memNm,
+									mobile = :mobile
+							WHERE 
+								memNo = :memNo`;
+			
+			await sequelize.query(sql, {
+				replacements,
+				type : QueryTypes.UPDATE,
+			});
+			
+			return true;
+		} catch (err) {
+			logger(err.stack, 'error');
+			return false;
+		}
+	},
+    /**
 	* 로그인 처리 
 	*
 	* @param String memId 회원아이디 

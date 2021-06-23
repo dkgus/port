@@ -191,7 +191,7 @@ const travel = {
 	* 
 	* @return Object
 	*/
-	getGoods : async function(page, limit, qs) {
+	getGoods : async function(page, limit, qs, isFront) {
 		try {
 			page = page || 1;
 			limit = limit || 20;
@@ -376,7 +376,7 @@ const travel = {
 					list.push(pac);
 				}
 			}
-			
+
 			return list;
 		} catch (err) {
 			logger(err.stack, 'error');
@@ -390,7 +390,8 @@ const travel = {
 	*/
 	registerPackage : async function() {
 		try {
-			const period = this.parrams.period.split("_");
+			const period = this.params.period.split("_");
+						
 			const replacements = {
 				startDate :  new Date(Number(period[0])),
 				endDate : new Date(Number(period[1])),
@@ -401,8 +402,13 @@ const travel = {
 			}
 			
 			const sql = `INSERT INTO fly_travelgoods_package (startDate, endDate, goodsCd, addPrice, minPersons, maxPersons)
-								
-			`;
+									VALUES (:startDate, :endDate, :goodsCd, :addPrice, :minPersons, :maxPersons)`;
+			await sequelize.query(sql, {
+				replacements, 
+				type : QueryTypes.INSERT,
+			});
+			
+			return true;
 		} catch (err) {
 			logger(err, 'error');
 			return false;

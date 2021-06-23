@@ -1,4 +1,4 @@
-const message = require('../../lib/message');
+const { alert } = require('../../lib/message');
 const { sequelize, Sequelize : { QueryTypes } } = require("../../models");
 const fs = require('fs').promises;
 
@@ -11,6 +11,9 @@ const fs = require('fs').promises;
 */
 module.exports.joinFormValidator = async function (req, res, next) {
 	try {
+		// 접속 페이지에 myinfo가 포함되어 있다면 회원정보 수정, 아니라면 가입
+		const mode = (req.url.indexOf('myinfo') == -1)?"join":"update";
+
 		/** 필수 입력항목 체크 S */
 		const required = {
 			memId : "아이디를 입력하세요.",
@@ -19,6 +22,13 @@ module.exports.joinFormValidator = async function (req, res, next) {
 			memNm : "이름을 입력해 주세요.",
 		};
 		
+	    // 회원정보 수정인 경우는 아이디, 비밀번호는 필수 항목이 아님
+		if (mode == 'update') {
+			delete required.memId;
+			delete required.memPw;
+			delete required.memPwRe;
+		}
+		
 		for (key in required) {
 			if (!req.body[key]) {
 				throw new Error(required[key]);
@@ -26,25 +36,29 @@ module.exports.joinFormValidator = async function (req, res, next) {
 		}
 		/** 필수 입력항목 체크 E */
 		
-		/** 
-			아이디 체크 
-				- 자리수 8~15
-				- 소문자 알파벳, 숫자
-		*/
-		const memId = req.body.memId;
-		if (memId.length < 8 || memId.length > 15 || /[^a-z0-9]/.test(memId)) {
-			throw new Error("아이디는 8~15자로 구성된 소문자 알파벳, 숫자로 입력하세요.");
+		// 아이디 관련 체크는 회원가입시에만 체크 
+		if (mode == 'join') {
+			/** 
+				아이디 체크 
+					- 자리수 8~15
+					- 소문자 알파벳, 숫자
+			*/
+			const memId = req.body.memId;
+			if (memId.length < 8 || memId.length > 15 || /[^a-z0-9]/.test(memId)) {
+				throw new Error("아이디는 8~15자로 구성된 소문자 알파벳, 숫자로 입력하세요.");
+			}
+			
+			/** 이미 등록된 아이디 여부 체크 */
+			const sql = "SELECT COUNT(*) as cnt FROM fly_member WHERE memId = ?";
+			const rows = await sequelize.query(sql, {
+				replacements : [memId],
+				type : QueryTypes.SELECT,
+			});
+			if (rows[0].cnt > 0) { // 이미 등록된 아이디 있는 경우 
+				throw new Error(`이미 가입된 아이디 입니다 - ${memId}`);
+			}
 		}
 		
-		/** 이미 등록된 아이디 여부 체크 */
-		const sql = "SELECT COUNT(*) as cnt FROM fly_member WHERE memId = ?";
-		const rows = await sequelize.query(sql, {
-			replacements : [memId],
-			type : QueryTypes.SELECT,
-		});
-		if (rows[0].cnt > 0) { // 이미 등록된 아이디 있는 경우 
-			throw new Error(`이미 가입된 아이디 입니다 - ${memId}`);
-		}
 		
 		/** 
 			비밀번호 체크 S 
@@ -52,15 +66,19 @@ module.exports.joinFormValidator = async function (req, res, next) {
 				- 최소 1자 이상 알파벳과 숫자 포함, 최소 1자는 대문자 알파벳
 				- 최소 1자이상 특수문자 포함(~!@#$%^&*())
 		*/
+		
 		const memPw = req.body.memPw;
-		if (memPw.length < 8 || memPw.length > 20 || !/[a-z]/.test(memPw) || !/[A-Z]/.test(memPw) || !/[\d]/.test(memPw) || !/[~!@#$%\^&\*\(\)]/.test(memPw)) {
-			throw new Error("비밀번호는 8~20자로 구성된 소문자와 대문자 포함 알파벳과 숫자, 특수문자로 입력하세요.");
-		}
 		
-		if (req.body.memPw != req.body.memPwRe) {
-			throw new Error("입력하신 비밀번호가 정확하지 않습니다.");
+		/** 비밀번호는 가입 또는 수정시 비밀번호 변경시에만 체크 */
+		if (mode == 'join' || (mode == 'update' && memPw)) {
+			if (memPw.length < 8 || memPw.length > 20 || !/[a-z]/.test(memPw) || !/[A-Z]/.test(memPw) || !/[\d]/.test(memPw) || !/[~!@#$%\^&\*\(\)]/.test(memPw)) {
+				throw new Error("비밀번호는 8~20자로 구성된 소문자와 대문자 포함 알파벳과 숫자, 특수문자로 입력하세요.");
+			}
+			
+			if (req.body.memPw != req.body.memPwRe) {
+				throw new Error("입력하신 비밀번호가 정확하지 않습니다.");
+			}
 		}
-		
 		/** 비밀번호 체크 E */
 		
 		/** 휴대전화번호 체크 S */
@@ -92,8 +110,7 @@ module.exports.joinFormValidator = async function (req, res, next) {
 		}
 		
 	} catch (err) {
-		message.alertBack(err.message, res);
-		return;
+		return alert(err.message, res);
 	}
 	
 	next(); // 유효성 검사 성공시 다음 미들웨어로 이동 

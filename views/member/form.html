@@ -3,11 +3,17 @@
 {% block content %}
 
 <section class='join_form'>
-    <div class='tit'>SIGN UP</div>
-    <form method='post' action='/member/join' >
+    <div class='tit'>{{ 'MY INFO' if isLogin else 'SIGN UP' }}</div>
+    <form method='post' action="{{ '/mypage/myinfo' if isLogin else '/member/join' }}" target='ifrmHidden' autocomplete='off'>
         <dl>
             <dt>아이디</dt>
-            <dd><input type="text" name="memId" placeholder="아이디를 입력해주세요"></dd>
+            <dd>
+				{% if isLogin %}
+					{{ member.memId }}
+				{% else %}
+					<input type="text" name="memId" placeholder="아이디를 입력해주세요">
+				{% endif %}
+			</dd>
         </dl>
         <dl>
             <dt>비밀번호</dt>
@@ -19,13 +25,13 @@
         </dl>
         <dl>
             <dt>이름</dt>
-            <dd><input type="text" name="memNm" placeholder="성함을 입력해주세요"></dd>
+            <dd><input type="text" name="memNm" placeholder="성함을 입력해주세요" value='{{ member.memNm }}'></dd>
         </dl>
         <dl>
             <dt>휴대폰 번호</dt>
-            <dd><input type="text" name="mobile" placeholder="휴대폰 번호를 입력해주세요"></dd>
+            <dd><input type="text" name="mobile" placeholder="휴대폰 번호를 입력해주세요" value='{{ member.mobile }}'></dd>
         </dl>
-        <input type="submit" value="Join" class='submit_btn'>
+        <input type="submit" value="{{ 'Modify' if isLogin else 'Join' }}" class='submit_btn'>
     </form>
 </section>
 {% endblock %}

@@ -99,6 +99,105 @@ const member = {
 			return {};
 		}
 	},
+
+		/** 
+	* 아이디 찾기 
+	*
+	* @param String memNm 회원명
+	* @param String cellPhone 휴대폰번호
+	* 
+	* @return String|Boolean 회원아이디, 없는 경우는 false
+	*/
+	findId : async function(memNm, cellPhone) {
+		try {
+			if (!memNm || !cellPhone) {
+				throw new Error('회원명 또는 휴대폰번호는 필수 인수 입니다.');
+			}
+			
+			cellPhone = cellPhone.replace(/[^\d]/g, '').replace(/([\d]{3})([\d]{4})([\d]{4})/, '$1-$2-$3');
+			
+			const sql = "SELECT memId FROM member WHERE memNm = :memNm AND cellPhone = :cellPhone AND snsType='none'";
+			const rows = await sequelize.query(sql, {
+					replacements : { memNm, cellPhone },
+					type : QueryTypes.SELECT,
+			});
+			
+			if (rows.length == 0) {
+				throw new Error('일치하는 아이디 없음');
+			}
+			
+			return rows[0].memId;
+		} catch(err) {
+			logger(err.stack, 'error');
+			return false;
+		}
+	},
+	/**
+	* 비밀번호 찾기
+	*
+	* @return Integer|Boolean memNo, 일치하는 회원이 없는 경우는 false 반환
+	*/
+	findPw : async function() {
+		try {
+			const cellPhone = this.params.cellPhone.replace(/[^\d]/g, '').replace(/([\d]{3})([\d]{4})([\d]{4})/, "$1-$2-$3");
+			
+			const sql = `SELECT memNo FROM member 
+									WHERE memId = :memId AND memNm = :memNm AND cellPhone = :cellPhone AND pwHint = :pwHint`; 
+			
+			const replacements = {
+					memId : this.params.memId,
+					memNm : this.params.memNm,
+					cellPhone,
+					pwHint : this.params.pwHint,
+			};
+			
+			const rows = await sequelize.query(sql, {
+					replacements,
+					type : QueryTypes.SELECT,
+			});
+			
+			if (rows.length == 0) {
+				throw new Error("일치하는 회원 없음");
+			}
+			
+			return rows[0].memNo;
+		} catch (err) {
+			logger(err.stack, 'error');
+			return false;
+		}
+	},
+	/**
+	* 비밀번호 변경 
+	*
+	* @param Integer memNo 회원번호
+	* @param String memPw 변경할 비밀번호
+	* 
+	* @return Boolean
+	*/
+	changePw : async function (memNo, memPw) {
+		try {
+			if (!memNo || !memPw) {
+				throw new Error('회원번호, 변경할 비밀번호는 필수 인수');
+			}
+			
+			const hash = await bcrypt.hash(memPw, 10);
+			const sql = `UPDATE member 
+									SET 
+										memPw = :hash
+								WHERE 
+									memNo = :memNo`;
+									
+			await sequelize.query(sql, {
+				replacements : { hash, memNo },
+				type : QueryTypes.UPDATE,
+			});
+							
+			return true;
+		} catch (err) {
+			logger(err.stack, 'error');
+			return false;
+		}
+	},
 };
 
 module.exports = member;

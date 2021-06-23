@@ -28,3 +28,7 @@
 {"level":"info","message":"[15:59:13]데이터베이스 연결 성공"}
 {"level":"info","message":"[17:51:36]데이터베이스 연결 성공"}
 {"level":"error","message":"[17:51:47]ReferenceError: isFront is not defined\n    at Object.getGoods (C:\\Users\\6-11\\Desktop\\1\\port\\models\\travel.js:217:4)\n    at C:\\Users\\6-11\\Desktop\\1\\port\\routes\\admin\\travel.js:26:30\n    at Layer.handle [as handle_request] (C:\\Users\\6-11\\Desktop\\1\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\6-11\\Desktop\\1\\port\\node_modules\\express\\lib\\router\\route.js:137:13)\n    at Route.dispatch (C:\\Users\\6-11\\Desktop\\1\\port\\node_modules\\express\\lib\\router\\route.js:112:3)\n    at Layer.handle [as handle_request] (C:\\Users\\6-11\\Desktop\\1\\port\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at C:\\Users\\6-11\\Desktop\\1\\port\\node_modules\\express\\lib\\router\\index.js:281:22\n    at Function.process_params (C:\\Users\\6-11\\Desktop\\1\\port\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (C:\\Users\\6-11\\Desktop\\1\\port\\node_modules\\express\\lib\\router\\index.js:275:10)\n    at C:\\Users\\6-11\\Desktop\\1\\port\\routes\\admin\\travel.js:19:2"}
+{"level":"info","message":"[20:24:31]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:28:18]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:28:30]데이터베이스 연결 성공"}
+{"level":"info","message":"[20:28:33]데이터베이스 연결 성공"}

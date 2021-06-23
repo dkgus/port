@@ -43,9 +43,9 @@ textarea { border: 1px solid #d5d5d5; min-height: 150px; resize: none; border-ra
 
 /** 버튼 */
 .submit_btn { background-color: #212121; color: #ffffff; height: 45px; line-height: 45px; cursor: pointer; border-radius: 7px; width: 250px; margin: 20px auto; border: 0; display: block; }
-.btn1, .btn2 { display: inline-block; padding: 5px 15px; background-color: blue; color: #ffffff; border-radius: 5px; font-size: 11px; cursor: pointer; border: 0; }
-.btn2 { background-color: red; }
-.btn3 { display: inline-block; height: 40px; padding: 0 20px; line-height: 40px; color: #ffffff; background-color: blue; border-radius: 5px; font-size: 12px; border: 0; cursor: pointer; }
+.btn1, .btn2 { display: inline-block; padding: 5px 15px; background-color: #e2b3a3; color: #ffffff; border-radius: 5px; font-size: 11px; cursor: pointer; border: 0; }
+.btn2 { background-color: #a3b6c5; }
+.btn3 { display: inline-block; height: 40px; padding: 0 20px; line-height: 40px; color: #ffffff; background-color: #a3b6c5; border-radius: 5px; font-size: 12px; border: 0; cursor: pointer; }
 
 /** 페이징 */
 .paginator { text-align: center; padding: 20px 0; }
@@ -69,7 +69,7 @@ textarea { border: 1px solid #d5d5d5; min-height: 150px; resize: none; border-ra
 .main_menu li a { display: block; padding: 13px 20px; font-size: 15px; font-weight: bold; }
 .main_menu:after { clear: left; content: ''; display: block; }
 .main_menu li a:hover,
-.main_menu li.on a { background-color: orange; }
+.main_menu li.on a { background-color: #eacacb; }
 
 /** travel/form.html */
 .datepicker { width: 150px !important; }

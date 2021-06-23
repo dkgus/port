@@ -1,0 +1,31 @@
+.main_banner .banner {
+	height: 460px; 
+}
+
+
+.main_banner .banner:nth-child(3n+1) {
+	background: url("../image/slide1.jpg") no-repeat center center; 
+}
+
+.main_banner .banner:nth-child(3n+2) {
+	background: url("../image/slide2.jpg") no-repeat center center; 
+}
+
+.main_banner .banner:nth-child(3n+3) {
+	background: url("../image/slide3.jpg") no-repeat center center; 
+}
+
+.main_banner .banner:nth-child(3n+3) {
+	background: url("../image/slide4.jpg") no-repeat center center; 
+}
+
+.main_banner .banner:nth-child(3n+3) {
+	background: url("../image/slide5.jpg") no-repeat center center; 
+}
+
+
+
+.main_banner .swiper-button-next, .main_banner .swiper-button-prev {
+	color: black;
+}
+

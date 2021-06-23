@@ -91,6 +91,8 @@ const travel = {
 				}
 				
 				yoils = this.params.yoils.join("||");
+				//문자열반환                 
+				//숫자와 문자만 데이터베이스에서 인식할 수 있다.
 			}
 			
 			const replacements = {

@@ -86,7 +86,7 @@ const travel = {
 	
 			let yoils = "";
 			if (this.params.yoils) {
-				if (!(this.params.yoils instanceof Array)) { // 배열객체가 아닌 경우는 단일 선택 -> 배열객체 변경
+				if (!(this.params.yoils instanceof Array)) { // 배열객체가 아닌 경우는 단일 선택 -> 배열객체로 변경
 					this.params.yoils = [this.params.yoils];
 				}
 				

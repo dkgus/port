@@ -21,7 +21,7 @@ const fileUpload = {
 				throw new Error('gid 누락');
 			}
 			
-			const sql = "INSERT INTO filedata (gid, fileName, mimeType, isAttached) VALUES (:gid, :fileName, :mimeType, :isAttached)";
+			const sql = "INSERT INTO fly_filedata (gid, fileName, mimeType, isAttached) VALUES (:gid, :fileName, :mimeType, :isAttached)";
 			const replacements = {
 					gid : params.gid,
 					fileName : params.originalname, 

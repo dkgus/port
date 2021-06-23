@@ -362,18 +362,18 @@ const board = {
 			if (qs) {
 				const addQs = [];
 				for (key in qs) {
-					if (key == 'page') continue; 
-					addQs.push(key + "=" + qs[key]);
+					if (key == 'page') continue; //페이지 1234면 이거는 생략
+					addQs.push(key + "=" + qs[key]); //= 붙이는것
 				} // endfor 
 				
-				prelink += "?" + addQs.join("&");
+				prelink += "?" + addQs.join("&");//여러개인경우 배열로담아서 조인
 			} // endif 
 			
 			const replacements = {
 				boardId,
 			};
 			
-			/** 추가 검색 처리 S */
+			/** 추가 검색 처리 S */ 
 			let addConds = ""
 			if (this._addWhere.binds && this._addWhere.binds.length > 0) {
 				addConds = " AND " + this._addWhere.binds.join(" AND ");
@@ -394,8 +394,8 @@ const board = {
 				type : QueryTypes.SELECT,
 			});
 			
-			const totalResult = rows[0].cnt;
-
+			//const totalResult = rows[0].cnt;
+			const totalResult = 10000;
 			const paginator = pagination.create('search', {prelink, current: page, rowsPerPage: limit, totalResult});
 			
 			

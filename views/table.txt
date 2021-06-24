@@ -12,3 +12,231 @@ CREATE TABLE `fly_member` (
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB
 ;
+
+CREATE TABLE `fly_board` (
+   `id` VARCHAR(20) NOT NULL COMMENT '게시판 아이디' COLLATE 'utf8_general_ci',
+   `boardNm` VARCHAR(60) NULL DEFAULT NULL COMMENT '게시판명' COLLATE 'utf8_general_ci',
+   `category` VARCHAR(255) NULL DEFAULT NULL COMMENT '게시판 분류' COLLATE 'utf8_general_ci',
+   `accessType` ENUM('all','member') NULL DEFAULT 'all' COMMENT 'all(비회원+회원), member(회원)' COLLATE 'utf8_general_ci',
+   `useImageUpload` TINYINT(1) NULL DEFAULT '0' COMMENT '1 - 이미지 업로드 사용',
+   `useFileUpload` TINYINT(1) NULL DEFAULT '0' COMMENT '1 - 파일 업로드 사용',
+   `useComment` TINYINT(1) NULL DEFAULT '0' COMMENT '1 - 댓글 사용 여부',
+   `useViewList` TINYINT(1) NULL DEFAULT '0' COMMENT '1 - 게시글 보기 하단 목록',
+   `skin` VARCHAR(40) NULL DEFAULT NULL COMMENT '게시판 스킨' COLLATE 'utf8_general_ci',
+   `regDt` DATETIME NULL DEFAULT NULL,
+   `modDt` DATETIME NULL DEFAULT NULL,
+   PRIMARY KEY (`id`) USING BTREE,
+   INDEX `regDt` (`regDt`) USING BTREE
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+;
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE `fly_boardcomment` (
+   `idx` INT(11) NOT NULL AUTO_INCREMENT,
+   `idxBoard` INT(11) NULL DEFAULT '0' COMMENT '게시글 등록 번호',
+   `memNo` INT(11) NULL DEFAULT NULL COMMENT '회원번호',
+   `poster` VARCHAR(20) NULL DEFAULT NULL COMMENT '작성자명' COLLATE 'utf8_general_ci',
+   `password` VARCHAR(65) NULL DEFAULT NULL COMMENT '비회원 글수정,삭제 비밀번호' COLLATE 'utf8_general_ci',
+   `comment` MEDIUMTEXT NULL DEFAULT NULL COMMENT '댓글' COLLATE 'utf8_general_ci',
+   `regDt` DATETIME NULL DEFAULT NULL,
+   `modDt` DATETIME NULL DEFAULT NULL,
+   PRIMARY KEY (`idx`) USING BTREE,
+   INDEX `idxBoard` (`idxBoard`) USING BTREE,
+   INDEX `memNo` (`memNo`) USING BTREE,
+   INDEX `regDt` (`regDt`) USING BTREE
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+AUTO_INCREMENT=14
+;
+
+
+
+
+
+
+
+
+CREATE TABLE `fly_boarddata` (
+   `idx` INT(11) NOT NULL AUTO_INCREMENT COMMENT '게시글번호',
+   `gid` VARCHAR(40) NOT NULL COMMENT '그룹아이디' COLLATE 'utf8_general_ci',
+   `boardId` VARCHAR(20) NULL DEFAULT NULL COMMENT '게시판 아이디' COLLATE 'utf8_general_ci',
+   `category` VARCHAR(30) NULL DEFAULT NULL COMMENT '게시판 분류' COLLATE 'utf8_general_ci',
+   `memNo` INT(11) NULL DEFAULT '0' COMMENT '회원번호 - 회원번호가 0이면 비회원',
+   `poster` VARCHAR(30) NULL DEFAULT NULL COMMENT '작성자명' COLLATE 'utf8_general_ci',
+   `subject` VARCHAR(255) NULL DEFAULT NULL COMMENT '제목' COLLATE 'utf8_general_ci',
+   `contents` MEDIUMTEXT NULL DEFAULT NULL COMMENT '본문' COLLATE 'utf8_general_ci',
+   `password` VARCHAR(65) NULL DEFAULT NULL COMMENT '비회원비밀번호' COLLATE 'utf8_general_ci',
+   `viewCount` INT(11) NULL DEFAULT '0' COMMENT '게시글 조회수',
+   `commentCount` INT(11) NULL DEFAULT '0' COMMENT '댓글 갯수',
+   `ip` VARCHAR(15) NULL DEFAULT NULL COMMENT '작성자 아이피' COLLATE 'utf8_general_ci',
+   `regDt` DATETIME NULL DEFAULT NULL,
+   `modDt` DATETIME NULL DEFAULT NULL,
+   PRIMARY KEY (`idx`) USING BTREE,
+   INDEX `gid` (`gid`) USING BTREE,
+   INDEX `boardId` (`boardId`) USING BTREE,
+   INDEX `memNo` (`memNo`) USING BTREE,
+   INDEX `regDt` (`regDt`) USING BTREE,
+   INDEX `category` (`category`) USING BTREE
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+AUTO_INCREMENT=12
+;
+
+
+
+
+
+CREATE TABLE `fly_boardview` (
+   `browserId` VARCHAR(40) NOT NULL COMMENT '브라우저 ID' COLLATE 'utf8_general_ci',
+   `idx` INT(11) NOT NULL COMMENT '게시글 번호',
+   PRIMARY KEY (`browserId`, `idx`) USING BTREE
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+;
+
+
+
+
+
+
+CREATE TABLE `fly_filedata` (
+   `idx` INT(11) NOT NULL AUTO_INCREMENT COMMENT '파일 등록 번호',
+   `gid` VARCHAR(30) NULL DEFAULT NULL COMMENT '그룹번호' COLLATE 'utf8_general_ci',
+   `fileName` VARCHAR(100) NULL DEFAULT NULL COMMENT '파일명' COLLATE 'utf8_general_ci',
+   `mimeType` VARCHAR(100) NULL DEFAULT NULL COMMENT '파일 종류' COLLATE 'utf8_general_ci',
+   `isAttached` TINYINT(1) NULL DEFAULT '0' COMMENT '1 - 첨부파일, 0 - 에디터',
+   `isDone` TINYINT(1) NULL DEFAULT '0' COMMENT '1 - 파일 정상 처리, 0 - 정상처리 전',
+   `regDt` DATETIME NULL DEFAULT NULL,
+   PRIMARY KEY (`idx`) USING BTREE,
+   INDEX `gid` (`gid`) USING BTREE,
+   INDEX `regDt` (`regDt`) USING BTREE,
+   INDEX `isDone` (`isDone`) USING BTREE
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+AUTO_INCREMENT=37
+;
+
+
+
+CREATE TABLE `fly_member` (
+   `memNo` INT(11) NOT NULL AUTO_INCREMENT COMMENT '회원번호',
+   `memId` VARCHAR(20) NULL DEFAULT NULL COMMENT '아이디' COLLATE 'utf8_general_ci',
+   `memPw` VARCHAR(65) NULL DEFAULT NULL COMMENT '비밀번호' COLLATE 'utf8_general_ci',
+   `memNm` VARCHAR(20) NULL DEFAULT NULL COMMENT '회원명' COLLATE 'utf8_general_ci',
+   `mobile` VARCHAR(13) NULL DEFAULT NULL COMMENT '휴대전화' COLLATE 'utf8_general_ci',
+   `isAdmin` TINYINT(1) NULL DEFAULT '0' COMMENT '1 - 관리자, 0 - 회원',
+   `regDt` DATETIME NULL DEFAULT NULL,
+   `modDt` DATETIME NULL DEFAULT NULL,
+   PRIMARY KEY (`memNo`) USING BTREE
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+;
+
+
+
+
+CREATE TABLE `fly_travelgoods` (
+   `goodsCd` VARCHAR(20) NOT NULL COMMENT '상품코드' COLLATE 'utf8_general_ci',
+   `category` ENUM('domestic','overseas') NOT NULL DEFAULT 'domestic' COMMENT 'domestic - 국내여행, overseas - 해외여행' COLLATE 'utf8_general_ci',
+   `goodsNm` VARCHAR(100) NULL DEFAULT NULL COMMENT '상품명' COLLATE 'utf8_general_ci',
+   `shortDescription` VARCHAR(255) NULL DEFAULT NULL COMMENT '짧은 설명' COLLATE 'utf8_general_ci',
+   `itinerary` SMALLINT(6) NULL DEFAULT '0' COMMENT '여행일정',
+   `transportation` ENUM('airline_domestic','airline_inter','ship_domestic','ship_inter','train','bus') NULL DEFAULT 'bus' COMMENT '교통편' COLLATE 'utf8_general_ci',
+   `shopping` TINYINT(4) NULL DEFAULT '0' COMMENT '쇼핑 횟수',
+   `isGroup` TINYINT(1) NULL DEFAULT '1' COMMENT '1 - 단체, 0 - 개인',
+   `priceAdult` INT(11) NULL DEFAULT '0' COMMENT '성인 판매가',
+   `priceChild` INT(11) NULL DEFAULT '0' COMMENT '아동 판매가',
+   `contents` MEDIUMTEXT NULL DEFAULT NULL COMMENT '여행상품 설명' COLLATE 'utf8_general_ci',
+   `yoils` VARCHAR(30) NULL DEFAULT NULL COMMENT '예약가능한 요일' COLLATE 'utf8_general_ci',
+   `startDate` DATE NULL DEFAULT NULL COMMENT '예약가능 시작일',
+   `endDate` DATE NULL DEFAULT NULL COMMENT '예약가능 종료일',
+   `city` VARCHAR(50) NULL DEFAULT NULL COMMENT '여행도시' COLLATE 'utf8_general_ci',
+   `regDt` DATETIME NULL DEFAULT NULL,
+   `modDt` DATETIME NULL DEFAULT NULL,
+   PRIMARY KEY (`goodsCd`) USING BTREE,
+   INDEX `regDt` (`regDt`) USING BTREE
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+;
+
+
+
+
+CREATE TABLE `fly_travelgoods_package` (
+   `startDate` DATE NOT NULL COMMENT '여행 시작일',
+   `endDate` DATE NOT NULL COMMENT '여행 종료일',
+   `goodsCd` VARCHAR(20) NOT NULL COMMENT '상품코드' COLLATE 'utf8_general_ci',
+   `addPrice` INT(11) NULL DEFAULT NULL COMMENT '판매가 조정',
+   `minPersons` SMALLINT(6) NULL DEFAULT NULL COMMENT '최소 예약인원',
+   `maxPersons` SMALLINT(6) NULL DEFAULT NULL COMMENT '최대 예약인원',
+   `regDt` DATETIME NULL DEFAULT NULL,
+   PRIMARY KEY (`startDate`, `endDate`, `goodsCd`) USING BTREE
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+;
+
+
+
+
+
+CREATE TABLE `fly_travelreservation` (
+   `idx` INT(11) NOT NULL AUTO_INCREMENT,
+   `memNo` INT(11) NOT NULL DEFAULT '0' COMMENT '회원번호',
+   `goodsCd` VARCHAR(20) NULL DEFAULT NULL COMMENT '상품코드' COLLATE 'utf8_general_ci',
+   `startDate` DATE NULL DEFAULT NULL COMMENT '여행 시작일',
+   `endDate` DATE NULL DEFAULT NULL COMMENT '여행 종료일',
+   `name` VARCHAR(20) NULL DEFAULT NULL COMMENT '예약자 이름' COLLATE 'utf8_general_ci',
+   `birth` VARCHAR(20) NULL DEFAULT NULL COMMENT '예약자 생년월일 ' COLLATE 'utf8_general_ci',
+   `email` VARCHAR(100) NULL DEFAULT NULL COMMENT '예약지 이메일' COLLATE 'utf8_general_ci',
+   `cellPhone` VARCHAR(20) NULL DEFAULT NULL COMMENT '예약지 휴대전화번호' COLLATE 'utf8_general_ci',
+   `regDt` DATETIME NULL DEFAULT NULL,
+   `modDt` DATETIME NULL DEFAULT NULL,
+   PRIMARY KEY (`idx`) USING BTREE,
+   INDEX `regDt` (`regDt`) USING BTREE,
+   INDEX `goodsCd` (`goodsCd`) USING BTREE,
+   INDEX `memNo` (`memNo`) USING BTREE
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+;
+
+
+
+
+
+
+CREATE TABLE `fly_travelreservation_persons` (
+   `idx` INT(11) NOT NULL AUTO_INCREMENT,
+   `idxReservation` INT(11) NULL DEFAULT NULL,
+   `personType` ENUM('adult','child','infant') NULL DEFAULT 'adult' COLLATE 'utf8_general_ci',
+   `travelerNm` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+   `travelerBirth` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+   `travelerGender` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+   `travelerCellPhone` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+   `travelerEmail` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+   `regDt` DATETIME NULL DEFAULT NULL,
+   PRIMARY KEY (`idx`) USING BTREE,
+   INDEX `idxReservation` (`idxReservation`) USING BTREE,
+   INDEX `personType` (`personType`) USING BTREE,
+   INDEX `regDt` (`regDt`) USING BTREE
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+;

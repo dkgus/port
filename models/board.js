@@ -376,6 +376,7 @@ const board = {
 			/** 추가 검색 처리 S */ 
 			let addConds = ""
 			if (this._addWhere.binds && this._addWhere.binds.length > 0) {
+				// this._addWhere.binds: 검색 조건이 있다면, 그리고 그 조건이 0보다 길다면
 				addConds = " AND " + this._addWhere.binds.join(" AND ");
 				if (this._addWhere.params) {
 					for (key in this._addWhere.params) {
@@ -385,6 +386,7 @@ const board = {
 			}
 			/** 추가 검색 처리 E */
 			
+			//아래와 같은 쿼리를 만든다
 			let sql = `SELECT COUNT(*) as cnt FROM fly_boarddata AS a 
 								LEFT JOIN fly_member AS b ON a.memNo = b.memNo 
 							WHERE a.boardId = :boardId${addConds}`;
@@ -394,8 +396,8 @@ const board = {
 				type : QueryTypes.SELECT,
 			});
 			
-			//const totalResult = rows[0].cnt;
-			const totalResult = 10000;
+			const totalResult = rows[0].cnt;
+		
 			const paginator = pagination.create('search', {prelink, current: page, rowsPerPage: limit, totalResult});
 			
 			

@@ -687,7 +687,8 @@ const travel = {
 				data.persons = list;
 				
 				/** 패키지 정보 */
-				const pack = await this.getPackage(data.goodsCd, data.startDate + " 00:00:00", data.endDate + " 00:00:00");
+				const pack = await this.getPackage(data.goodsCd, data.startDate + " 00:00:00", data.endDate + " 00:00:00");//배열객체반환
+				console.log(pack);
 				data.adult = list.adult.length;
 				data.child = list.child.length;
 				data.infant = list.infant.length;
@@ -695,6 +696,7 @@ const travel = {
 					data.priceAdult = Number(data.priceAdult) + Number(pack.addPrice);
 					data.priceChild = Number(data.priceChild) + Number(pack.addPrice);	
 				}
+
 				data.totalPrice = 0;
 				data.totalPriceAdult = data.priceAdult * data.adult;
 				data.totalPrice += data.totalPriceAdult;

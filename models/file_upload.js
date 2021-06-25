@@ -51,7 +51,7 @@ const fileUpload = {
 	*/ 
 	delete : async function (idx) {
 		try {
-			const sql = "DELETE FROM filedata WHERE idx = ?";
+			const sql = "DELETE FROM fly_filedata WHERE idx = ?";
 			await sequelize.query(sql, {
 				replacements : [idx],
 				type : QueryTypes.DELETE,
@@ -73,7 +73,7 @@ const fileUpload = {
 	*/
 	get : async function (idx) {
 		try {
-			const sql = "SELECT * FROM filedata WHERE idx = ?";
+			const sql = "SELECT * FROM fly_filedata WHERE idx = ?";
 			const rows = await sequelize.query(sql, {
 				replacements : [idx],
 				type : QueryTypes.SELECT,
@@ -99,7 +99,7 @@ const fileUpload = {
 	*/
 	gets : async function(gid) {
 		try {
-			const sql = 'SELECT * FROM filedata WHERE gid = ? AND isDone=1';
+			const sql = 'SELECT * FROM fly_filedata WHERE gid = ? AND isDone=1';
 			const rows = await sequelize.query(sql, {
 				replacements : [gid],
 				type : QueryTypes.SELECT,
@@ -140,7 +140,7 @@ const fileUpload = {
 	*/
 	finish : async function (idx) {
 		try {
-			const sql = "UPDATE filedata SET isDone=1 WHERE idx = ?";
+			const sql = "UPDATE fly_filedata SET isDone=1 WHERE idx = ?";
 			await sequelize.query(sql, {
 				replacements : [idx],
 				type : QueryTypes.UPDATE,

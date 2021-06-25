@@ -5,6 +5,7 @@ const fs = require('fs').promises;
 const { parseDate, getBrowserId } = require('../lib/common');
 const bcrypt = require('bcrypt');
 const pagination = require('pagination');
+const fileUpload = require("./file_upload");
 
 /**
 * 게시판 Model
@@ -214,22 +215,33 @@ const board = {
 			}
 			
 			const sql = `INSERT INTO fly_boarddata 
-									(gid, boardId, category, memNo, poster, subject, contents, password, ip)
-									VALUES (:gid, :boardId, :category, :memNo, :poster, :subject, :contents, :password, :ip)`;
+									(gid, boardId, category, memNo, poster, subject, contents, password, ip, isImagePost)
+									VALUES (:gid, :boardId, :category, :memNo, :poster, :subject, :contents, :password, :ip, :isImagePost)`;
 			
 			
+			// 이미지 포함 게시글인지 체크 
+			let isImagePost = 0;
+			const pattern = /<img[^>]*src/igm;
+			if (pattern.test(this.params.contents)) {
+				isImagePost = 1;
+			}
+			
+			this.params.gid = this.params.gid || this.getUid();
 			const replacements = {
-				gid : this.getUid(),
+				gid : this.params.gid,
 				boardId : this.params.id,
-				category : this.params.category,
+				category : this.params.category || "",
 				memNo,
 				poster : this.params.poster,
 				subject : this.params.subject,
 				contents : this.params.contents,
 				password : hash,
 				ip : this.params.ip,
+				isImagePost,
 			};
-	
+			
+			
+			
 			const result = await sequelize.query(sql, {
 				replacements,
 				type : QueryTypes.INSERT,
@@ -262,6 +274,13 @@ const board = {
 				hash = await bcrypt.hash(this.params.password, 10);
 			}
 			
+			// 이미지 포함 게시글인지 체크 
+			let isImagePost = 0;
+			const pattern = /<img[^>]*src/igm;
+			if (pattern.test(this.params.contents)) {
+				isImagePost = 1;
+			}
+			
 			const sql = `UPDATE fly_boarddata 
 									SET 
 										category = :category,
@@ -269,15 +288,17 @@ const board = {
 										subject = :subject,
 										contents = :contents,
 										password = :password,
+										isImagePost = :isImagePost,
 										modDt = :modDt
 									WHERE 
 										idx = :idx`;
 			const replacements = {
-					category : this.params.category,
+					category : this.params.category || "",
 					poster : this.params.poster,
 					subject : this.params.subject,
 					contents : this.params.contents,
 					password : hash,
+					isImagePost,
 					modDt : new Date(),
 					idx : this.params.idx,
 			};
@@ -317,9 +338,10 @@ const board = {
 	* 게시글 조회
 	*
 	* @param Integer idx 게시글 번호
+	* @param Object req  - Request 객체 
 	* @return Object
 	*/
-	get : async function(idx) {
+	get : async function(idx, req) {
 		try {
 			const sql = `SELECT a.*, b.memId, b.memNm FROM fly_boarddata AS a 
 										LEFT JOIN fly_member AS b ON a.memNo = b.memNo 
@@ -330,12 +352,28 @@ const board = {
 			});
 			
 			const data = rows[0] || {};
-			if (data) {
+			if (rows.length > 0) {
 				data.regDt = parseDate(data.regDt).datetime;
 				data.config = await this.getBoard(data.boardId);
 				data.id = data.boardId;
+			
+				
+				data.isWritable = data.isDeletable = false;
+				if (req && req.isLogin && data.memNo && req.session.memNo == data.memNo) { // 회원 게시글 
+					data.isWritable = data.isDeletable = true;
+				}
+				
+				if (!data.memNo) { // 비회원 게시글 
+					data.isWritable = data.isDeletable = true;
+				}
+				
+				/** 업로드된 파일 조회 */
+				const fileData = await fileUpload.gets(data.gid); // 그룹 아이디(gid)로 업로드된 파일 정보 조회 
+				data.editorFiles = fileData.editor || [];
+				data.attachedFiles = fileData.attached || [];
 			}
-	
+			
+			
 			return data;
 		} catch (err) {
 			logger(err.stack, 'error');
@@ -414,7 +452,18 @@ const board = {
 			});
 
 			list.forEach((v, i, _list) => {
-				_list[i].regDt = parseDate(v.regDt).datetime;
+				const date = parseDate(v.regDt);
+				_list[i].regDt = date.datetime;
+				_list[i].regDtS = date.date;
+				
+				/** 본문에 포함된 이미지 추출 */
+				const pattern = /<img[^>]*src=['"]?([^>'"]+)['"]?[^>]*>/igm
+				const match = pattern.exec(v.contents);
+				if (match && match.length > 0) {
+					_list[i].listImage = match[1];
+				}
+				
+				_list[i].listImage = _list[i].listImage || "/image/no_image.png";
 			});
 
 			const data = {
@@ -679,7 +728,126 @@ const board = {
 		} catch (err) {
 			logger(err.stack, 'error');
 		}
-	}
+	},
+	/**
+	* 게시판 삭제
+	*
+	* @param String boardId 게시판 아이디 
+	* @param Boolean delete_post true - 게시글도 함께 삭제 
+	*
+	* @return Boolean
+	*/
+	deleteBoard : async function(boardId, delete_post) {
+		try {
+			if (!boardId) 
+				return false;
+			
+			if (!(boardId instanceof Array)) { // boardId 가 배열 객체가 아닌 경우 
+				boardId = [boardId];
+			}
+			
+			boardId.forEach(async boardId => {
+							
+				/** 게시글 삭제 */
+				if (delete_post) {
+					// 댓글 삭제 
+					let sql = `DELETE FROM fly_boardcomment 
+										WHERE idxBoard = (SELECT idx FROM fly_boarddata WHERE boardId = ?)`;
+					await sequelize.query(sql, {
+						replacements : [boardId],
+						type : QueryTypes.DELETE,
+					});
+					
+					
+					// 본글 삭제 
+					sql = "DELETE FROM fly_boarddata WHERE boardId = ?";
+					await sequelize.query(sql, {
+						replacements : [boardId],
+						type : QueryTypes.DELETE,
+					});
+				}
+				
+				/** 게시판 삭제 */
+				sql = "DELETE FROM fly_board WHERE id = ?";
+				await sequelize.query(sql, {
+					replacements : [boardId],
+					type : QueryTypes.DELETE,
+				});
+			});
+			
+			return true;
+		} catch (err) {
+			logger(err.stack, 'error');
+			return false;
+		}
+	},
+	/**
+	* 최신글
+	*
+	* @param String boardId 게시판 아이디 
+	* @param String category 게시판 분류
+	* @param Integer limit 추출할 레코드 수, 기본값은 10
+	* @param Boolean isImagePost - true(이미지가 포함된 게시글), false - 전체 
+	*
+	* @return Array
+	*/
+	getLatest : async function(boardId, category, limit, isImagePost) {
+		try {
+			if (!boardId) {
+				throw new Error('게시판 아이디 누락');
+			}
+			
+			limit = limit || 10;
+			
+			let addWhere = "";
+			const _addWhere = [];
+			const replacements = {
+					boardId,
+					limit,
+			};
+			
+			if (category) {
+				_addWhere.push("a.category = :category");
+				replacements.category = category;
+			}
+			
+			if (isImagePost) {
+				_addWhere.push("a.isImagePost = 1");
+			}
+			
+			if (_addWhere.length > 0) {
+				addWhere = " AND " + _addWhere.join(" AND ");
+			}
+			
+			const sql = `SELECT a.*, b.memId, b.memNm FROM boarddata AS a 
+									LEFT JOIN member AS b ON a.memNo = b.memNo 
+								WHERE boardId = :boardId${addWhere} ORDER BY a.regDt DESC LIMIT :limit `;
+			
+			const list = await sequelize.query(sql, {
+				replacements,
+				type : QueryTypes.SELECT,
+			});
+			
+			list.forEach((v, i, _list) => {
+				const date = parseDate(v.regDt);
+				_list[i].regDt = date.datetime;
+				_list[i].regDtS = date.date;
+				
+				const pattern = /<img[^>]*src=['"]?([^>'"]+)['"]?[^>]*>/igm;
+				const match = pattern.exec(v.contents);
+				if (match && match.length > 0) {
+					_list[i].listImage = match[1];
+				} else {
+					_list[i].listImage = "/img/no_image.png";
+				}
+			});
+			
+			return list;
+		} catch (err) {
+			logger(err.stack, 'error');
+			return [];
+		}
+	},
 };
 
 module.exports = board;

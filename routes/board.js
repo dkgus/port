@@ -1,5 +1,6 @@
 const { boardConfig } = require('../middlewares/board/config');
 const { postValidator, memberOnlyCheck, permissionCheck } = require("../middlewares/board/post_validator");
+const { getUid } = require('../lib/common');
 const { alert, go, reload } = require('../lib/message');
 const express = require('express');
 const router = express.Router();
@@ -95,6 +96,7 @@ router.route('/:id')
 			addCss : ['board'],
 			addScript : ['board'],
 			pageTitle : req.boardConfig.boardNm,
+			gid : getUid(),
 		};
 				
 		return res.render("board/form", data);
@@ -106,7 +108,7 @@ router.route('/:id')
 			return go("/board/view/" + idx, res, "parent");
 		}
 		
-		return alert("게시글 작성에 실패하였습니다.");
+		return alert("게시글 작성에 실패하였습니다.", res);
 	})
 	/** 게시글 수정 처리 */
 	/** 수정 - id (게시글 번호) */
@@ -180,7 +182,7 @@ router.get("/list/:id", boardConfig, async (req, res, next) => {
 router.get("/update/:idx", permissionCheck(), async (req, res, next) => {
 	try {
 		const idx = req.params.idx;
-		const data = await board.get(idx);
+		const data = await board.get(idx, req);
 		if (!data.idx) {
 			throw new Error('존재하지 않는 게시글 입니다.');
 		}

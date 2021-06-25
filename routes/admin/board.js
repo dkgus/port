@@ -37,7 +37,13 @@ router.route("/")
 	})
 	/**  게시판 삭제 */
 	.delete(async (req, res, next) => {
-		
+		const result = await board.deleteBoard(req.body.id, req.body.delete_post);
+		if (result) { // 삭제 성공 -> 새로고침 
+			return reload(res, "parent");
+		}
+			
+		// 삭제 실패
+		return alert("게시판 삭제 실패하였습니다.", res);
 	});
 	
 /** 

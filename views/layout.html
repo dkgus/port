@@ -30,7 +30,7 @@
         {% endblock %}
         <title>{% if pageTitle %}{{ pageTitle }} - {% endif %}Fly &amp; Go</title>
     </head>
-    <body class="{% if bodyClass %}body_{{ bodyClass }} {% endif %}{{ 'main_page' if isMainPage else 'sub_page' }}">
+    <body class="{% if bodyClass2 %}body_{{ bodyClass2 }} {% endif %}{% if bodyClass %}body_{{ bodyClass }} {% endif %}{{ 'main_page' if isMainPage else 'sub_page' }}">
         {% block header %}
         {% include 'outline/header/_main.html' %}
         {% endblock %}

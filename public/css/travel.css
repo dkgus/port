@@ -38,10 +38,10 @@
 .body_travel .reservation .persons dt .txt { font-size: 13px; color: #888; padding-bottom: 3px; }
 .body_travel .reservation .persons dt .price { font-size: 17px; font-weight: 600; line-height: 1; }
 
-.body_travel .reservation .goods_cnt_wrap { border: 1px solid #c3c3c3; width: 106px; }
-.body_travel .reservation .goods_cnt { width: 34px; height: 34px; border: 1px solid #c3c3c3; border-top: 0; border-bottom: 0; border-radius: 0; display: block; float: left; font-size: 12px; text-align: center; padding: 0; }
-.body_travel .reservation .cnt_btn { display: block; height: 34px; width: 34px; text-align: center; line-height: 34px; float: left; cursor: pointer; font-size: 17px; }
-.body_travel .reservation .goods_cnt_wrap:after { clear: left; content: ''; display: block; }
+.body_travel .goods_cnt_wrap { border: 1px solid #c3c3c3; width: 106px; }
+.body_travel .goods_cnt { width: 34px; height: 34px; border: 1px solid #c3c3c3; border-top: 0; border-bottom: 0; border-radius: 0; display: block; float: left; font-size: 12px; text-align: center; padding: 0; }
+.body_travel .cnt_btn { display: block; height: 34px; width: 34px; text-align: center; line-height: 34px; float: left; cursor: pointer; font-size: 17px; }
+.body_travel .goods_cnt_wrap:after { clear: left; content: ''; display: block; }
 
 .body_travel .reservation .persons dl { margin: 25px 0; }
 .body_travel .reservation .persons { border-bottom: 1px solid #cecece; }

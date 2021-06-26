@@ -14,7 +14,7 @@ module.exports.bodyClass = (req, res, next) => {
 		url = url.slice(0,end);
 	}
 	
-	let addClass = "";
+	let addClass = "", addClass2 = "";
 	if (url == '/') { 
 		addClass = "main";
 		res.locals.isMainPage = true;
@@ -22,11 +22,13 @@ module.exports.bodyClass = (req, res, next) => {
 		url = url.split("/");
 		if (url.length > 2) {
 			addClass = url[1] + "_" + url[2];
+			addClass2 = url[1];
 		} else {
 			addClass = url[1];
 		}
 	}
 	
 	res.locals.bodyClass = addClass;
+	res.locals.bodyClass2 = addClass2;
 	next();
 };

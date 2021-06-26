@@ -29,6 +29,7 @@
 					<input type='checkbox' class='check_all' data-target-name='goodsCd'>
 				</th>
 				<th width='150'>상품코드</th>
+				<th width='100'>메인진열</th>
 				<th width='300'>상품명</th>
 				<th width='120'>등록일시</th>
 				<th></th>
@@ -41,6 +42,7 @@
 				<input type='checkbox' name='goodsCd' value='{{ item.goodsCd }}'>
 			</td>
 			<td align='center'>{{ item.goodsCd }}</td>
+			<td align='center'>{{ '진열' if item.isMainDisplay else '미진열'  }}</td>
 			<td>{{ item.goodsNm }}</td>
 			<td align='center'>{{ item.regDt }}</td>
 			<td>

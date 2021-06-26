@@ -121,3 +121,4 @@ footer .info3 .cs_info { margin-bottom: 22px; }
 .side_tit { font-size: 20px; font-weight: bold; margin-bottom: 15px; padding-left: 20px; }
 .side_menus li a { border: 1px solid #d5d5d5;  display: block;  border-radius: 3px; padding: 6px 15px; }
 .side_menus li  { margin-bottom: 3px; }
+.side_menus li.on a { border: 1px solid #000000; background-color: #000000; color: #ffffff; }

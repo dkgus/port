@@ -22,8 +22,8 @@ router.use((req, res, next) => {
 });
 
 router.get("/", (req, res, next) => {
-	
-	return res.render("mypage/index");
+
+	return res.redirect("/mypage/reservation");
 });
 
 /** 회원 정보 수정 */
@@ -32,6 +32,7 @@ router.route("/myinfo")
 	.get((req, res, next) => {
 		const data = {
 			addCss : ['member'],
+			sideMenu : "myinfo",
 		};
 		return res.render("member/form", data);
 	})
@@ -49,6 +50,7 @@ router.route("/myinfo")
 
 router.get("/reservation", async (req, res, next) => {
 	const data = await travel.getReservations(req.query.page, 20, req.query, req.session.memNo);
+	data.sideMenu = "reservation";
 	return res.render("mypage/reservation", data);
 });
 

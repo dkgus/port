@@ -16,7 +16,6 @@ const { bodyClass } = require('./middlewares/body_class'); // bodyClass 추가 �
 /** 라우터 */
 const indexRouter = require('./routes');
 const memberRouter = require('./routes/member');
-const reservationRouter = require('./routes/reservation');
 const boardRouter = require('./routes/board');
 const fileRouter = require('./routes/file'); // 파일 업로드 페이지
 const travelRouter = require('./routes/travel'); // 여행 상품 페이지 
@@ -83,7 +82,6 @@ app.use(mainMenu); // 메인메뉴
 app.use(indexRouter); // 메인 라우터 
 app.use("/member", memberRouter); // 회원 관련 라우터
 app.use("/board", boardRouter); // 게시판 관련 라우터 
-app.use("/reservation", reservationRouter); // 예약 관련 라우터
 app.use("/file", fileRouter); //파일 업로드 페이지 
 app.use("/travel", travelRouter); // 여행 페이지
 app.use("/mypage", mypageRouter); // 마이페이지

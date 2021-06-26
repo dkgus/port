@@ -116,7 +116,7 @@ $(function() {
 	/** 수량 증가 E */
 	
 	/** 예약하기 버튼 클릭 처리 */
-	$(".apply_reservation").click(function() {
+	$(".travel_goods .apply_reservation").click(function() {
 		if ($(this).hasClass("not_login")) {
 			if (!confirm('여행상품 예약은 로그인이 필요합니다. 로그인페이지로 이동하시겠습니까?')) {
 				return;

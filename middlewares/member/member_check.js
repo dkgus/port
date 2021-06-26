@@ -9,9 +9,8 @@ module.exports.adminOnly = (req, res, next) => {
 	
 	/* 관리자가 아니면 접속 불가 */
     if (!req.isLogin || !req.member.isAdmin) {
-        //return res.redirect("/");
-         //res.status(401); 
-        //return alert('페이지 접속 권한이 없습니다.', res, -1);
+         res.status(401); 
+        return alert('페이지 접속 권한이 없습니다.', res, -1);
     }
     next();
 };

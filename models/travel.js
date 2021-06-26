@@ -24,6 +24,9 @@ const travel = {
 		{ type : 'bus', name1 : '버스', name2 : '' },
 	],
 	
+	/** 예약 상태 */
+	status : ['접수완료', '예약확정', '예약취소'],
+	
 	/**
 	* 처리할 데이터 설정
 	*
@@ -66,6 +69,7 @@ const travel = {
 		try {
 			const sql = `UPDATE fly_travelgoods 
 			SET 
+			isMainDisplay = :isMainDisplay,
 			category = :category,
 			goodsNm = :goodsNm,
 			shortDescription = :shortDescription,
@@ -96,6 +100,7 @@ const travel = {
 			}
 			
 			const replacements = {
+				isMainDisplay : this.params.isMainDisplay || 0,
 				category : this.params.category || 'domestic',
 				goodsNm : this.params.goodsNm,
 				shortDescription : this.params.shortDescription,
@@ -219,6 +224,12 @@ const travel = {
 				_addWhere.push("endDate >= :endDate");
 				replacements.endDate = new Date(endStamp);
 			}
+			
+			/** 메인진열 검색조건 추가 */
+			if (qs.isMainDisplay) {
+				_addWhere.push("isMainDisplay=1");
+			}
+			
 			if (_addWhere.length > 0) {
 				addWhere = " WHERE " + _addWhere.join(" AND ");
 			}
@@ -650,9 +661,9 @@ const travel = {
 	*/
 	getApply : async function(idx, req) {
 		try {
-			let sql = `SELECT a.*, b.memNm, b.memId, c.goodsNm, c.transportation, c.priceAdult, c.priceChild FROM travelreservation AS a 
-									LEFT JOIN member AS b ON a.memNo = b.memNo 
-									LEFT JOIN travelgoods AS c ON a.goodsCd = c.goodsCd 
+			let sql = `SELECT a.*, b.memNm, b.memId, c.goodsNm, c.transportation, c.priceAdult, c.priceChild FROM fly_travelreservation AS a 
+									LEFT JOIN fly_member AS b ON a.memNo = b.memNo 
+									LEFT JOIN fly_travelgoods AS c ON a.goodsCd = c.goodsCd 
 							WHERE a.idx = ?`;
 			const rows = await sequelize.query(sql, {
 				replacements : [idx],
@@ -670,7 +681,7 @@ const travel = {
 				data.regDt = parseDate(data.regDt).datetime;
 				
 				// 여행자 정보 
-				sql = "SELECT * FROM travelreservation_persons WHERE idxReservation = ? ORDER BY regDt";
+				sql = "SELECT * FROM fly_travelreservation_persons WHERE idxReservation = ? ORDER BY regDt";
 				const rows = await sequelize.query(sql, {
 					replacements : [idx],
 					type : QueryTypes.SELECT,
@@ -735,7 +746,7 @@ const travel = {
 	*/
 	cancel : async function(idx) {
 		try {
-			const sql = `UPDATE travelreservation
+			const sql = `UPDATE fly_travelreservation
 									SET 
 										status = '예약취소' 
 								WHERE 
@@ -809,9 +820,9 @@ const travel = {
 			}
 			
 			
-			let sql = `SELECT COUNT(*) as cnt FROM travelreservation AS a 
-								LEFT JOIN member AS b ON a.memNo = b.memNo 
-								LEFT JOIN travelgoods AS c ON a.goodsCd = c.goodsCd${addWhere}`;
+			let sql = `SELECT COUNT(*) as cnt FROM fly_travelreservation AS a 
+								LEFT JOIN fly_member AS b ON a.memNo = b.memNo 
+								LEFT JOIN fly_travelgoods AS c ON a.goodsCd = c.goodsCd${addWhere}`;
 			const rows = await sequelize.query(sql, {
 				replacements,
 				type : QueryTypes.SELECT,
@@ -822,9 +833,9 @@ const travel = {
 			
 			replacements.limit = limit;
 			replacements.offset = offset;
-			sql = `SELECT a.*, b.memId, b.memNm, c.goodsNm FROM travelreservation AS a 
-								LEFT JOIN member AS b ON a.memNo = b.memNo 
-								LEFT JOIN travelgoods AS c ON a.goodsCd = c.goodsCd${addWhere} ORDER BY a.regDt DESC LIMIT :offset, :limit `;
+			sql = `SELECT a.*, b.memId, b.memNm, c.goodsNm FROM fly_travelreservation AS a 
+								LEFT JOIN fly_member AS b ON a.memNo = b.memNo 
+								LEFT JOIN fly_travelgoods AS c ON a.goodsCd = c.goodsCd${addWhere} ORDER BY a.regDt DESC LIMIT :offset, :limit `;
 			
 			const list = await sequelize.query(sql, {
 				replacements,
@@ -864,7 +875,7 @@ const travel = {
 				throw new Error('예약등록번호, 등록상태는 필수 인수');
 			}
 			
-			const sql = `UPDATE travelreservation
+			const sql = `UPDATE fly_travelreservation
 									SET 
 										status = :status 
 								WHERE 
@@ -895,14 +906,14 @@ const travel = {
 			}
 			transaction = await sequelize.transaction();
 		
-			let sql = "DELETE FROM travelreservation_persons WHERE idxReservation = ?";
+			let sql = "DELETE FROM fly_travelreservation_persons WHERE idxReservation = ?";
 			await sequelize.query(sql, {
 				replacements : [idx],
 				transaction,
 				type : QueryTypes.DELETE,
 			});
 			
-			sql = "DELETE FROM travelreservation WHERE idx = ?";
+			sql = "DELETE FROM fly_travelreservation WHERE idx = ?";
 			await sequelize.query(sql, {
 				replacements : [idx],
 				transaction,
@@ -918,6 +929,25 @@ const travel = {
 			return false;
 		}
 	},
+	
+	/**
+	* 메인 진열 상품 조회 
+	*
+	* @return Array|Boolean
+	*/
+	getMainDisplayGoods : async function() {
+		try {
+			const qs = {
+				isMainDisplay : 1,
+			};
+			const result = await this.getGoods(1, 1000, qs);
+			const list = result.list || [];
+			return list;
+		} catch (err) {
+			logger(err.stack, 'error');
+			return false;
+		}
+	}
 };
 
 

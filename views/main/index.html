@@ -21,60 +21,29 @@
             <article class="layout_width">
                 <div class="cust_area">
                     <h2>Fly & Go 인기 상품</h2>
-                    <ul class=container>
+                    <ul class='container'>
+						{% if mainGoods.length > 0 %}
+						{% for item in mainGoods %}
                         <li class="cust">
-                            <a href="#">
+                            <a href="/travel/{{ item.goodsCd }}">
+								{% if item.listImages.length > 0 %}
                                 <span>
-                                    <img src="image/pic.jpg" alt="112">
+                                    <img src="{{ item.listImages[0].fileUrl }}" alt="{{ item.goodsNm }}">
                                 </span>
+								{% endif %}
                                 <div class="list_info">
-                                    <h5 class="list_block">얼음동굴 4일 패키지</h5>
+                                    <h5 class="list_block">{{ item.goodsNm }}</h5>
                                     <span class="list_price">
                                         <em>
-                                            <strong>190,0000</strong>
+                                            <strong>{{ item.priceAdult.toLocaleString() }}</strong>
                                             원~
                                         </em>
                                     </span>
                                 </div>
                             </a>
                         </li>
-
-
-                        <li class="cust">
-                            <a href="#">
-                                <span>
-                                    <img src="image/pic10.jpg" alt="111">
-                                </span>
-                                <div class="list_info">
-                                    <h5 class="list_block">여행2</h5>
-                                    <span class="list_price">
-                                        <em>
-                                            <strong>190,0000</strong>
-                                            원~
-                                        </em>
-                                    </span>
-                                </div>
-                            </a>
-                        </li>
-
-
-
-                        <li class="cust">
-                            <a href="#">
-                                <span>
-                                    <img src="image/pic9.jpg" alt="111">
-                                </span>
-                                <div class="list_info">
-                                    <h5 class="list_block">여행3</h5>
-                                    <span class="list_price">
-                                        <em>
-                                            <strong>190,0000</strong>
-                                            원~
-                                        </em>
-                                    </span>
-                                </div>
-                            </a>
-                        </li>
+						{% endfor %}
+						{% endif %}
                     </ul>
                 </div>
             </article>

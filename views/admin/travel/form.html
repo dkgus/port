@@ -8,6 +8,15 @@
 			<th>상품코드</th>
 			<td>{{ goodsCd }}</td>
 		</tr>
+		<tr>
+			<th>메인진열</th>
+			<td>
+				<select name='isMainDisplay'>
+					<option value='0'{{ ' selected' if not isMainDisplay }}>미진열</option>
+					<option value='1'{{ ' selected' if isMainDisplay }}>진열</option>
+				</select>
+			</td>
+		</tr>
         <tr>
 			<th>여행구분</th>
 			<td>

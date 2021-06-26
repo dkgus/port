@@ -1,4 +1,65 @@
 {% extends '../layout.html' %}
 {% block content %}
-관리자 페이지
+
+
+<div class='mtitle'>관리자 목록</div>
+<form method='post' action='/admin/reservation' target='ifrmHidden' autocomplete='off'>
+	<table class='table_rows'>
+		<thead>
+			<tr>
+				<th width='20'>
+					<input type='checkbox' class='check_all' data-target-name='idx'>
+				</th>
+				<th width='140'>번호</th>
+				<th width='120'>아이디</th>
+				<th width='170'>성명</th>
+				<th width='350'>핸드폰</th>
+				<th width='350'>이메일</th>
+				<th width='350'>등록일</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for item in list %}
+			<tr>
+				<td align='center'>
+					<input type='checkbox' name='idx' value='{{ item.idx }}'>
+				</td>
+				<td align='center'>
+					<select name='status_{{ item.idx }}'>
+						{% for _status in statusList %}
+						<option value='{{ _status }}'{% if item.status == _status %} selected{% endif %}>{{ _status }}</option>
+						{% endfor %}
+					</select>
+				</td>
+				<td align='center'>
+					{{ item.name }}<br>
+					{% if item.memId %}({{ item.memId }}){% endif %}
+				</td>
+				<td align='center'>
+					{{ item.cellPhone }}<br>
+					{{ item.email }}
+				</td>
+				<td>
+					<a href='/admin/travel/{{ item.goodsCd }}' target='_blank'>{{ item.goodsNm }}</a>
+					<br>
+					{{ item.startDate }}~{{ item.endDate }}
+				</td>
+				<td>
+					<a href='/travel/reservation/{{ item.idx }}' target='_blank' class='btn1'>예약내용 자세히보기</a>
+				</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+	<div class='action_box'>
+		<select name='mode'>
+			<option value='add'>추가</option>
+			<option value='update'>수정</option>
+			<option value='delete'>삭제</option>
+		</select>
+		<input type='submit' value='처리하기' class='btn3' onclick="return confirm('정말 처리하시겠습니까?');">
+	</div>
+</form>
+
 {% endblock %}

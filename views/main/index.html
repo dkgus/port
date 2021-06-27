@@ -17,6 +17,10 @@
             </article>
         </section>
 
+
+
+
+
         <section>
             <article class="layout_width">
                 <div class="cust_area">
@@ -27,7 +31,7 @@
                         <li class="cust">
                             <a href="/travel/{{ item.goodsCd }}">
 								{% if item.listImages.length > 0 %}
-                                <span>
+                                <span class="imgFrm">
                                     <img src="{{ item.listImages[0].fileUrl }}" alt="{{ item.goodsNm }}">
                                 </span>
 								{% endif %}
@@ -58,11 +62,57 @@
             </article>
         </section>
 
+
+
+
+
         <section>
-            <article class="news">
-                World news
+            <article id="news">
+                <div class="cust_area">
+                    <h2>World News</h2>
+                <!-- Thumbnails -->
+                    <div class="thumbnails layout_width">
+                        <div>
+                            <a href="#">
+                                <img src="image/01.jpg" alt="" />
+                                <h3>Lorem ipsum dolor sit amet</h3>
+                            </a>
+                            <a href="#">
+                                <img src="image/02.jpg" alt="" />
+                                <h3>Lorem ipsum dolor sit amet</h3>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <img src="image/03.jpg" alt="" />
+                                <h3>Lorem ipsum dolor sit amet</h3>
+                            </a>
+                            <a href="#g">
+                                <img src="image/04.jpg" alt="" />
+                                <h3>Lorem ipsum dolor sit amet</h3>
+                            </a>
+                            <a href="#">
+                                <img src="image/05.jpg" alt="" />
+                                <h3>Lorem ipsum dolor sit amet</h3>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <img src="image/06.jpg" alt="" />
+                                <h3>Lorem ipsum dolor sit amet</h3>
+                            </a>
+                            <a href="#">
+                                <img src="image/07.jpg" alt="" />
+                                <h3>Lorem ipsum dolor sit amet</h3>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </article>
         </section>
+
+
+        
 </main>
 
 

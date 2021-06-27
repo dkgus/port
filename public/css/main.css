@@ -16,11 +16,12 @@
 
 
 .cust_area h2{ font-weight: 300; text-align: center; margin: 70px; font-size: 2.4rem; }
-.cust_area h2:hover{ color:rgb(113, 146, 150); }
+.cust_area h2:hover{ color:rgb(152, 159, 160); }
 .container{ display: flex; }
-.cust img{ width: 370px; height: 350px; padding-right: 30px;}
+.cust .imgFrm{padding-right: 30px;}
+.cust img{ width: 370px; height: 350px; }
 
-.cust_area .cust{ position: relative; }
+.cust_area .cust .imgFrm{ position: relative; }
 .cust_area .list_info{ position: absolute; display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; opacity: 0; background-color: rgba(0,0,0,0.7); left: 0; top:0; transition: all 0.3s; }
 .cust_area .list_info:hover{ opacity: 1; }
 
@@ -41,6 +42,81 @@
 .welcome {padding-top: 60px;}
 
 /* welcome 쿠폰 E */
+
+
+
+
+
+/* world news S */
+
+#news::after{
+    content: "";
+    display: block;
+    width: 170px;
+    height: 10px;
+    margin: 0 auto;
+    position: relative;
+    bottom: 130px;
+
+}
+
+
+
+
+
+
+
+#news .thumbnails{
+    display: flex;
+}
+
+#news .thumbnails>div{
+    flex-grow: 1;
+    margin-right:1rem;
+    margin-left: 1rem;
+}
+
+#news .thumbnails a{
+    margin-bottom: 1rem;
+    display: block;
+    text-decoration: none;
+    color: rgb(152, 159, 160)
+    font-weight: 200;
+
+    
+    
+}
+
+
+#news .thumbnails img{
+    width:100%;
+    border-top-left-radius: 0.2rem;
+    border-top-right-radius: 0.2rem;
+    display: block;
+}
+
+#news .thumbnails h3{
+    border-left:1px solid rgb(152, 159, 160);
+    border-right:1px solid rgb(152, 159, 160);
+    border-bottom:1px solid rgb(152, 159, 160);
+    border-bottom-left-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
+    padding:0.5rem;
+    text-align: center;
+    background-color:rgba(255,255,255,0.3);
+    font-weight: 300;
+    margin: 0;
+    color:rgb(152, 159, 160);
+    }
+
+
+
+
+
+
+
+
+/* world news E */
 
 
 

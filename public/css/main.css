@@ -15,14 +15,33 @@
 /* 3단 이미지 S */
 
 
-.cust_area h2{
-	font-weight: 300; text-align: center; margin: 70px; font-size: 2.4rem;
-	
-}
+.cust_area h2{ font-weight: 300; text-align: center; margin: 70px; font-size: 2.4rem; }
 .cust_area h2:hover{ color:rgb(113, 146, 150); }
 .container{ display: flex; }
 .cust img{ width: 370px; height: 350px; padding-right: 30px;}
 
+.cust_area .cust{ position: relative; }
+.cust_area .list_info{ position: absolute; display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; opacity: 0; background-color: rgba(0,0,0,0.7); left: 0; top:0; transition: all 0.3s; }
+.cust_area .list_info:hover{ opacity: 1; }
+
+
+.cust_area .list_info{ color: white; }
+.cust_area .list_info .list_block{ font-size: 1rem; font-weight: 500; }
+
 
 
 /* 3단 이미지 E */
+
+
+
+
+/* welcome 쿠폰 S */
+
+.welcome img{ width: 100%; }
+.welcome {padding-top: 60px;}
+
+/* welcome 쿠폰 E */
+
+
+
+

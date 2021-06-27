@@ -63,8 +63,9 @@ select { border: 1px solid #d5d5d5; height: 45px; padding: 0 10px; border-radius
 
 /** 테이블 공통 */
 .table_rows { border-spacing: 0; padding: 0; width: 100%; }
-.table_rows th { background-color: #5e99cb; color: #ffffff; padding:10px; border-left: 1px solid #ffffff; }
-.table_rows tr th:first-child { border-left: 0; }
+.table_rows th { background-color: #0a2a43; color: #ffffff; padding:10px; border-left: 1px solid #ffffff; }
+.table_rows tr th{ font-weight: 100; }
+.table_rows tr :first-child { border-left: 0; }
 .table_rows td { padding: 10px; border-bottom: 1px solid #d5d5d5; }
 
 
@@ -121,4 +122,4 @@ footer .info3 .cs_info { margin-bottom: 22px; }
 .side_tit { font-size: 20px; font-weight: bold; margin-bottom: 15px; padding-left: 20px; }
 .side_menus li a { border: 1px solid #d5d5d5;  display: block;  border-radius: 3px; padding: 6px 15px; }
 .side_menus li  { margin-bottom: 3px; }
-.side_menus li.on a { border: 1px solid #000000; background-color: #000000; color: #ffffff; }
+.side_menus li.on a { border: 1px solid #0a2a43; background-color: #0a2a43; color: #ffffff; }

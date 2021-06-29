@@ -12,7 +12,6 @@
                     </div> 
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
-                
                 </div>     
             </article>
         </section>
@@ -29,21 +28,21 @@
 						{% if mainGoods.length > 0 %}
 						{% for item in mainGoods %}
                         <li class="cust">
-                            <a href="/travel/{{ item.goodsCd }}">
-								{% if item.listImages.length > 0 %}
-                                <span class="imgFrm">
-                                    <img src="{{ item.listImages[0].fileUrl }}" alt="{{ item.goodsNm }}">
-                                </span>
+                                <a href="/travel/{{ item.goodsCd }}">
+                                    {% if item.listImages.length > 0 %}
+                                    <div class="imgFrm" style="background:url('{{ item.listImages[0].fileUrl }}') no-repeat center center; background-size: cover;">
+                                    </div>
 								{% endif %}
                                 <div class="list_info">
-                                    <h5 class="list_block">{{ item.goodsNm }}</h5>
-                                    <br>
-                                    <span class="list_price">
-                                        <em>
-                                            <strong>{{ item.priceAdult.toLocaleString() }}</strong>
-                                            원~
-                                        </em>
-                                    </span>
+                                    <div class='inner'>
+                                        <h5 class="list_block">{{ item.goodsNm }}</h5>
+                                        <div class="list_price">
+                                            <em>
+                                                <strong>{{ item.priceAdult.toLocaleString() }}</strong>
+                                                원~
+                                            </em>
+                                        </div>
+                                    </div>
                                 </div>
                             </a>
                         </li>
@@ -73,37 +72,38 @@
                 <!-- Thumbnails -->
                     <div class="thumbnails layout_width">
                         <div>
-                            <a href="#">
+                            <a href="https://www.sedaily.com/NewsVIew/22NTPWJ880">
                                 <img src="image/01.jpg" alt="" />
-                                <h3>Lorem ipsum dolor sit amet</h3>
+                                <h3>4개국어로 안내하는  <br> '스마트 관광안내시스템' 가동</h3>
                             </a>
-                            <a href="#">
+                            <a href="https://www.hankookilbo.com/News/Read/A2021061512180004860">
                                 <img src="image/02.jpg" alt="" />
-                                <h3>Lorem ipsum dolor sit amet</h3>
+                                <h3>조금씩 열리는 해외여행...<br>한국인 격리 면제 국가 늘어</h3>
                             </a>
                         </div>
                         <div>
-                            <a href="#">
+                            <a href="https://www.traveltimes.co.kr/news/articleView.html?idxno=112262">
                                 <img src="image/03.jpg" alt="" />
-                                <h3>Lorem ipsum dolor sit amet</h3>
+                                <h3>'알로하 이즈백!' 한진관광 <br>해외여행 재개 프로젝트 3탄</h3>
                             </a>
-                            <a href="#g">
+                            <a href="http://www.newstomato.com/ReadNews.aspx?no=1055493">
                                 <img src="image/04.jpg" alt="" />
-                                <h3>Lorem ipsum dolor sit amet</h3>
+                                <h3>사이판 여행길 열린다…<br>이르면 7월 말부터 여행 재개</h3>
                             </a>
-                            <a href="#">
+                            <a href="https://www.etoday.co.kr/news/view/2037241">
                                 <img src="image/05.jpg" alt="" />
-                                <h3>Lorem ipsum dolor sit amet</h3>
+                                <h3>에어서울, 내달 11일ㆍ18일<br> 해외 무착륙 관광 비행 실시</h3>
                             </a>
                         </div>
                         <div>
-                            <a href="#">
+                            <a href="https://www.koreatimes.net/ArticleViewer/Article/139468">
                                 <img src="image/06.jpg" alt="" />
-                                <h3>Lorem ipsum dolor sit amet</h3>
+                                <h3>해외관광 빗장해제 시작 <br>프랑스 등 관광객 입국 허용
+                                    </h3>
                             </a>
-                            <a href="#">
+                            <a href="https://news.kbs.co.kr/news/view.do?ncd=5202794">
                                 <img src="image/07.jpg" alt="" />
-                                <h3>Lorem ipsum dolor sit amet</h3>
+                                <h3>백신맞으면 다음 달부터<br> 푸켓관광 가능</h3>
                             </a>
                         </div>
                     </div>

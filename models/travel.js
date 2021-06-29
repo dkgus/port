@@ -405,7 +405,7 @@ const travel = {
 						
 			const replacements = {
 				startDate :  new Date(Number(period[0])),
-				endDate : new Date(Number(period[1])),
+				endDate : new Date(Number(period[1])), 
 				goodsCd : this.params.goodsCd,
 				addPrice : this.params.addPrice || 0,
 				minPersons : this.params.minPersons || 0,
